@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/jquery.validate.js" ></script>
+		<script type="text/javascript" src="js/messages_zh.js" ></script>
+		<!--引入LayUI库 2018/01/07 by gao-->
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+		<form class="layui-form" method="post" style="border: 1px solid darkgreen;width: 400px;margin: 0 auto;margin-top: 10%;" action="">
+			<div class="layui-form-item">
+				<label class="layui-form-label">账号：</label>
+			    <div class="layui-input-block">
+			      <input type="text" name="userId" style="width: 190px;"  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+			    </div>
+			</div>    
+		    <div class="layui-form-item">
+			    <label class="layui-form-label">密码：</label>
+			    <div class="layui-input-inline">
+			      <input type="password" name="pwd" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+			    </div>
+		    </div>
+		  	<div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+			      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			    </div>
+		  	</div>
+		</form>
+		 
+		<script>
+			$(function(){
+				$(".layui-form").validate({
+					rules:{
+						userId:"required",
+						pwd:{
+							required:true,
+							rangelength:[8,15]
+						}
+					},
+					messages:{
+						userId:{required:"请填写你的账号！"},
+						pwd:{rangelength:"请输入8-15位密码！"}
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
