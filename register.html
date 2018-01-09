@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>登录界面</title>
+		<title>注册界面</title>
 		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
 		<!--引入LayUI库 2018/01/07 by gao-->
 		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
@@ -12,7 +12,7 @@
 			html,body{width: 100%;height: 100%; overflow: hidden;}
 			body{background-color: #f3f3f3;}
 			.m-login{ height:348px;width: 680px;margin: 0 auto;margin-top: 9%;box-shadow: 0 0 3px #e5e5e5;}
-			.m-loginleftDiv{ color: #fff; background-color:#4AA1EC; height: 100%;width:300px;float: left;}
+			.m-loginleftDiv{ color: #fff; background-color: #4AA1EC; height: 100%;width:300px;float: left;}
 			.m-loginleftDiv img{width: 130px;height: 50px;position: relative;left: 20px;top: 60px;}
 			.u-loginlefttip1{font-size: 14px; position: relative;left: 40px; top: 70px;}
 			.u-loginlefttip2{font-size: 14px; position: relative;left: 40px; top: 90px;display: inline-block;width: 230px!important;}
@@ -21,13 +21,10 @@
 			.u-registertip{font-weight: bold; float: right;position: relative;right: 20px;top: 10px;font-size: 14px;}
 			#m-loginDiv a{text-decoration: none;color:#4aa1ec;font-size: 14px;}
 			#m-loginDiv label{color: #B10808; line-height: 38px;}
-			#m-logintelDiv{border: 1px solid #e5e5e5;border-radius: 2; height: 40px;width: 300px;margin-left: 35px;margin-top: 80px;}
-			#m-loginpwdDiv{border: 1px solid #e5e5e5;border-radius: 2; height: 40px;width: 300px;margin-left: 35px;margin-top: 30px;}
 			.u-logintitle{position: relative;font-weight: bold;font-size: 16px;top: 50px;left: 40px;color:#4aa1ec;}
 			.u-logintel{width:200px;float: left;border: none;}
 			.u-loginpwd{width:200px;float: left;border: none;}
 			.u-submitbtn{width: 300px;margin-left: 35px;margin-top: 25px;background-color: #4aa1ec;}
-			.u-forgetpwdtip{font-weight: bold;position:relative; left:140px;top:15px; font-size: 14px;}
 			.u-luokuan{margin-top:45px; float: right;margin-right: 10px;}
 		</style>
 	</head>
@@ -40,20 +37,20 @@
 				<span class="u-version">Ver 1.0.0 beta</span>
 			</div>
 			<div id="m-loginDiv">
-				<span class="u-registertip">还没有账户?<a href="#">点击注册</a></span>
-				<span class="u-logintitle">用户登录</span>
+				<span class="u-registertip"><a href="#">返回登录</a></span>
+				<span class="u-logintitle">用户注册</span>
 				<form class="layui-form" action="" method="post">
-					<div id="m-logintelDiv">
+					<div style="border: 1px solid #e5e5e5;border-radius: 2; height: 40px;width: 300px;margin-left: 35px;margin-top: 80px;">
 						<input type="text" id="u-logintel" name="tel" placeholder="手机号" autocomplete="off" class="layui-input u-logintel">
 						<label id="u-loginteltip"></label>
 					</div>
-					<div id="m-loginpwdDiv">
+					
+					<div style="border: 1px solid #e5e5e5;border-radius: 2; height: 40px;width: 300px;margin-left: 35px;margin-top: 30px;">
 						<input  type="password" name="pwd" placeholder="密码" autocomplete="off" class="layui-input u-loginpwd">
 						<label id="u-loginpwdtip"></label>
 					</div>
 					<input type="submit" value="登录" class="layui-btn layui-btn-fluid u-submitbtn" />
 				</form>
-				<span class="u-forgetpwdtip">忘记密码?<a href="#">点击找回</a></span>
 				<span class="u-luokuan">Powered by zhizhiyun.cn</span>
 			</div>
 		</div>
@@ -88,3 +85,4 @@
 		});
 	</script>
 </html>
+
