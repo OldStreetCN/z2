@@ -1,105 +1,88 @@
-<!--2018/01/08  by lu-->
+<!--2018/01/08 by lu-->
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
+		<title>登录界面</title>
 		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
-		<link rel="stylesheet" href="css/ie8banben.css" />
 		<!--引入LayUI库 2018/01/07 by gao-->
 		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
-		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
-		<title>登录界面</title>
 		<style>
 			*{font-size: 62.5%; margin: 0;padding: 0;list-style: none;outline: none;font-family:"12px/1.5 Microsoft YaHei,tahoma,arial,Hiragino Sans GB,\\5b8b\4f53,sans-serif";}
 			html,body{width: 100%;height: 100%; overflow: hidden;}
-			body{background:url(img/indexbg.jpg) no-repeat;}
-			@media screen and (min-width:1680px ){
-				#g-logo{left:160px!important;top: 60px!important;}
-				#g-explain{left: 320px!important;top: 120px!important;}
-				#g-login{left: 1120px!important;top: -150px!important;}
-				#g-footer{top:20px!important; margin-left:8.3%!important;width: 1600px!important;}
-				#u-logintitle{font-size: 21px!important;}
-				#u-logintel{font-size: 16px!important;}
-				#u-loginpwd{font-size: 16px!important;}
-				#u-loginsmt{font-size: 17px!important;}
-				#u-loginfgt{font-size: 16px!important;}
-				#u-logincru{font-size: 16px!important;}
-				#u-loginagree{font-size: 16px!important;}
-				#g-explain p{font-size: 22px!important;}
-				#g-footer{font-size: 16px!important;top: 50px!important;}
-			}
-			@media screen and (max-width:1366px ){
-				#g-logo{left:113.8px!important;top: 30px!important;}
-				#g-explain{left: 227px!important;top: 80px!important;}
-				#g-login{left: 796.8px!important;top: -200px!important;width: 380px!important;height: 460px!important;}
-				#u-logintel{margin-top: 30px!important;}
-				#u-brand{margin-top: -5px!important;}
-				#g-footer{top: -150px!important;}
-				#u-logintel{padding-left: 55px!important;}
-				#u-loginpwd{padding-left: 50px!important;}
-			}
-			#g-logo{position: relative;height: 80px;width:120px;text-align: center;left:120px;top: 30px;}
-			#u-logoimg{height: 60px;width: 120px;}
-			#u-logourl{display: inline;color: #fff;font-size: 14px;text-align: center;}
-			#g-explain{height: 200px;width: 510px;position:relative ;left: 240px;top: 70px;}
-			#g-explain p{color: #FFF;font-size: 20px;margin-top: 10px;margin: 0;line-height: 45px;}
-			#g-explain p:nth-child(2){margin-top: 10px!important;}
-			#u-explaintitle{margin: 0;font-size: 40px!important;color: #fff;}
-			#g-login{ text-align: center; width: 420px;height: 512px;background-color:#fff;box-shadow:0 0 1px 1px #999999; position: relative;left: 840px;top: -180px;}
-			#u-logintitle{font-size: 20px; color: #666;padding-top: 45px;}
-			#u-logintel{font-size: 14px;color: #666;width: 50px;padding-left: 76px;margin-top: 70px;}
-			#u-logintelipt{border: none;border-bottom: 1px solid #bbb;opacity: 100%;width: 260px;outline: none;margin-top: 20px;}
-			#u-loginpwd{font-size: 14px;color: #666;width: 50px;padding-left: 71px;margin: 0;margin-top: 50px;}
-			#u-loginpwdipt{border: none;border-bottom: 1px solid #bbb;opacity: 100%;width: 260px;outline: none;margin-top: 20px;}
-			#u-loginsmt{width: 260px;border-radius: 20px;opacity: 100%;height: 40px;background-color: #4AB3FF;border: none;outline: none;color: #fff;font-size: 16px;font-family: "微软雅黑";margin-top: 40px;}
-			#u-loginagree{margin: 0;margin-top: 5px;font-size: 14px;color: #666;font-family: "微软雅黑";}
-			#u-loginagree a{text-decoration: none;color: #4AB3FF;}
-			#u-loginfgt{ text-decoration: none;color: #1E8AE8;font-size: 14px;color: #4AB3FF;margin-top: 45px;display: block;float: left;padding-left: 45px;font-weight: bold;}
-			#u-logincru{text-decoration: none;color: #1E8AE8;font-size: 14px;color: #4AB3FF;float: right;display: block;margin-top: 45px;font-weight: bold;padding-right: 45px;}
-			#g-footer{position: relative;top: -90px; margin-left:8.3%;border:none;border-top:1px solid #fff;width: 1200px;height: 100px;font-size: 14px;color: #fff;}
-			#u-footer1{margin: 0;margin-top: 10px;float: left;}
-			#u-footer2{margin: 0;margin-top: 10px;float: right;}
-			#clear{clear: both;display: block;margin: 0;}
-			#u-footer3{margin: 0;float:left;}
-			#u-footer4{margin: 0;float:right;}
-			#u-brand{color: #fff;font-size: 14px;position: relative;top: 90px;}
-			/*登录失败*/
-			#u-loginfail{font-size: 14px;color: #DA6B6B;display: block;margin-top: 5px;}
+			body{background-color: #f3f3f3;}
+			.m-login{ height:348px;width: 680px;margin: 0 auto;margin-top: 9%;box-shadow: 0 0 3px #e5e5e5;}
+			.m-loginleftDiv{ color: #fff; background-image: url(img/loginBackground.png); height: 100%;width:300px;float: left;}
+			.m-loginleftDiv img{width: 130px;height: 50px;position: relative;left: 20px;top: 60px;}
+			.u-loginlefttip1{font-size: 14px; position: relative;left: 40px; top: 70px;}
+			.u-loginlefttip2{font-size: 14px; position: relative;left: 40px; top: 90px;display: inline-block;width: 230px!important;}
+			.u-version{position: relative;left: 10px;top: 190px;}
+			#m-loginDiv{background-color: #fff; height: 100%;width: 380px;float: left;color: #666;}
+			.u-registertip{font-weight: bold; float: right;position: relative;right: 20px;top: 10px;font-size: 14px;}
+			#m-loginDiv a{text-decoration: none;color:#4aa1ec;font-size: 14px;}
+			#m-loginDiv label{color: #B10808; line-height: 38px;}
+			.u-logintitle{position: relative;font-weight: bold;font-size: 16px;top: 50px;left: 40px;color:#4aa1ec;}
+			.u-logintel{width:200px;float: left;border: none;}
+			.u-loginpwd{width:200px;float: left;border: none;}
+			.u-submitbtn{width: 300px;margin-left: 35px;margin-top: 25px;background-color: #4aa1ec;}
+			.u-forgetpwdtip{font-weight: bold;position:relative; left:140px;top:15px; font-size: 14px;}
+			.u-luokuan{margin-top:45px; float: right;margin-right: 10px;}
 		</style>
-			
 	</head>
 	<body>
-		<div id="g-logo">
-			<img id="u-logoimg" src="img/logo_white.svg" />
-			<div id="u-logourl">zhizhiyun.cn</div>
+		<div class="m-login">
+			<div class="m-loginleftDiv">
+				<img src="img/logo_white.svg" /><br />
+				<span class="u-loginlefttip1">懂教育，懂管理，更懂你。</span><br />
+				<span class="u-loginlefttip2">知之是一款免费使用的教育机构管理系统。综合了教务、企业、财务、数据等管理模块，易上手，更轻便。</span><br />
+				<span class="u-version">Ver 1.0.0 beta</span>
+			</div>
+			<div id="m-loginDiv">
+				<span class="u-registertip">还没有账户?<a href="#">点击注册</a></span>
+				<span class="u-logintitle">用户登录</span>
+				<form class="layui-form" action="" method="post">
+					<div style="border: 1px solid #e5e5e5;border-radius: 2; height: 40px;width: 300px;margin-left: 35px;margin-top: 80px;">
+						<input type="text" id="u-logintel" name="tel" placeholder="手机号" autocomplete="off" class="layui-input u-logintel">
+						<label id="u-loginteltip"></label>
+					</div>
+					<div style="border: 1px solid #e5e5e5;border-radius: 2; height: 40px;width: 300px;margin-left: 35px;margin-top: 30px;">
+						<input  type="password" name="pwd" placeholder="密码" autocomplete="off" class="layui-input u-loginpwd">
+						<label id="u-loginpwdtip"></label>
+					</div>
+					<input type="submit" value="登录" class="layui-btn layui-btn-fluid u-submitbtn" />
+				</form>
+				<span class="u-forgetpwdtip">忘记密码?<a href="#">点击找回</a></span>
+				<span class="u-luokuan">Powered by zhizhiyun.cn</span>
+			</div>
 		</div>
-		<div id="g-explain">
-			<span id="u-explaintitle">为管理而生</span>
-			<p>知之是一款免费的培训机构管理工具，内部集成</p>
-			<p>多样式功能模块，可解决您的机构在日常工作中</p>
-			<p>遇到的大部分问题。轻量、快捷、上手简单、功</p>
-			<p>指向明确，是您日常管理中的一大助力。</p>
-		</div>
-		<div id="g-login">
-			<form action="#" method="post">
-				<p id="u-logintitle">高效管理，从登录开始</p>
-				<p id="u-logintel">手机号</p>
-				<input type="text" id="u-logintelipt" />
-				<p id="u-loginpwd">密码</p>
-				<input type="text" id="u-loginpwdipt" /><br/>
-				<span id="u-loginfail">用户名或密码错误</span>
-				<input type="submit" value="登录" id="u-loginsmt"/>
-				<p id="u-loginagree">登录即表示您同意<a href="#">用户条款</a></p>
-				<a href="#" id="u-loginfgt">忘记密码</a>
-				<a href="#" id="u-logincru">创建账户</a>
-			</form>
-			<p id="u-brand">©2017 zhizhiyun.cn</p>
-		</div>
-		<footer id="g-footer">
-			<p id="u-footer1">Powered by zhizhiyun.cn</p>
-			<p id="u-footer2">南京松果云数据服务有限公司</p><p id="clear"></p>
-			<p id="u-footer3">本产品已申请软件著作权，翻版必究</p>
-			<p id="u-footer4">北京松果互联信息科技有限公司</p>
-		</footer>
 	</body>
+	<script>
+		$(function(){
+			$("#u-logintel").blur(function(){
+				if($("#u-logintel").val()!=""){
+					$("#u-loginteltip").text("");
+				}
+			});
+			$(".u-loginpwd").blur(function(){
+				if($("#u-loginpwd").val()!=""){
+					$("#u-loginpwdtip").text("");
+				}
+			});
+			$(".u-submitbtn").click(function(){
+				var tel=$(".u-logintel").val();
+				  if(!(/^1[34578]\d{9}$/.test(tel))){ 
+				  		$("#u-loginteltip").text("请输入有效号码！");
+				        return false; 
+				    }
+				if($("#u-logintel").val()==""){
+					$("#u-loginteltip").text("请输入手机号码！");
+					return false;
+				}
+				if($(".u-loginpwd").val()==""){
+					$("#u-loginpwdtip").text("请输入密码！");
+					return false;
+				}
+			});
+		});
+	</script>
 </html>
