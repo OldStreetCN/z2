@@ -21,12 +21,13 @@
 			.u-registertip{font-weight: bold; float: right;position: relative;right: 20px;top: 10px;font-size: 14px;}
 			#m-loginDiv a{text-decoration: none;color:#4aa1ec;font-size: 14px;}
 			#m-loginDiv label{color: #B10808; line-height: 38px;}
-			#m-logintelDiv{border: 1px solid #e5e5e5;border-radius: 2; height: 40px;width: 300px;margin-left: 35px;margin-top: 80px;}
-			#m-loginpwdDiv{border: 1px solid #e5e5e5;border-radius: 2; height: 40px;width: 300px;margin-left: 35px;margin-top: 30px;}
+			#m-logintelDiv{border: 1px solid #e5e5e5;border-radius: 2; height: 40px;width: 300px;margin-left: 35px;margin-top:70px;}
+			#m-loginpwdDiv{border: 1px solid #e5e5e5;border-radius: 2; height: 40px;width: 300px;margin-left: 35px;margin-top: 20px;}
 			.u-logintitle{position: relative;font-weight: bold;font-size: 16px;top: 50px;left: 40px;color:#4aa1ec;}
 			.u-logintel{width:200px;float: left;border: none;}
 			.u-loginpwd{width:200px;float: left;border: none;}
-			.u-submitbtn{width: 300px;margin-left: 35px;margin-top: 25px;background-color: #4aa1ec;}
+			.u-loginfailtip{margin-left: 135px;}
+			.u-submitbtn{width: 300px;margin-left: 35px;margin-top:5px;background-color: #4aa1ec;}
 			.u-forgetpwdtip{font-weight: bold;position:relative; left:140px;top:15px; font-size: 14px;}
 			.u-luokuan{margin-top:45px; float: right;margin-right: 10px;}
 		</style>
@@ -51,6 +52,7 @@
 						<input  type="password" name="pwd" placeholder="密码" autocomplete="off" class="layui-input u-loginpwd">
 						<label id="u-loginpwdtip"></label>
 					</div>
+					<label class="u-loginfailtip"></label>
 					<input type="submit" value="登录" class="layui-btn layui-btn-fluid u-submitbtn" />
 				</form>
 				<span class="u-forgetpwdtip">忘记密码?<a href="#">点击找回</a></span>
@@ -70,7 +72,7 @@
 					$("#u-loginpwdtip").text("");
 				}
 			});
-			$(".u-submitbtn").click(function(){
+			$(".u-submitbtn").submit(function(){
 				var tel=$(".u-logintel").val();
 				  if(!(/^1[34578]\d{9}$/.test(tel))){ 
 				  		$("#u-loginteltip").text("请输入有效号码！");
@@ -84,7 +86,14 @@
 					$("#u-loginpwdtip").text("请输入密码！");
 					return false;
 				}
+				/*发送请求给后台*/
+				var form = $(".layui-form");
+				ajaxHelper("post", loginPath, form.serialize(), successHandler, errorHandler);
+				return false;
 			});
 		});
+		function successHandler(data){
+			
+		}
 	</script>
 </html>
