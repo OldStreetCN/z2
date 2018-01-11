@@ -10,9 +10,39 @@
 		<style>
 			*{font-size: 62.5%; margin: 0;padding: 0;list-style: none;outline: none;font-family:"12px/1.5 Microsoft YaHei,tahoma,arial,Hiragino Sans GB,\\5b8b\4f53,sans-serif";}
 			body,html{height: 900px;width: 100%;}
-			body{border: 1px solid orange;background-color: #f3f3f3;}
+			body{background-color: #f3f3f3;}
+			/*侧边导航栏*/
 			.g-sidenav{width: 150px;height: 100%;background-color: #393d48;position: fixed;left: 0px;top: 0px;z-index: 999;}
-			.g-header{width: 100%;height: 60px;background-color: #fff;position: fixed;left: 145px;top: 0;}
+			.m-logoDiv{width: 100%;height: 60px;}
+			.m-logoDiv img{width: 65px;height: 45px;margin-left: 41px;margin-top: 6px;}
+			.g-sidenav ul{width:100%;}
+			.g-sidenav li{cursor: pointer; width: 98%;height: 60px;text-align: center;font-weight: bold; line-height: 60px;color: #bababc;font-size: 14px;}
+			.u-currchooseli{border-left: 2px solid #4aa1ec;background-color: #4e5361;}
+			.g-sidenav li:hover {text-decoration: none;background-color: #4e5361;border-left: 2px solid #4aa1ec;}
+			.g-sidenav li:visited{text-decoration: none;background-color: #4e5361;border-left: 2px solid #4aa1ec;}
+			.g-sidenav li:active{text-decoration: none;background-color: #4e5361;border-left: 2px solid #4aa1ec;}
+			/*顶部bar*/
+			.g-header{z-index: 998; width: 90%;height: 60px;background-color: #fff;position: fixed;left: 145px;top: 0;}
+			.g-header *{font-size: 14px;}
+			.u-hdcurrjigou{line-height: 60px;margin-left: 50px;}
+			.u-hdcurrjigou:after{content: "    |";}
+			.u-xiaoquchoose{line-height: 60px;margin-left:1px;color: #999;}
+			.u-hd-kuaijie{float: right;margin-right:40px;height: 100%;width: 230px;}
+			.u-hd-kuaijie li{float: left; cursor: pointer;margin-left :20px;height: 100%;width: 30px;}
+			.u-hd-kuaijie img{height: 20px;width: 20px;margin-left: 5px;margin-top: 20px;}
+			.u-hd-kuaijie li:hover {border-top: 2px solid #393d48;}
+			.u-hd-kuaijie li:visited{border-top: 2px solid #393d48;}
+			.u-hd-kuaijie li:active{border-top: 2px solid #393d48;}
+			/*顶部个人中心弹出框*/
+			.u-owncenter{float: right;margin-right: 50px;cursor: pointer;line-height: 60px;}
+			.u-owncenter img{height: 10px;width: 10px;margin-left: 5px;}
+			.m-owncenterDiv{z-index: 999;border-radius: 2px; height: 84px;box-shadow:0 0 4px #999; width:104px;background-color: #fff;position: fixed;right: 8px;top: 63px;}
+			.m-owncenterDiv li{width: 100%;height: 42px;text-align: center;line-height: 42px;font-size: 14px;cursor: pointer;}
+			.m-owncenterDiv li:hover {background-color: #f3f3f3;}
+			.m-owncenterDiv li:visited{background-color: #f3f3f3;}
+			.m-owncenterDiv li:active{background-color: #f3f3f3;}
+			
+			
 			.g-kuaijie{left: 165px;top: 75px; height: 147px;width: 599px;background-color: #fff;position: absolute;}
 			.g-yunyingdata{left: 165px;top: 237px; height: 147px;width: 599px;background-color: #fff;position: absolute;}
 			.g-saledata{left: 165px;top: 399px; height: 262px;width: 599px;background-color: #fff;position: absolute;}
@@ -22,9 +52,40 @@
 		</style>
 	</head>
 	<body>
-		<div class="g-sidenav"></div>	
+		<!--侧边导航栏-->
+		<div class="g-sidenav">
+			<div class="m-logoDiv">
+				<img src="img/logo_white.svg" />
+			</div>
+			<ul>
+				<li class="u-currchooseli">后台首页</li>
+				<li>教务管理</li>
+				<li>运营管理</li>
+				<li>财务管理</li>
+				<li>数据中心</li>
+				<li>系统设置</li>
+			</ul>
+		</div>	
+		<!--顶部bar-->
 		<div class="g-header">
-			
+			<span class="u-hdcurrjigou">超级未来教育</span>
+			<span class="u-xiaoquchoose">切换</span>
+			<span class="u-owncenter"><span>高长浩</span><img src="img/xiangxia.svg"/></span>
+			<span class="u-hd-kuaijie">
+				<ul>
+					<li><img src="img/calendar.svg"/></li>
+					<li><img src="img/tip.svg"/></li>
+					<li><img src="img/helpcenter.svg"/></li>
+					<li><img src="img/more.svg"/></li>
+				</ul>
+			</span>
+		</div>
+		<!--这个是点击hd的个人中心弹出的下拉框-->
+		<div class="m-owncenterDiv">
+			<ul>
+				<li>个人资料</li>
+				<li>退出登录</li>
+			</ul>
 		</div>
 		<div class="g-kuaijie"></div>
 		<div class="g-yunyingdata"></div>
