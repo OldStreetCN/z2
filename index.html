@@ -46,7 +46,10 @@
 			.u-kj-title{margin-left: 15px;display: inline-block; margin-top: 10px;font-size: 16px!important;}
 			.u-kj-mg{font-size: 14px; float: right;display: inline-block;margin-right: 10px;margin-top: 10px;color: #4AA1EC;cursor: pointer;}
 			.u-kj-btndiv{height: 100px;width: 100%;border-top: 1px solid #e5e5e5;margin-top: 15px;}
-			.u-kj-btn{cursor: pointer; height:70px;width: 129px;background-color: #f3f3f3;margin-top: 15px;float: left;margin-left: 15px;}
+			.u-kj-btn{cursor: pointer; height:70px;width: 129px;background-color: #f8f8f8;margin-top: 15px;float: left;margin-left: 15px;}
+			.u-kj-btn:hover {background-color: #f3f3f3;}
+			.u-kj-btn:visited{background-color: #f3f3f3;}
+			.u-kj-btn:active{background-color: #f3f3f3;}
 			.u-kj-btndiv img{height: 29px;width: 30px;margin-top: 18px;margin-left: 15px;float: left;}
 			.u-kj-btn span{display: inline-block;margin-top: 23px;color: #333;margin-left: 5px;}
 			/*运营数据*/			
@@ -54,7 +57,10 @@
 			.g-yunyingdata *{font-size: 14px;}
 			.u-yy-futitle{margin-left: 10px;color: #999;font-size: 14px!important;}
 			.u-yy-btndiv{height: 100px;width: 100%;border-top: 1px solid #e5e5e5;margin-top: 15px;}
-			.u-yy-data{cursor: pointer; height:70px;width: 129px;background-color: #f3f3f3;margin-top: 15px;float: left;margin-left: 15px;}
+			.u-yy-data{cursor: pointer; height:70px;width: 129px;background-color: #f8f8f8;margin-top: 15px;float: left;margin-left: 15px;}
+			.u-yy-data:hover {background-color: #f3f3f3;}
+			.u-yy-data:visited{background-color: #f3f3f3;}
+			.u-yy-data:active{background-color: #f3f3f3;}
 			.u-yy-data p:nth-child(1){color: #999;margin-top: 7px;margin-left: 15px;}
 			.u-yy-data p:nth-child(2){font-size: 16px; color: #4AA1EC;margin-top:7px;margin-left: 15px;}
 			/*销售数据*/			
@@ -84,8 +90,16 @@
 			.u-sr-listmod img{margin-left: 15px;margin-top: 15px;}
 			.u-sr-listmod-data{display: inline-block;height: 40px;margin-top: 35px; width:75px;}
 			.u-sr-listmod-data span:nth-child(1){margin-left: 12px;}
-			
+			/*销售漏斗*/
 			.g-saleloudou{left: 779px;top:399px; height: 262px;width: 454px;background-color: #fff;position: absolute;}
+			.u-sl-div{ height: 215px;width: 100%;border-top: 1px solid #e5e5e5;margin-top: 15px;}
+			.u-sl-dataDiv{height: 215px;width: 225px;float: left;}
+			.u-sl-div *{font-size: 14px;color: #666;}
+			.u-sl-div p:nth-child(1){margin-left: 65px; margin-top: 15px;}
+			.u-sl-img1{height: 26px;width: 160px; margin-top: 10px;margin-left: 15px;}
+			.u-sl-img2{height: 26px;width: 116px; margin-top: 10px;margin-left:37px;}
+			.u-sl-img3{height: 26px;width: 72px; margin-top: 10px;margin-left:59px;}
+			.u-sl-img4{height:40px;width: 39px; margin-top: 10px;margin-left:75px;}
 		</style>
 		<script>
 			/*layui左侧导航栏效果*/
@@ -103,9 +117,15 @@
 				$(".u-owncenter").mouseover(function(){
 					$('.m-owncenterDiv').css("display",'block');
 				});
-				/*$(".m-owncenterDiv li").mouseout(function(){
+				$(".m-owncenterDiv").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".u-owncenter").mouseleave(function(){
 					$('.m-owncenterDiv').css("display",'none');
-				});*/
+				});
+				$(".m-owncenterDiv").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
 				
 			});
 			
@@ -228,7 +248,7 @@
 			</span>
 		</div>
 		<!--hd的个人中心弹出的下拉框-->
-		<div class="m-owncenterDiv">
+		<div class="m-owncenterDiv layui-anim" data-anim="layui-anim-upbit">
 			<ul>
 				<li>个人资料</li>
 				<li>退出登录</li>
@@ -319,7 +339,21 @@
 			<span class="u-kj-title">销售漏斗</span>
 			<span class="u-kj-title u-yy-futitle">本月数据截止到昨日</span>
 			<span id="u-sl-detaildata" class="u-kj-mg">查看详细数据</span><br />
-			<div class="u-sr-list">
+			<div class="u-sl-div">
+				<div class="u-sl-dataDiv">
+					<p>本月数据</p>
+					<img class="u-sl-img1" src="img/ld-zongkehu.png" />&nbsp;<span>50</span>人
+					<img class="u-sl-img2" src="img/ld-genjin.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>98</span>人
+					<img class="u-sl-img3" src="img/ld-yishixiao.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>98</span>人
+					<img class="u-sl-img4" src="img/ld-yibaoming.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>98</span>人
+				</div>
+				<div class="u-sl-dataDiv">
+					<p>上月数据</p>
+					<img class="u-sl-img1" src="img/ld-zongkehu.png" />&nbsp;<span>124</span>人
+					<img class="u-sl-img2" src="img/ld-genjin.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>93</span>人
+					<img class="u-sl-img3" src="img/ld-yishixiao.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>12</span>人
+					<img class="u-sl-img4" src="img/ld-yibaoming.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>8</span>人
+				</div>
 			</div>
 		</div>
 	</body>
