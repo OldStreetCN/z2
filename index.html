@@ -5,8 +5,12 @@
 		<meta charset="utf-8">
 		<title>后台首页</title>
 		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
+		<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.js"></script>
+		<script src="js/circle-progress.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/echarts.js" ></script>
 		<!--引入LayUI库 2018/01/07 by gao-->
 		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
 		<style>
 			*{font-size: 62.5%; margin: 0;padding: 0;list-style: none;outline: none;font-family:"12px/1.5 Microsoft YaHei,tahoma,arial,Hiragino Sans GB,\\5b8b\4f53,sans-serif";}
 			body,html{height: 900px;width: 100%;}
@@ -15,13 +19,8 @@
 			.g-sidenav{width: 150px;height: 100%;background-color: #393d48;position: fixed;left: 0px;top: 0px;z-index: 999;}
 			.m-logoDiv{width: 100%;height: 60px;}
 			.m-logoDiv img{width: 65px;height: 45px;margin-left: 41px;margin-top: 6px;}
-			.g-sidenav ul{width:100%;}
-			.g-sidenav li{cursor: pointer; width: 98%;height: 60px;text-align: center;font-weight: bold; line-height: 60px;color: #bababc;font-size: 14px;}
-			.u-currchooseli{border-left: 2px solid #4aa1ec;background-color: #4e5361;}
-			.g-sidenav li:hover {text-decoration: none;background-color: #4e5361;border-left: 2px solid #4aa1ec;}
-			.g-sidenav li:visited{text-decoration: none;background-color: #4e5361;border-left: 2px solid #4aa1ec;}
-			.g-sidenav li:active{text-decoration: none;background-color: #4e5361;border-left: 2px solid #4aa1ec;}
-			/*顶部bar*/
+			.layui-inline{width: 100%;}
+			/*顶部导航栏*/
 			.g-header{z-index: 998; width: 90%;height: 60px;background-color: #fff;position: fixed;left: 145px;top: 0;}
 			.g-header *{font-size: 14px;}
 			.u-hdcurrjigou{line-height: 60px;margin-left: 50px;}
@@ -34,22 +33,142 @@
 			.u-hd-kuaijie li:visited{border-top: 2px solid #393d48;}
 			.u-hd-kuaijie li:active{border-top: 2px solid #393d48;}
 			/*顶部个人中心弹出框*/
-			.u-owncenter{float: right;margin-right: 50px;cursor: pointer;line-height: 60px;}
+			.u-owncenter{float: right;margin-right: 50px;cursor: pointer;line-height: 60px;height: 100%;}
 			.u-owncenter img{height: 10px;width: 10px;margin-left: 5px;}
-			.m-owncenterDiv{z-index: 999;border-radius: 2px; height: 84px;box-shadow:0 0 4px #999; width:104px;background-color: #fff;position: fixed;right: 8px;top: 63px;}
+			.m-owncenterDiv{ display: none; z-index: 999;border-radius: 2px; height: 84px;box-shadow:0 0 4px #999; width:104px;background-color: #fff;position: fixed;right: 8px;top: 59px;}
 			.m-owncenterDiv li{width: 100%;height: 42px;text-align: center;line-height: 42px;font-size: 14px;cursor: pointer;}
 			.m-owncenterDiv li:hover {background-color: #f3f3f3;}
 			.m-owncenterDiv li:visited{background-color: #f3f3f3;}
 			.m-owncenterDiv li:active{background-color: #f3f3f3;}
-			
-			
+			/*快捷功能模块*/			
 			.g-kuaijie{left: 165px;top: 75px; height: 147px;width: 599px;background-color: #fff;position: absolute;}
+			.g-kuaijie *{font-size: 14px;}
+			.u-kj-title{margin-left: 15px;display: inline-block; margin-top: 10px;font-size: 16px!important;}
+			.u-kj-mg{font-size: 14px; float: right;display: inline-block;margin-right: 10px;margin-top: 10px;color: #4AA1EC;cursor: pointer;}
+			.u-kj-btndiv{height: 100px;width: 100%;border-top: 1px solid #e5e5e5;margin-top: 15px;}
+			.u-kj-btn{cursor: pointer; height:70px;width: 129px;background-color: #f3f3f3;margin-top: 15px;float: left;margin-left: 15px;}
+			.u-kj-btndiv img{height: 29px;width: 30px;margin-top: 18px;margin-left: 15px;float: left;}
+			.u-kj-btn span{display: inline-block;margin-top: 23px;color: #333;margin-left: 5px;}
+			/*运营数据*/			
 			.g-yunyingdata{left: 165px;top: 237px; height: 147px;width: 599px;background-color: #fff;position: absolute;}
+			.g-yunyingdata *{font-size: 14px;}
+			.u-yy-futitle{margin-left: 10px;color: #999;font-size: 14px!important;}
+			.u-yy-btndiv{height: 100px;width: 100%;border-top: 1px solid #e5e5e5;margin-top: 15px;}
+			.u-yy-data{cursor: pointer; height:70px;width: 129px;background-color: #f3f3f3;margin-top: 15px;float: left;margin-left: 15px;}
+			.u-yy-data p:nth-child(1){color: #999;margin-top: 7px;margin-left: 15px;}
+			.u-yy-data p:nth-child(2){font-size: 16px; color: #4AA1EC;margin-top:7px;margin-left: 15px;}
+			/*销售数据*/			
 			.g-saledata{left: 165px;top: 399px; height: 262px;width: 599px;background-color: #fff;position: absolute;}
+			.g-saledata *{font-size: 14px;}
+			.u-saledata-echart{height:200px;width: 100%;border-top: 1px solid #e5e5e5;margin-top: 15px;}
+			/*网盘*/
 			.g-wangpan{left: 779px;top: 75px; height: 147px;width: 454px;background-color: #fff;position: absolute;}
+			.g-wangpan *{font-size: 14px;}
+			.u-wp-detail{ height: 100px;width: 100%;border-top: 1px solid #e5e5e5;margin-top: 15px;}
+			#u-wp-canvas{display: inline-block;height: 65px;width: 65px;margin-left: 15px;margin-top: 15px;}
+			#u-wp-pec{position: absolute;left: 35px;top: 82px;}
+			#u-wp-pec *{color: #999;}
+			.u-wp-dataspan{position: absolute; left: 95px; top: 65px; height: 50px;width: 230px;}
+			.u-wp-dataspan *{color: #666;}
+			.u-wp-alruse{display: inline-block; margin-left: 18px;margin-top: 10px;}
+			.u-wp-weiuse{margin-left: 30px;}
+			#u-shiyong{display: inline-block; height: 14px;width: 14px;background-color: #4AA1EC;position: absolute;top: 98px;left: 97px;}
+			#u-weishiyong{display: inline-block; height: 14px;width: 14px;background-color: #999;position: absolute;top: 98px;left: 215px;}
+			#u-wp-kuorong{display: inline-block;height: 70px;width: 100px;text-align: center;line-height: 70px;cursor:pointer;font-size: 14px;color: 666; background-color: #f8f8f8;position: absolute;left:330px;top: 60px;}
+			/*销售排名*/
 			.g-salerank{left: 779px;top:237px; height: 147px;width: 454px;background-color: #fff;position: absolute;}
+			.u-sr-week{cursor: pointer; display: inline-block;text-align: center;line-height: 20px;color: #4AA1EC; height:20px;width:20px;border: 1px solid #4AA1EC; }
+			.u-sr-month{cursor: pointer; display: inline-block;text-align: center;line-height: 20px;color: #999; height:20px;width:20px;border: 1px solid #999;}
+			.u-sr-list{ height: 100px;width: 100%;border-top: 1px solid #e5e5e5;margin-top: 15px;}
+			.u-sr-listmod{height:100%;width: 147px;display: inline-block;}
+			.u-sr-listmod img{margin-left: 15px;margin-top: 15px;}
+			.u-sr-listmod-data{display: inline-block;height: 40px;margin-top: 35px; width:75px;}
+			.u-sr-listmod-data span:nth-child(1){margin-left: 12px;}
+			
 			.g-saleloudou{left: 779px;top:399px; height: 262px;width: 454px;background-color: #fff;position: absolute;}
 		</style>
+		<script>
+			/*layui左侧导航栏效果*/
+			$(function(){
+				//注意：导航 依赖 element 模块，否则无法进行功能性操作
+				layui.use('element', function(){
+				  var element = layui.element;
+				  
+				  //…
+				});
+			});
+			
+			/*顶部个人中心弹出框*/
+			$(function(){
+				$(".u-owncenter").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				/*$(".m-owncenterDiv li").mouseout(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});*/
+				
+			});
+			
+			/*折线图--最近十五天的数据*/
+			$(function(){
+				var chart = document.getElementById('u-saledata-echart');    
+                var echart = echarts.init(chart);
+                
+                option = {
+				    tooltip: {
+				        trigger: 'axis'
+				    },
+				    grid: {
+				        left: '3%',
+				        right: '4%',
+				        bottom: '3%',
+				        containLabel: true
+				    },
+				    toolbox: {
+				        feature: {
+				            saveAsImage: {}
+				        }
+				    },
+				    xAxis: {
+				        type: 'category',
+				        boundaryGap: false,
+				        data: ['01/07','01/08','01/09','01/10','01/11','01/12','01/13','01/14','01/15','01/16']
+				    },
+				    yAxis: {
+				        type: 'value'
+				    },
+				    series: [
+				        {
+				            name:'销售数据',
+				            type:'line',
+				            stack: '值',
+				            data:[0.5, 2.0, 1.0, 3.0, 0.5, 2.0, 1.0,2.5,3.0,1.2,],
+				            itemStyle:{
+				                normal:{
+				                     color:'#4aa1ec',
+				                    lineStyle:{
+				                        color:'#4aa1ec'
+				                    }
+				                }
+				            }
+				        }
+				    ]
+				};
+				echart.setOption(option);
+			});
+			
+			/*网盘使用情况*/
+			$(function(){
+				$('#u-wp-canvas').circleProgress({
+					value: 0.5,
+					size: 65,
+					fill: {
+						gradient: ["#4aa1ec", "#4aa1ec"]
+					}
+				});
+			});
+			
+		</script>
 	</head>
 	<body>
 		<!--侧边导航栏-->
@@ -57,13 +176,41 @@
 			<div class="m-logoDiv">
 				<img src="img/logo_white.svg" />
 			</div>
-			<ul>
-				<li class="u-currchooseli">后台首页</li>
-				<li>教务管理</li>
-				<li>运营管理</li>
-				<li>财务管理</li>
-				<li>数据中心</li>
-				<li>系统设置</li>
+			<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+				<li class="layui-nav-item"><a href="#">后台首页</a></li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">教务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">学生管理</a></dd>
+				      <dd><a href="">教师管理</a></dd>
+				      <dd><a href="">班级管理</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item">
+				    <a href="javascript:;">运营管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">财务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">数据中心</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item"><a href="">设置</a></li>
 			</ul>
 		</div>	
 		<!--顶部bar-->
@@ -80,18 +227,100 @@
 				</ul>
 			</span>
 		</div>
-		<!--这个是点击hd的个人中心弹出的下拉框-->
+		<!--hd的个人中心弹出的下拉框-->
 		<div class="m-owncenterDiv">
 			<ul>
 				<li>个人资料</li>
 				<li>退出登录</li>
 			</ul>
 		</div>
-		<div class="g-kuaijie"></div>
-		<div class="g-yunyingdata"></div>
-		<div class="g-saledata"></div>
-		<div class="g-wangpan"></div>
-		<div class="g-salerank"></div>
-		<div class="g-saleloudou"></div>
+		<!--快捷功能-->
+		<div class="g-kuaijie">
+			<span class="u-kj-title">快捷功能</span>
+			<span class="u-kj-mg">管理</span><br />
+			<div class="u-kj-btndiv">
+				<div id="" class="u-kj-btn"><img src="img/huiyuan-adduser.svg" /><span>员工管理</span></div>
+				<div class="u-kj-btn"><img/ src="img/huiyuanmange.svg"><span>权限划分</span></div>
+				<div class="u-kj-btn"><img/ src="img/tip.svg"><span>发布通知</span></div>
+				<div class="u-kj-btn"><img/ src="img/xunzhang.svg"><span>机构展示</span></div>
+			</div>
+		</div>
+		<!--运营数据-->
+		<div class="g-yunyingdata">
+			<span class="u-kj-title">运营数据</span>
+			<span class="u-kj-title u-yy-futitle">数据统计到昨日</span>
+			<span id="u-yy-alldata" class="u-kj-mg">查看全部数据</span><br />
+			<div class="u-yy-btndiv">
+				<div id="" class="u-yy-data">
+					<p>收入</p>
+					<p>122088.00</span>元
+				</div>
+				<div id="" class="u-yy-data">
+					<p>支出</p>
+					<p>112458.00</span>元
+				</div>
+				<div id="" class="u-yy-data">
+					<p>退课率</p>
+					<p>23</span>%
+				</div>
+				<div id="" class="u-yy-data">
+					<p>学生数量</p>
+					<p>568</span>人
+				</div>
+			</div>
+		</div>
+		<!--销售数据-->
+		<div class="g-saledata">
+			<span class="u-kj-title">销售数据</span>
+			<span class="u-kj-title u-yy-futitle">本月数据截止到昨日</span>
+			<div class="u-saledata-echart" id="u-saledata-echart"></div>
+		</div>
+		<!--网盘-->
+		<div class="g-wangpan">
+			<span class="u-kj-title">网盘情况</span>
+			<span class="u-kj-title u-yy-futitle">实时数据</span>
+			<span id="u-wp-alldata" class="u-kj-mg">查看全部数据</span><br />
+			<div class="u-wp-detail">
+				<span id="u-wp-canvas"></span>
+				<span id="u-wp-pec"><span>65</span><span>%</span></span>
+				<span class="u-wp-dataspan">
+					<span>容量：<span>1024.72</span>MB / <span>2048.00</span>MB</span><br />
+					<span class="u-wp-alruse">已经使用<span>50</span>%</span>
+					<span class="u-wp-weiuse">未使用<span>50</span>%</span>
+				</span> 
+				<span id="u-shiyong"></span>
+				<span id="u-weishiyong"></span>
+				<span id="u-wp-kuorong">点击扩容</span>
+			</div>
+		</div>
+		<!--销售排名-->
+		<div class="g-salerank">
+			<span class="u-kj-title">销售排名</span>
+			<span class="u-sr-week">周</span>
+			<span class="u-sr-month">月</span>
+			<span id="u-sr-detaildata" class="u-kj-mg">查看详细数据</span><br />
+			<div class="u-sr-list">
+				<span class="u-sr-listmod">
+					<div style="float: left;"><img src="img/guanjun.png" /></div>
+					<div class="u-sr-listmod-data"><span>张大王</span><br/><span>160544.00</span>元</div>
+				</span>
+				<span class="u-sr-listmod">
+					<div style="float: left;"><img src="img/yajun.png" /></div>
+					<div class="u-sr-listmod-data"><span>张中王</span><br/><span>160544.00</span>元</div>
+				</span>
+				<span class="u-sr-listmod">
+					<div style="float: left;"><img src="img/jijun.png" /></div>
+					<div class="u-sr-listmod-data"><span>张中王</span><br/><span>160544.00</span>元</div>
+				</span>
+			</div>
+		</div>
+		<!--销售漏斗-->
+		<div class="g-saleloudou">
+			<span class="u-kj-title">销售漏斗</span>
+			<span class="u-kj-title u-yy-futitle">本月数据截止到昨日</span>
+			<span id="u-sl-detaildata" class="u-kj-mg">查看详细数据</span><br />
+			<div class="u-sr-list">
+			</div>
+		</div>
 	</body>
 </html>
