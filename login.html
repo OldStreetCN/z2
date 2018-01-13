@@ -72,7 +72,7 @@
 					$("#u-loginpwdtip").text("");
 				}
 			});
-			$(".u-submitbtn").submit(function(){
+			$(".u-submitbtn").click(function(){
 				var tel=$(".u-logintel").val();
 				  if(!(/^1[34578]\d{9}$/.test(tel))){ 
 				  		$("#u-loginteltip").text("请输入有效号码！");
