@@ -3,21 +3,19 @@
 	<head>
 		<meta charset="utf-8">
 		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
+		<link rel="stylesheet" href="css/input.css" />
+		<script type="text/javascript" src="js/input.js" ></script>
 		<!--引入LayUI库 2018/01/07 by gao-->
 		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
 		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
 		<title></title>
 	</head>
 	<body>
-		  <div class="layui-form">
-		      <input class="layui-form layui-form-item" type="checkbox" name="" title="写作" lay-skin="primary" checked>
-			  <input type="checkbox" name="" lay-skin="primary"> 
-		  </div>
-		 
-		<script>
-		layui.use('form', function(){
-		});
-		</script>
+		
+		<div class="layui-table-cell laytable-cell-1-0 laytable-cell-checkbox layui-form-checked"><input type="checkbox" name="layTableCheckbox" lay-skin="primary"><div class="layui-unselect layui-form-checkbox" lay-skin="primary"><i class="layui-icon"></i></div></div>
+		<!--<input type="checkbox" name="layTableCheckbox" lay-skin="primary">
+		<div class="layui-unselect layui-form-checkbox" lay-skin="primary"><i class="layui-icon"></i></div>
+		<div class="layui-unselect layui-form-checkbox layui-form-checked" lay-skin="primary"><i class="layui-icon"></i></div>-->
 	</body>
 	
 </html>

@@ -44,8 +44,10 @@
 					        //模拟数据插入
 				     	setTimeout(function(){
 					        var lis = [];
-					        for(var i = 0; i <11; i++){
-					          lis.push('<tr>'+'<td>'+ '我是无情 '+'</td>'+ '<td>'+ '习近平元旦佳节在江西南昌调研并发表重要讲话 '+'</td>'+'<td>'+ '鹿心社 '+'</td>'+'<td>'+ '2018/01/01 17:08 '+'</td>'+'</tr>')
+					        for(var i = 0; i <18; i++){
+					          	lis.push('<tr>'+'<td>'+'</td>'+ '<td>'+ '习近平元旦佳节在江西南昌调研并发表重要讲话 '+'</td>'+'<td>'+ '鹿心社 '+'</td>'+'<td>'+ '2018/01/01 17:08 '+'</td>'+'</tr>')
+					       		$(".flow-default i").addClass("input_style");
+					       		$(".flow-default i").addClass("checkbox_bg");
 					        }
 					        //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
 					        //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
@@ -57,22 +59,25 @@
 			});
 		</script>
 		<style>
-			.g-main{position: absolute;left: 165px;top: 75px;height: 600px;width: 1068px;background-color:#fff;}
+			.g-main{position: absolute;left: 165px;top: 75px;height: 900px;width: 1068px;background-color:#fff;}
 			/*main界面的nav设置*/
 			.layui-nav .layui-nav-item{line-height: 50px;}
 			.u-ms-nav{background-color: #fff;border-bottom: 1px solid #e5e5e5;}
 			.u-ms-nav li{height: 50px;}
 			.u-ms-nav a{color: #666!important;}
 			/*main界面按钮的设置*/
-			.u-qxbtn{width: 90px;height: 30px;line-height: 28px;text-align: center; font-size: 12px;color: #999;margin-left: 27px;margin-top: 15px;}
+			.u-qxbtn{width: 60px;height: 30px;background-color: #fff;border: none;border:1px solid #e5e5e5;border-radius: 3px; line-height: 28px; font-size: 12px;color: #999;margin-left: 27px;margin-top: 15px;}
+			.u-qxbtn:hover {color: #4AA1EC;border: 1px solid #4AA1EC;}
+			.u-qxbtn:visited{color: #4AA1EC;border: 1px solid #4AA1EC;}
+			.u-qxbtn:active{color: #4AA1EC;border: 1px solid #4AA1EC;}
 			#u-pubbtn{float: right; margin-right: 15px;color: #fff;background-color: #4AA1EC;}
-			.u-ms-tabDiv{ width: 100%;height: 450px;overflow-y: auto;}
+			.u-ms-tabDiv{ width: 100%;overflow-y: auto;background-color: #fff;}
 			.u-ms-tabDiv::-webkit-scrollbar{ width: 10px;height: 10px; background-color: white;}
 			.u-ms-tabDiv::-webkit-scrollbar-thumb{ border-radius: 10px; background-color: #E5E5E5;}
 			.u-nohdtab{margin-top: -9px;}
 			.u-nohdtab table{margin-top: -6px;}
 			.u-ms-tab{width: 1026px;margin-left: 25px;}
-			.u-ms-tab thead tr{background-color: #fff;}
+			.u-ms-tab thead tr{background-color: #f3f3f3;}
 		</style>
 	</head>
 	<body>
@@ -146,10 +151,10 @@
 			  <li class="layui-nav-item"><a href="#">内部消息</a></li>
 			  <li class="layui-nav-item"><a href="#">系统消息</a></li>
 			</ul>
-			<button class="layui-btn layui-btn-primary u-qxbtn" id="u-qxbtn">全选</button>
-			<button class="layui-btn layui-btn-primary u-qxbtn" id="u-clbtn">删除</button>
-			<button class="layui-btn layui-btn-primary u-qxbtn" id="u-markbtn">标记已读</button>
-			<button class="layui-btn u-qxbtn" id="u-pubbtn">发布消息</button>
+			<button class="u-qxbtn" id="u-qxbtn">全选</button>
+			<button class="u-qxbtn" id="u-clbtn">删除</button>
+			<button class="u-qxbtn" id="u-markbtn">标记已读</button>
+			<button class="u-qxbtn" id="u-pubbtn">发布消息</button>
 			<!--表格设置-->
 			<table class="layui-table u-ms-tab" lay-skin="line">
 			    <colgroup>
@@ -175,9 +180,7 @@
 					    <col width="150">
 					    <col width="150">
 					</colgroup>
-					<div class="layui-form">
-				   		<tbody class="flow-default" id="LAY_demo1"></tbody>
-				   	</div>	
+				   	<tbody class="flow-default" id="LAY_demo1"></tbody>
 				</table>   
 			</div>
 		</div>

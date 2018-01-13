@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>详细信息界面</title>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
+		<link rel="stylesheet" href="css/global.css" />
+		<!--引入LayUI库 2018/01/07 by gao-->
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			/*layui左侧导航栏效果*/
+			$(function(){
+				//注意：导航 依赖 element 模块，否则无法进行功能性操作
+				layui.use('element', function(){
+				  var element = layui.element;
+				  
+				  //…
+				});
+			});
+			/*顶部个人中心弹出框*/
+			$(function(){
+				$(".u-owncenter").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".m-owncenterDiv").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".u-owncenter").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+				$(".m-owncenterDiv").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+				
+			});
+		</script>
+		<style>
+			.g-main{position: absolute;left: 165px;top: 75px;height:400px;width: 1068px;background-color:#fff;}
+			.u-qxbtn{width: 70px;height: 30px;background-color: #fff;border: none;border:1px solid #e5e5e5;border-radius: 3px; line-height: 28px; font-size: 12px;color: #999;margin-left: 27px;margin-top: 15px;}
+			.u-qxbtn:hover {color: #4AA1EC;border: 1px solid #4AA1EC;}
+			.u-qxbtn:visited{color: #4AA1EC;border: 1px solid #4AA1EC;}
+			.u-qxbtn:active{color: #4AA1EC;border: 1px solid #4AA1EC;}
+			/*正文*/
+			.g-main{font-size: 14px;color: #666;}
+			.g-main *{font-size: 14px;color: #666;}
+			.u-dtmsg-title{font-size: 16px;margin-left:25px;margin-top: 15px;color: #000;}
+			.u-dtmsg-systitle{margin-left: 25px;margin-top: 10px;display: inline-block;}
+			.u-dtmsg-main{overflow-y: auto; width: 96%;height:270px;background-color: #fff;border-top: 1px solid #e5e5e5; margin: 0 auto;margin-top:10px;}
+			.u-dtmsg-main::-webkit-scrollbar{ width: 10px;height: 10px; background-color: white;}
+			.u-dtmsg-main::-webkit-scrollbar-thumb{ border-radius: 10px; background-color: #E5E5E5;}
+			.u-dtmsg-main span{display: inline-block;margin-top: 10px;}
+		</style>
+	</head>
+	<body>
+		<!--侧边导航栏-->
+		<div class="g-sidenav">
+			<div class="m-logoDiv">
+				<img src="img/logo_white.svg" />
+			</div>
+			<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+				<li class="layui-nav-item"><a href="#">后台首页</a></li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">教务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">学生管理</a></dd>
+				      <dd><a href="">教师管理</a></dd>
+				      <dd><a href="">班级管理</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item">
+				    <a href="javascript:;">运营管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">财务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">数据中心</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item"><a href="">设置</a></li>
+			</ul>
+		</div>	
+		<!--顶部bar-->
+		<div class="g-header">
+			<span class="u-hdcurrjigou">超级未来教育</span>
+			<span class="u-xiaoquchoose">切换</span>
+			<span class="u-owncenter"><span>高长浩</span><img src="img/xiangxia.svg"/></span>
+			<span class="u-hd-kuaijie">
+				<ul>
+					<li><img src="img/calendar.svg"/></li>
+					<li><img src="img/tip.svg"/></li>
+					<li><img src="img/helpcenter.svg"/></li>
+					<li><img src="img/more.svg"/></li>
+				</ul>
+			</span>
+		</div>
+		<!--hd的个人中心弹出的下拉框-->
+		<div class="m-owncenterDiv layui-anim" data-anim="layui-anim-upbit">
+			<ul>
+				<li>个人资料</li>
+				<li>退出登录</li>
+			</ul>
+		</div>
+		<!--main区域-->
+		<div class="g-main">
+			<button class="u-qxbtn">返回上页</button>
+			<button class="u-qxbtn">删除</button>
+			<p class="u-dtmsg-title">你好新朋友，感谢使用layuiAdmin后台管理系统开源框架。</p>
+			<span class="u-dtmsg-systitle">系统</span> &nbsp;发布于:&nbsp;&nbsp;<span>2017/01/07</span>&nbsp;&nbsp;<span>19:32</span>
+			<div class="u-dtmsg-main">
+				<span>你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢
+					  你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢你在哪里呢
+				</span>
+			</div>
+		</div>
+	</body>
+</html>
