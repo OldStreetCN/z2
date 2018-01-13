@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>消息界面</title>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
+		<link rel="stylesheet" href="css/global.css" />
+		<!--引入LayUI库 2018/01/07 by gao-->
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			/*layui左侧导航栏效果*/
+			$(function(){
+				//注意：导航 依赖 element 模块，否则无法进行功能性操作
+				layui.use('element', function(){
+				  var element = layui.element;
+				  
+				  //…
+				});
+			});
+			/*顶部个人中心弹出框*/
+			$(function(){
+				$(".u-owncenter").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".m-owncenterDiv").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".u-owncenter").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+				$(".m-owncenterDiv").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+				
+			});
+			/*流加载表格数据*/
+			$(function(){
+				layui.use('flow', function(){
+				  	var flow = layui.flow;
+				 	flow.load({
+					    elem: '#LAY_demo1' //流加载容器
+					    ,done: function(page, next){ //执行下一页的回调
+					        //模拟数据插入
+				     	setTimeout(function(){
+					        var lis = [];
+					        for(var i = 0; i <11; i++){
+					          lis.push('<tr>'+'<td>'+ '我是无情 '+'</td>'+ '<td>'+ '习近平元旦佳节在江西南昌调研并发表重要讲话 '+'</td>'+'<td>'+ '鹿心社 '+'</td>'+'<td>'+ '2018/01/01 17:08 '+'</td>'+'</tr>')
+					        }
+					        //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+					        //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+					        next(lis.join(''), page < 10); //假设总页数为 10
+					      	}, 500);
+					    }
+				  	});
+				});
+			});
+		</script>
+		<style>
+			.g-main{position: absolute;left: 165px;top: 75px;height: 600px;width: 1068px;background-color:#fff;}
+			/*main界面的nav设置*/
+			.layui-nav .layui-nav-item{line-height: 50px;}
+			.u-ms-nav{background-color: #fff;border-bottom: 1px solid #e5e5e5;}
+			.u-ms-nav li{height: 50px;}
+			.u-ms-nav a{color: #666!important;}
+			/*main界面按钮的设置*/
+			.u-qxbtn{width: 90px;height: 30px;line-height: 28px;text-align: center; font-size: 12px;color: #999;margin-left: 27px;margin-top: 15px;}
+			#u-pubbtn{float: right; margin-right: 15px;color: #fff;background-color: #4AA1EC;}
+			.u-ms-tabDiv{ width: 100%;height: 450px;overflow-y: auto;}
+			.u-ms-tabDiv::-webkit-scrollbar{ width: 10px;height: 10px; background-color: white;}
+			.u-ms-tabDiv::-webkit-scrollbar-thumb{ border-radius: 10px; background-color: #E5E5E5;}
+			.u-nohdtab{margin-top: -9px;}
+			.u-nohdtab table{margin-top: -6px;}
+			.u-ms-tab{width: 1026px;margin-left: 25px;}
+			.u-ms-tab thead tr{background-color: #fff;}
+		</style>
+	</head>
+	<body>
+		<!--侧边导航栏-->
+		<div class="g-sidenav">
+			<div class="m-logoDiv">
+				<img src="img/logo_white.svg" />
+			</div>
+			<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+				<li class="layui-nav-item"><a href="#">后台首页</a></li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">教务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">学生管理</a></dd>
+				      <dd><a href="">教师管理</a></dd>
+				      <dd><a href="">班级管理</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item">
+				    <a href="javascript:;">运营管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">财务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">数据中心</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item"><a href="">设置</a></li>
+			</ul>
+		</div>	
+		<!--顶部bar-->
+		<div class="g-header">
+			<span class="u-hdcurrjigou">超级未来教育</span>
+			<span class="u-xiaoquchoose">切换</span>
+			<span class="u-owncenter"><span>高长浩</span><img src="img/xiangxia.svg"/></span>
+			<span class="u-hd-kuaijie">
+				<ul>
+					<li><img src="img/calendar.svg"/></li>
+					<li><img src="img/tip.svg"/></li>
+					<li><img src="img/helpcenter.svg"/></li>
+					<li><img src="img/more.svg"/></li>
+				</ul>
+			</span>
+		</div>
+		<!--hd的个人中心弹出的下拉框-->
+		<div class="m-owncenterDiv layui-anim" data-anim="layui-anim-upbit">
+			<ul>
+				<li>个人资料</li>
+				<li>退出登录</li>
+			</ul>
+		</div>
+		<!--main-->
+		<div class="g-main">
+			<ul class="layui-nav u-ms-nav" lay-filter="">
+			  <li class="layui-nav-item layui-this"><a href="#">全部消息</a></li>
+			  <li class="layui-nav-item"><a href="#">内部消息</a></li>
+			  <li class="layui-nav-item"><a href="#">系统消息</a></li>
+			</ul>
+			<button class="layui-btn layui-btn-primary u-qxbtn" id="u-qxbtn">全选</button>
+			<button class="layui-btn layui-btn-primary u-qxbtn" id="u-clbtn">删除</button>
+			<button class="layui-btn layui-btn-primary u-qxbtn" id="u-markbtn">标记已读</button>
+			<button class="layui-btn u-qxbtn" id="u-pubbtn">发布消息</button>
+			<!--表格设置-->
+			<table class="layui-table u-ms-tab" lay-skin="line">
+			    <colgroup>
+				    <col width="100">
+				    <col width="626">
+				    <col width="150">
+				    <col width="150">
+			    </colgroup>
+			    <thead>
+				    <tr>
+				      <th></th>
+				      <th>消息标题</th>
+				      <th>发布人</th>
+				      <th>时间</th>
+				    </tr> 
+			    </thead>
+			</table>
+			<div class="u-ms-tabDiv u-nohdtab">
+				<table class="layui-table u-ms-tab" lay-skin="line">
+					<colgroup>
+					    <col width="100">
+					    <col width="626">
+					    <col width="150">
+					    <col width="150">
+					</colgroup>
+					<div class="layui-form">
+				   		<tbody class="flow-default" id="LAY_demo1"></tbody>
+				   	</div>	
+				</table>   
+			</div>
+		</div>
+	</body>
+</html>
