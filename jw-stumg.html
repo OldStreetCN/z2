@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>学生管理</title>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
+		<link rel="stylesheet" href="css/global.css" />
+		<link rel="stylesheet" href="css/input.css" />
+		<script type="text/javascript" src="js/input.js" ></script>
+		<!--引入LayUI库 2018/01/07 by gao-->
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			/*layui左侧导航栏效果*/
+			$(function(){
+				//注意：导航 依赖 element 模块，否则无法进行功能性操作
+				layui.use('element', function(){
+				  var element = layui.element;
+				  
+				  //…
+				});
+			});
+			/*顶部个人中心弹出框*/
+			$(function(){
+				$(".u-owncenter").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".m-owncenterDiv").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".u-owncenter").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+				$(".m-owncenterDiv").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+			});
+			/*下拉列表*/
+			$(function(){
+				//Demo
+				layui.use('form', function(){
+				  var form = layui.form;
+				});
+			});
+			/*关闭提示*/
+			$(function(){
+				$("#u-stumg-tipcls").click(function(){
+					$(".u-stumg-tipDiv").css("display","none");
+				});
+			});
+			/*课程文本框*/
+			$(function(){
+				$("#u-stumg-addcus").click(function(){
+					$(".g-stumg-addstuMt").css("display","block");
+					$(".mark").css("display","block");
+				});
+				$("#u-stumg-addstuclosebtn,#u-stumg-addstuqxbtn").click(function(){
+					$(".g-stumg-addstuMt").css("display","none");
+					$(".mark").css("display","none");
+				});
+			});
+		</script>
+		<style>
+			.g-main{position: absolute;left: 165px;top: 75px;height: 900px;width: 1068px;background-color:#fff;}
+			/*mark*/
+			.mark{width: 100%;height: 100%;background:  rgba(0,0,0,.5);position: fixed;z-index: 1000;display: none;}
+			/*main界面的nav设置*/
+			.layui-nav .layui-nav-item{line-height: 50px;}
+			.u-ms-nav{background-color: #fff;border-bottom: 1px solid #e5e5e5;}
+			.u-ms-nav li{height: 50px;}
+			.u-ms-nav a{color: #666!important;}
+			/*按钮的设置*/
+			.u-stumg-globtnsty{width: 94px;height: 38px;margin-top: 15px;margin-left: 15px;float: left;}
+			.u-stumg-scbtn:hover {color: #f88a8a;border: 1px solid #f88a8a;}
+			.u-stumg-iptDiv{margin-left: -2px;width: 150px;}
+			#u-stumg-sehbtn{margin-left: -2px;width: 50px;background-color: #fff;border: 1px solid #e6e6e6;color: #999;}
+			#u-stumg-addcus{background-color: #40cb85;}
+			/*提示框*/
+			.u-stumg-tipDiv{display: inline-block;height: 40px;width: 300px;background-color: #fff7e9;margin-top: 14px;margin-left: 30px;}
+			#u-stumg-tipcls{float: right;margin-right: 5px;color: #ba8232;cursor: pointer;}
+			.u-stumg-content{margin-top: 15px;margin-left: 15px;color: #ba8232;}
+			/*add stu 模态框*/
+			.g-stumg-addstuMt{display: none; top:50%;left: 0;right: 0;margin: -250px auto 0 auto; height: 350px;width: 380px;background-color: #fff;border-radius: 5px;z-index: 1111;position: fixed;}
+			.g-stumg-addstuMt button{width: 92px;}
+			.g-stumg-addstuMt span{display: inline-block;}
+			.g-stumg-addstutitle{height: 40px;width: 100%;border-bottom: 1px solid #c9c9c9;}
+			.g-stumg-addstutitle span{font-size: 16px;line-height: 40px;margin-left: 15px;}
+			#u-stumg-addstuclosebtn{float: right;margin-top: 11px;margin-right: 10px;cursor: pointer;}
+			.u-stumg-addstuitem{float: left;}
+			.layui-form span{font-size: 14px;margin-top: 20px;margin-left: 30px;color: #666;} 
+			.u-stumg-addcourseipt{width: 250px;}
+			.u-stumg-coursecountipt{width:92px;}
+			.u-stumg-addstumark{width: 250px;height: 100px;margin-top: 15px;}
+			.u-stumg-addstusmt{width: 200px;margin-top: 25px;float: right;margin-right: 40px;}
+			#u-stumg-addstuqxbtn{background-color: #fff;color: #666;border:1px solid #c9c9c9;width: 92px;}
+			#u-stumg-addstucsmtbtn{background-color: #40cb85!important;}
+			/*数据表格*/
+			.u-stumg-tabDiv{width:1030px;height: 600px;	margin-left: 15px;}
+		</style>
+	</head>
+	<body>
+		<!--侧边导航栏-->
+		<div class="g-sidenav">
+			<div class="m-logoDiv">
+				<img src="img/logo_white.svg" />
+			</div>
+			<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+				<li class="layui-nav-item"><a href="#">后台首页</a></li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">教务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">学生管理</a></dd>
+				      <dd><a href="">教师管理</a></dd>
+				      <dd><a href="">班级管理</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item">
+				    <a href="javascript:;">运营管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">财务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">数据中心</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item"><a href="">设置</a></li>
+			</ul>
+		</div>	
+		<!--顶部bar-->
+		<div class="g-header">
+			<span class="u-hdcurrjigou">超级未来教育</span>
+			<span class="u-xiaoquchoose">切换</span>
+			<span class="u-owncenter"><span>高长浩</span><img src="img/xiangxia.svg"/></span>
+			<span class="u-hd-kuaijie">
+				<ul>
+					<li><img src="img/calendar.svg"/></li>
+					<li><img src="img/tip.svg"/></li>
+					<li><img src="img/helpcenter.svg"/></li>
+					<li><img src="img/more.svg"/></li>
+				</ul>
+			</span>
+		</div>
+		<!--hd的个人中心弹出的下拉框-->
+		<div class="m-owncenterDiv layui-anim" data-anim="layui-anim-upbit">
+			<ul>
+				<li>个人资料</li>
+				<li>退出登录</li>
+			</ul>
+		</div>
+		<div class="mark"></div>
+		<!--添加课程模态框-->
+		<div class="g-stumg-addstuMt">
+			<div class="g-stumg-addstutitle">
+				<span>课程添加</span>
+				<img id="u-stumg-addstuclosebtn" src="img/Mtclosebtn.png" />
+			</div>
+			<form class="layui-form" action="">
+				<span>课程名称</span>
+			    <div class="layui-input-inline">
+			        <input type="text"  required  placeholder="输入课程名称"  oninvalid="setCustomValidity('填写课程！');" oninput="setCustomValidity('');"  autocomplete="off" class="layui-input u-stumg-addcourseipt" />
+			    </div>
+			    <span>课时数量</span>
+			    <div class="layui-input-inline">
+			        <input type="text"  placeholder="输入课时数量" required oninvalid="setCustomValidity('输入数量！');" oninput="setCustomValidity('');" autocomplete="off" class="layui-input u-stumg-coursecountipt">
+			    </div>
+				<span>价格</span>
+				<div class="layui-input-inline">
+			        <input type="text" required oninvalid="setCustomValidity('输入价格！');" oninput="setCustomValidity('');"   placeholder="输入课程价格" autocomplete="off" class="layui-input u-stumg-coursecountipt">
+			    </div>
+			    <span>备注信息</span>
+			    <div class="layui-input-inline">
+			        <textarea type="text"  autocomplete="off" class="layui-input u-stumg-addstumark"></textarea>
+			    </div>
+				<div class="layui-form-item u-stumg-addstusmt">
+					<input type="button" class="layui-btn" id="u-stumg-addstuqxbtn" value="取消"/>
+				    <button class="layui-btn" id="u-stumg-addstucsmtbtn" lay-submit="" lay-filter="demo2">确认添加</button>
+				</div>
+			</form>
+		</div>
+		<!--main-->
+		<div class="g-main">
+			<ul  class="layui-nav u-ms-nav" lay-filter="">
+		        <li class="layui-nav-item layui-this"><a href="#">课程管理</a></li>
+			    <li class="layui-nav-item"><a href="#">班级管理</a></li>
+		        <li class="layui-nav-item"><a href="#">收费项目</a></li>
+			</ul>
+			<button class="layui-btn layui-btn-primary u-stumg-scbtn u-stumg-globtnsty">批量删除</button>
+			<form class="layui-form" action="">
+				<div class="u-stumg-sltDiv u-stumg-globtnsty">
+					<select name="quiz">
+					    <option>课程名称</option>
+					    <option>课程价格</option>
+					</select>
+				</div>
+				<div class="u-stumg-iptDiv u-stumg-globtnsty">
+					<input type="text" name="title" required lay-verify="required" placeholder="输入搜索词" autocomplete="off" class="layui-input"> 
+				</div>
+			</form>
+			<button class="u-stumg-globtnsty" id="u-stumg-sehbtn">搜索</button>
+			<button class="layui-btn u-stumg-globtnsty" id="u-stumg-addcus">添加课程</button>
+			<button class="layui-btn layui-btn-primary u-stumg-scbtn  u-stumg-globtnsty" id="u-stumg-czsx">重置筛选</button>
+			<div class="u-stumg-tipDiv">
+				<div id="u-stumg-tipcls">关闭</div>
+				<div class="u-stumg-content">添加完课程后，才能添加班级哟。</div>
+			</div>
+			<!--数据表格-->
+			<div class="u-stumg-tabDiv">
+				<table class="layui-hide" id="test"></table>
+			</div>
+			<script>
+			layui.use('table', function(){
+			  var table = layui.table;
+			  
+			  table.render({
+			    elem: '#test'
+			    ,url:'/demo/table/user/'
+			    ,cols: [[
+			      {type:'checkbox'}
+			      ,{field:'id', width:300, title: '课程名称'}
+			      ,{field:'username', width:100, title: '价格'}
+			      ,{field:'sex', width:100, title: '课时'}
+			      ,{field:'city', width:100, title: '班级数'}
+			      ,{field:'sign',width:100, title: '在读（人）'}
+			      ,{field:'experience', width:150, title: '课程创建时间'}
+			      ,{field:'score', width:150, title: '相关操作'}
+			    ]]
+			    ,page: true
+			  });
+			});
+			</script>
+		</div>
+	</body>
+</html>
