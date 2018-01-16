@@ -48,14 +48,36 @@
 					$(".u-stumg-tipDiv").css("display","none");
 				});
 			});
-			/*课程文本框*/
+			/*课程添加模态框*/
 			$(function(){
 				$("#u-stumg-addcus").click(function(){
-					$(".g-stumg-addstuMt").css("display","block");
+					$("#g-stumg-addstuMt").css("display","block");
 					$(".mark").css("display","block");
 				});
 				$("#u-stumg-addstuclosebtn,#u-stumg-addstuqxbtn").click(function(){
-					$(".g-stumg-addstuMt").css("display","none");
+					$("#g-stumg-addstuMt").css("display","none");
+					$(".mark").css("display","none");
+				});
+			});
+			/*课程管理模态框*/
+			$(function(){
+				$("").click(function(){
+					$("#g-stumg-upstuMt").css("display","block");
+					$(".mark").css("display","block");
+				});
+				$("#u-stumg-addstuclosebtn,#u-stumg-upstuqxbtn").click(function(){
+					$("#g-stumg-upstuMt").css("display","none");
+					$(".mark").css("display","none");
+				});
+			})
+			/*删除课程模态框*/
+			$(function(){
+				$("").click(function(){
+					$(".g-stumg-scstuMt").css("display","block");
+					$(".mark").css("display","block");
+				});
+				$("#u-stumg-scstuclosebtn,.u-stumg-scstuclbtn").click(function(){
+					$(".g-stumg-scstuMt").css("display","none");
 					$(".mark").css("display","none");
 				});
 			});
@@ -76,14 +98,14 @@
 			#u-stumg-sehbtn{margin-left: -2px;width: 50px;background-color: #fff;border: 1px solid #e6e6e6;color: #999;}
 			#u-stumg-addcus{background-color: #40cb85;}
 			/*提示框*/
-			.u-stumg-tipDiv{display: inline-block;height: 40px;width: 300px;background-color: #fff7e9;margin-top: 14px;margin-left: 30px;}
+			.u-stumg-tipDiv{display: inline-block;height: 40px;width: 300px;background-color: #fff7e9;margin-top: 14px;margin-left: 117px;}
 			#u-stumg-tipcls{float: right;margin-right: 5px;color: #ba8232;cursor: pointer;}
 			.u-stumg-content{margin-top: 15px;margin-left: 15px;color: #ba8232;}
 			/*add stu 模态框*/
 			.g-stumg-addstuMt{display: none; top:50%;left: 0;right: 0;margin: -250px auto 0 auto; height: 350px;width: 380px;background-color: #fff;border-radius: 5px;z-index: 1111;position: fixed;}
 			.g-stumg-addstuMt button{width: 92px;}
 			.g-stumg-addstuMt span{display: inline-block;}
-			.g-stumg-addstutitle{height: 40px;width: 100%;border-bottom: 1px solid #c9c9c9;}
+			.g-stumg-addstutitle{height: 40px;width: 100%;border-bottom: 1px solid #F2F2F2;}
 			.g-stumg-addstutitle span{font-size: 16px;line-height: 40px;margin-left: 15px;}
 			#u-stumg-addstuclosebtn{float: right;margin-top: 11px;margin-right: 10px;cursor: pointer;}
 			.u-stumg-addstuitem{float: left;}
@@ -94,6 +116,17 @@
 			.u-stumg-addstusmt{width: 200px;margin-top: 25px;float: right;margin-right: 40px;}
 			#u-stumg-addstuqxbtn{background-color: #fff;color: #666;border:1px solid #c9c9c9;width: 92px;}
 			#u-stumg-addstucsmtbtn{background-color: #40cb85!important;}
+			/*学生管理模态框*/
+			#u-stumg-upstuqxbtn{background-color: #fff;color: #666;border:1px solid #c9c9c9;width: 92px;}
+			#u-stumg-upstucsmtbtn{background-color: #40cb85!important;}
+			/*课程删除框*/
+			.g-stumg-scstuMt{display: none; top:60%;left: 0;right: 0;margin: -250px auto 0 auto; height: 250px;width: 500px;background-color: #fff;border-radius: 5px;z-index: 1111;position: fixed;}
+			#u-stumg-scstuclosebtn{float: right;margin-top: 11px;margin-right: 10px;cursor: pointer;}
+			.g-stumg-scstuMt p{text-align: center;font-size: 16px;color: rgb(102, 102, 102);margin-top: 60px;}
+			.g-stumg-scstuMt button{width: 92px;margin-top: 70px;}
+			.u-stumg-scstuclbtn{margin-left: 150px;}
+			.u-stumgscstuokbtn{background-color: #40cb85;color: #fff;}
+			.u-stumgscstuokbtn:hover{border: none;color: #fff;}
 			/*数据表格*/
 			.u-stumg-tabDiv{width:1030px;height: 600px;	margin-left: 15px;}
 		</style>
@@ -164,7 +197,7 @@
 		</div>
 		<div class="mark"></div>
 		<!--添加课程模态框-->
-		<div class="g-stumg-addstuMt">
+		<div class="g-stumg-addstuMt" id="g-stumg-addstuMt">
 			<div class="g-stumg-addstutitle">
 				<span>课程添加</span>
 				<img id="u-stumg-addstuclosebtn" src="img/Mtclosebtn.png" />
@@ -192,6 +225,42 @@
 				</div>
 			</form>
 		</div>
+		<!--课程管理模态框-->
+		<div class="g-stumg-addstuMt"  id="g-stumg-upstuMt">
+			<div class="g-stumg-addstutitle">
+				<span>课程管理</span>
+				<img id="u-stumg-addstuclosebtn" src="img/Mtclosebtn.png" />
+			</div>
+			<form class="layui-form" action="">
+				<span>课程名称</span>
+			    <div class="layui-input-inline">
+			        <input type="text"  required    autocomplete="off" class="layui-input u-stumg-addcourseipt" />
+			    </div>
+			    <span>课时数量</span>
+			    <div class="layui-input-inline">
+			        <input type="text"  required  autocomplete="off" class="layui-input u-stumg-coursecountipt">
+			    </div>
+				<span>价格</span>
+				<div class="layui-input-inline">
+			        <input type="text" required  autocomplete="off" class="layui-input u-stumg-coursecountipt">
+			    </div>
+			    <span>备注信息</span>
+			    <div class="layui-input-inline">
+			        <textarea type="text"  autocomplete="off" class="layui-input u-stumg-addstumark"></textarea>
+			    </div>
+				<div class="layui-form-item u-stumg-addstusmt">
+					<input type="button" class="layui-btn" id="u-stumg-upstuqxbtn" value="取消"/>
+				    <button class="layui-btn" id="u-stumg-upstucsmtbtn" lay-submit="" lay-filter="demo2">确认修改</button>
+				</div>
+			</form>
+		</div>
+		<!--点击删除课程按钮-->
+		<div class="g-stumg-scstuMt">
+			<img id="u-stumg-scstuclosebtn" src="img/Mtclosebtn.png" />
+			<p>课程删除将影响和该课程绑定的班级，确认删除吗？</p>
+			<button class="layui-btn layui-btn-primary u-stumg-scstuclbtn">取消</button>
+			<button class="layui-btn layui-btn-primary u-stumgscstuokbtn">确认删除</button>
+		</div>
 		<!--main-->
 		<div class="g-main">
 			<ul  class="layui-nav u-ms-nav" lay-filter="">
@@ -199,30 +268,42 @@
 			    <li class="layui-nav-item"><a href="#">班级管理</a></li>
 		        <li class="layui-nav-item"><a href="#">收费项目</a></li>
 			</ul>
-			<button class="layui-btn layui-btn-primary u-stumg-scbtn u-stumg-globtnsty">批量删除</button>
-			<form class="layui-form" action="">
-				<div class="u-stumg-sltDiv u-stumg-globtnsty">
-					<select name="quiz">
-					    <option>课程名称</option>
-					    <option>课程价格</option>
-					</select>
+			<div class="m-stumg-coursemgDiv" style="display: none;">
+				<button class="layui-btn layui-btn-primary u-stumg-scbtn u-stumg-globtnsty">批量删除</button>
+				<form class="layui-form" action="">
+					<div class="u-stumg-sltDiv u-stumg-globtnsty">
+						<select name="quiz">
+						    <option>课程名称</option>
+						    <option>课程价格</option>
+						</select>
+					</div>
+					<div class="u-stumg-iptDiv u-stumg-globtnsty">
+						<input type="text" name="title" required lay-verify="required" placeholder="输入搜索词" autocomplete="off" class="layui-input"> 
+					</div>
+				</form>
+				<button class="u-stumg-globtnsty" id="u-stumg-sehbtn">搜索</button>
+				<button class="layui-btn u-stumg-globtnsty" id="u-stumg-addcus">添加课程</button>
+				<button class="layui-btn layui-btn-primary u-stumg-scbtn  u-stumg-globtnsty" id="u-stumg-czsx">重置筛选</button>
+				<div class="u-stumg-tipDiv">
+					<div id="u-stumg-tipcls">关闭</div>
+					<div class="u-stumg-content">添加完课程后，才能添加班级哟。</div>
 				</div>
-				<div class="u-stumg-iptDiv u-stumg-globtnsty">
-					<input type="text" name="title" required lay-verify="required" placeholder="输入搜索词" autocomplete="off" class="layui-input"> 
+				<!--数据表格-->
+				<div class="u-stumg-tabDiv">
+					<table class="layui-hide" id="test"></table>
 				</div>
-			</form>
-			<button class="u-stumg-globtnsty" id="u-stumg-sehbtn">搜索</button>
-			<button class="layui-btn u-stumg-globtnsty" id="u-stumg-addcus">添加课程</button>
-			<button class="layui-btn layui-btn-primary u-stumg-scbtn  u-stumg-globtnsty" id="u-stumg-czsx">重置筛选</button>
-			<div class="u-stumg-tipDiv">
-				<div id="u-stumg-tipcls">关闭</div>
-				<div class="u-stumg-content">添加完课程后，才能添加班级哟。</div>
 			</div>
-			<!--数据表格-->
-			<div class="u-stumg-tabDiv">
-				<table class="layui-hide" id="test"></table>
+			<div class="m-stumg-classmgDiv">
+				<form class="layui-form" action="">
+					<div class="u-stumg-iptDiv u-stumg-globtnsty">
+						<input type="text" name="title" required lay-verify="required" placeholder="输入搜索词" autocomplete="off" class="layui-input"> 
+					</div>
+				</form>
 			</div>
-			<script>
+		</div>
+	</body>
+	<script>
+			/*课程管理表格渲染*/
 			layui.use('table', function(){
 			  var table = layui.table;
 			  
@@ -242,7 +323,5 @@
 			    ,page: true
 			  });
 			});
-			</script>
-		</div>
-	</body>
+	</script>
 </html>
