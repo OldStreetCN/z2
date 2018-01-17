@@ -81,6 +81,68 @@
 					$(".mark").css("display","none");
 				});
 			});
+			/*班级管理调用分页*/
+			$(function(){
+				layui.use(['laypage', 'layer'], function(){
+				    var laypage = layui.laypage
+				    ,layer = layui.layer;
+				    laypage.render({
+					    elem: 'u-ms-page2'
+					    ,count: 100
+					    ,theme: '#40cb85'
+					});
+				});	
+			});
+			/*添加班级日期*/
+			$(function(){
+				layui.use('laydate', function(){
+			  var laydate = layui.laydate;
+			  //常规用法
+			  laydate.render({
+			    elem: '#addclsdata'
+			  });
+			   //时间范围
+			  laydate.render({
+			    elem: '#test9'
+			    ,type: 'time'
+			    ,range: true
+			  });
+			});  
+			});
+			/*main-ul*/
+			$(function(){
+				$("#u-stumg-clsmg-li").click(function(){
+					$(".m-stumg-coursemgDiv").css("display","none");
+					$(".m-stumg-classmgDiv").css("display","block");
+				});
+				$("#u-stumg-course-li").click(function(){
+					$(".m-stumg-coursemgDiv").css("display","block");
+					$(".m-stumg-classmgDiv").css("display","none");
+				});
+			});
+			/*添加班级模态框*/
+			$(function(){
+				$("#u-stumg-addcoursebtn").click(function(){
+					$(".mark").css("display","block");
+					$("#g-stumg-addclsMt").css("display","block");
+				});
+				$("#u-stumg-addclsclosebtn1,#u-stumg-addclsqxbtn").click(function(){
+					$(".mark").css("display","none");
+					$("#g-stumg-addclsMt").css("display","none");
+				});
+				$("#u-stumg-addcls-li1").click(function(){
+					$("#m-stumg-clsmg-addcls").css("display","block");
+					$("#m-stumg-clsmg-sksj").css("display","none");
+					$("#u-stumg-addcls-li1").css("border-bottom","2px solid #4aa1ec");
+					$("#u-stumg-addcls-li2").css("border-bottom","none");
+				});
+				$("#u-stumg-addcls-li2").click(function(){
+					$("#m-stumg-clsmg-addcls").css("display","none");
+					$("#u-stumg-addcls-li1").css("border-bottom","none");
+					$("#m-stumg-clsmg-sksj").css("display","block");
+					$("#u-stumg-addcls-li2").css("border-bottom","2px solid #4aa1ec");
+				});
+			});
 		</script>
 		<style>
 			.g-main{position: absolute;left: 165px;top: 75px;height: 900px;width: 1068px;background-color:#fff;}
@@ -129,6 +191,36 @@
 			.u-stumgscstuokbtn:hover{border: none;color: #fff;}
 			/*数据表格*/
 			.u-stumg-tabDiv{width:1030px;height: 600px;	margin-left: 15px;}
+			/*班级管理*/
+			.u-stumg-addcoursesehtitle{color: #666; height:36px; border: 1px solid #e6e6e6;text-align: center;line-height: 35px;}
+			.u-stumg-clsmgsehbtn{margin-left: -2px;width: 50px;background-color: #fff;border: 1px solid #e6e6e6;color: #999;}
+			#u-stumg-addcoursebtn{background-color: #40cb85;}
+			.u-stumg-addcoursetabDiv{width:1026px; margin-left: 15px;}
+			.u-stumg-cosmg-dmbtn,.u-stumg-cosmg-glbtn{color: #4AA1EC;cursor: pointer;}
+			.u-stumg-cosmg-scbtn{color: #faa5a5;cursor: pointer;}
+			#u-stumg-addclsclosebtn1{float: right;margin-right: 10px;margin-top: 10px;}
+			/*班级管理添加班级模态框*/
+			#u-stumg-addcls-li1{cursor: pointer;}
+			#u-stumg-addcls-li2{cursor: pointer;}
+			.g-stumg-addclstitle span{width: 90px;margin-left: 0px;text-align: center;}
+			.g-stumg-addclstitle span:hover{border-bottom: 2px solid #4AA1EC;}
+			.g-stumg-addclstitle span:nth-child(1){border-bottom: 2px solid #4AA1EC;}
+			.u-stumg-clscounttitle{margin-left:3px!important;}
+			#u-stumg-addclsqxbtn{background-color: #fff;color: #666;border:1px solid #c9c9c9;width: 92px;margin-top: -25px;}
+			#u-stumg-addclscsmtbtn{background-color: #40cb85!important;margin-top: -25px;}
+			.m-stumg-sktimefom{display: none;}
+			.m-stumg-sktimefom span{font-size: 14px;display: inline-block; margin-top: 0px;margin-left: 0px;color: #666;} 
+			.u-stumg-skeveweektitle{margin-left: 15px!important;margin-top: 10px!important;}
+			.u-stumg-ck6{margin-left: 15px!important;}
+			.layui-form-checkbox{margin-left: 0px;}
+			.layui-form-checkbox span{width:3px;margin-left: -2px;}
+			.u-stumg-evedaytitle{margin-top:16px!important;margin-left: 15px!important;float: left;}
+			.u-stumg-skslt{margin-top: 10px!important;margin-left: 5px;}
+			.u-stumg-sksj{position: relative;left: -155px;top: 60px;}
+			.u-stumg-sksjDiv{position: relative;height: 180px;width: 250px;left: 48px;top: 15px;}
+			.u-stumg-sksjDiv input{height: 30px;margin-top: 5px;}
+			#u-stumg-skqxbtn{background-color: #fff;color: #666;border:1px solid #c9c9c9;width: 92px;margin-top: -5px;}
+			#u-stumg-skmtbtn{background-color: #40cb85!important;margin-top: -5px;}
 		</style>
 	</head>
 	<body>
@@ -205,11 +297,11 @@
 			<form class="layui-form" action="">
 				<span>课程名称</span>
 			    <div class="layui-input-inline">
-			        <input type="text"  required  placeholder="输入课程名称"  oninvalid="setCustomValidity('填写课程！');" oninput="setCustomValidity('');"  autocomplete="off" class="layui-input u-stumg-addcourseipt" />
+			        <input type="text"  required  oninvalid="setCustomValidity('填写课程！');" oninput="setCustomValidity('');"  autocomplete="off" class="layui-input u-stumg-addcourseipt" />
 			    </div>
 			    <span>课时数量</span>
 			    <div class="layui-input-inline">
-			        <input type="text"  placeholder="输入课时数量" required oninvalid="setCustomValidity('输入数量！');" oninput="setCustomValidity('');" autocomplete="off" class="layui-input u-stumg-coursecountipt">
+			        <input type="text"   required oninvalid="setCustomValidity('输入数量！');" oninput="setCustomValidity('');" autocomplete="off" class="layui-input u-stumg-coursecountipt">
 			    </div>
 				<span>价格</span>
 				<div class="layui-input-inline">
@@ -261,14 +353,89 @@
 			<button class="layui-btn layui-btn-primary u-stumg-scstuclbtn">取消</button>
 			<button class="layui-btn layui-btn-primary u-stumgscstuokbtn">确认删除</button>
 		</div>
+		<!--点击班级管理的添加班级-->
+		<div class="g-stumg-addstuMt" id="g-stumg-addclsMt">
+			<div class="g-stumg-addstutitle g-stumg-addclstitle">
+				<span id="u-stumg-addcls-li1">添加班级</span>
+				<span id="u-stumg-addcls-li2">排课信息</span>
+				<img  id="u-stumg-addclsclosebtn1" src="img/Mtclosebtn.png" />
+			</div>
+			<!--班级管理-- 添加班级-->
+			<form class="layui-form" id="m-stumg-clsmg-addcls" action="" >
+				<span>所属课程</span>
+			    <div class="layui-input-inline">
+			        <input type="text"  required   oninvalid="setCustomValidity('填写课程！');" oninput="setCustomValidity('');"  autocomplete="off" class="layui-input u-stumg-addcourseipt" />
+			    </div>
+			    <span>班级名称</span>
+			    <div class="layui-input-inline">
+			        <input type="text"  required    oninvalid="setCustomValidity('填写班级名称！');" oninput="setCustomValidity('');"  autocomplete="off" class="layui-input u-stumg-addcourseipt" />
+			    </div>
+			    <span>任课教师</span>
+			    <div class="layui-input-inline">
+			        <input type="text" required oninvalid="setCustomValidity('输入教师名！');" oninput="setCustomValidity('');" autocomplete="off" class="layui-input u-stumg-coursecountipt">
+			    </div>
+				<span class="u-stumg-clscounttitle">班级容量</span>
+				<div class="layui-input-inline">
+			        <input type="text" required oninvalid="setCustomValidity('班级容量！');" oninput="setCustomValidity('');"   autocomplete="off" class="layui-input u-stumg-coursecountipt">
+			    </div>
+			     <span>上课教室</span>
+			    <div class="layui-input-inline">
+			        <input type="text"  required oninvalid="setCustomValidity('输入教师名！');" oninput="setCustomValidity('');" autocomplete="off" class="layui-input u-stumg-coursecountipt">
+			    </div>
+				<span class="u-stumg-clscounttitle">课时数量</span>
+				<div class="layui-input-inline">
+			        <input type="text" required oninvalid="setCustomValidity('班级容量！');" oninput="setCustomValidity('');"  autocomplete="off" class="layui-input u-stumg-coursecountipt">
+			    </div>
+			    <span>开班日期</span>
+			      <div class="layui-input-inline">
+			        <input type="text" class="layui-input" id="addclsdata" placeholder="yyyy-MM-dd">
+			      </div>
+				<div class="layui-form-item u-stumg-addstusmt">
+					<input type="button" class="layui-btn" id="u-stumg-addclsqxbtn" value="取消"/>
+				    <button class="layui-btn" id="u-stumg-addclscsmtbtn" lay-submit="" lay-filter="demo2">下一步</button>
+				</div>
+			</form>
+			<!--班级管理-- 上课时间-->
+			<form class="layui-form m-stumg-sktimefom" id="m-stumg-clsmg-sksj" action="" >
+				<span class="u-stumg-skeveweektitle">每周</span>
+				<input type="checkbox" name="" title="一" lay-skin="primary" />
+				<input type="checkbox" name="" title="二" lay-skin="primary" />
+				<input type="checkbox" name="" title="三" lay-skin="primary" />
+				<input type="checkbox" name="" title="四" lay-skin="primary" />
+				<input type="checkbox" name="" title="五" lay-skin="primary" />
+				<input class="u-stumg-ck6" type="checkbox" name="" title="六" lay-skin="primary" />
+				<input type="checkbox" name="" title="日" lay-skin="primary" /><br />
+				<span class="u-stumg-evedaytitle">每天</span>
+				<div class="u-stumg-sltDiv u-stumg-globtnsty u-stumg-skslt">
+					<select name="quiz">
+					    <option>1</option>
+					    <option>2</option>
+					</select>
+				</div>
+				<span  class="u-stumg-evedaytitle">节</span>
+				<span  class="u-stumg-sksj">时间</span>
+				<div class="u-stumg-sksjDiv">
+					 <input  type="text" class="layui-input" id="test9" placeholder=" - ">
+					 <input  type="text" class="layui-input" id="test9" placeholder=" - ">
+					 <input  type="text" class="layui-input" id="test9" placeholder=" - ">
+					 <input  type="text" class="layui-input" id="test9" placeholder=" - ">
+				</div>
+				<div class="layui-form-item u-stumg-addstusmt">
+					<input type="button" class="layui-btn" id="u-stumg-skqxbtn" value="上一步"/>
+				    <button class="layui-btn" id="u-stumg-skmtbtn" lay-filter="">确认添加</button>
+				</div>
+			</form>
+			
+		</div>
 		<!--main-->
 		<div class="g-main">
-			<ul  class="layui-nav u-ms-nav" lay-filter="">
-		        <li class="layui-nav-item layui-this"><a href="#">课程管理</a></li>
-			    <li class="layui-nav-item"><a href="#">班级管理</a></li>
+			<ul  class="layui-nav u-ms-nav" id="m-stumgul" lay-filter="">
+		        <li class="layui-nav-item layui-this" id="u-stumg-course-li"><a href="#">课程管理</a></li>
+			    <li class="layui-nav-item" id="u-stumg-clsmg-li"><a href="#">班级管理</a></li>
 		        <li class="layui-nav-item"><a href="#">收费项目</a></li>
 			</ul>
-			<div class="m-stumg-coursemgDiv" style="display: none;">
+			<!--课程管理模态框-->
+			<div class="m-stumg-coursemgDiv">
 				<button class="layui-btn layui-btn-primary u-stumg-scbtn u-stumg-globtnsty">批量删除</button>
 				<form class="layui-form" action="">
 					<div class="u-stumg-sltDiv u-stumg-globtnsty">
@@ -293,13 +460,85 @@
 					<table class="layui-hide" id="test"></table>
 				</div>
 			</div>
+			<!--班级管理模态框-->
 			<div class="m-stumg-classmgDiv">
 				<form class="layui-form" action="">
+					<div class="u-stumg-sltDiv u-stumg-globtnsty u-stumg-addcoursesehtitle">
+						课程名称
+					</div>
 					<div class="u-stumg-iptDiv u-stumg-globtnsty">
-						<input type="text" name="title" required lay-verify="required" placeholder="输入搜索词" autocomplete="off" class="layui-input"> 
+						<input type="text" name="title" id="" lay-verify="required" placeholder="输入搜索词" autocomplete="off" class="layui-input"> 
 					</div>
 				</form>
-			</div>
+				<button class="u-stumg-globtnsty u-stumg-clsmgsehbtn" id="" >搜索</button>
+				<button class="layui-btn u-stumg-globtnsty" id="u-stumg-addcoursebtn">添加课程</button>
+				<button class="layui-btn layui-btn-primary u-stumg-scbtn  u-stumg-globtnsty" id="u-stumg-czsx">重置筛选</button>
+				<div class="u-stumg-tipDiv">
+					<div id="u-stumg-tipcls">关闭</div>
+					<div class="u-stumg-content">添加完课程后，才能添加班级哟。</div>
+				</div>
+				<div class="u-stumg-addcoursetabDiv">
+					<table class="layui-table" >
+					<thead>
+					    <tr>
+					      <th>班级名称</th>
+					      <th>课程名称</th>
+					      <th>任课老师</th>
+					      <th>班级容量</th>
+					      <th>上课进度</th>
+					      <th>相关操作</th>
+					    </tr> 
+				    </thead>
+					<colgroup>
+					    <col width="220">
+					    <col width="220">
+					    <col width="100">
+					    <col width="100">
+					    <col width="100">
+					    <col width="260">
+					</colgroup>
+				   	<tbody>
+				   		<tr>
+					        <td>班级名称最多15个字</td>
+					        <td>课程名称最多15个字</td>
+					        <td>鹿心社</td>
+					        <td>20/60</td>
+					        <td>20/60</td>
+					        <td>
+					        	<span class="u-stumg-cosmg-dmbtn">点名</span>
+					        	<span class="u-stumg-cosmg-glbtn">管理</span>
+					        	<span class="u-stumg-cosmg-scbtn">删除</span>
+					        </td>
+					     </tr>
+					     <tr>
+					        <td>班级名称最多15个字</td>
+					        <td>课程名称最多15个字</td>
+					        <td>鹿心社</td>
+					        <td>20/60</td>
+					        <td>20/60</td>
+					        <td>
+					        	<span class="u-stumg-cosmg-dmbtn">点名</span>
+					        	<span class="u-stumg-cosmg-glbtn">管理</span>
+					        	<span class="u-stumg-cosmg-scbtn">删除</span>
+					        </td>
+					     </tr>
+					     <tr>
+					        <td>班级名称最多15个字</td>
+					        <td>课程名称最多15个字</td>
+					        <td>鹿心社</td>
+					        <td>20/60</td>
+					        <td>20/60</td>
+					        <td>
+					        	<span class="u-stumg-cosmg-dmbtn">点名</span>
+					        	<span class="u-stumg-cosmg-glbtn">管理</span>
+					        	<span class="u-stumg-cosmg-scbtn">删除</span>
+					        </td>
+					     </tr>
+				   	</tbody>
+				</table>
+				<div id="u-ms-page2"></div>
+				</div>
+			</div>	
 		</div>
 	</body>
 	<script>
