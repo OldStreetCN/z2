@@ -44,7 +44,7 @@
 			});
 			/*关闭提示*/
 			$(function(){
-				$("#u-stumg-tipcls").click(function(){
+				$("#u-stumg-tipcls,#u-stumg-clsmgtip").click(function(){
 					$(".u-stumg-tipDiv").css("display","none");
 					$(".u-stumg-tipDiv1").css("display","inline-block");
 				});
@@ -249,6 +249,7 @@
 			/*数据表格*/
 			.u-stumg-tabDiv{width:1030px;height: 600px;	margin-left: 15px;}
 			/*班级管理*/
+			#u-stumg-clsmgtip{margin-left: 220px!important;}
 			.u-stumg-addcoursesehtitle{color: #666; height:36px; border: 1px solid #e6e6e6;text-align: center;line-height: 35px;}
 			.u-stumg-clsmgsehbtn{margin-left: -2px;width: 50px;background-color: #fff;border: 1px solid #e6e6e6;color: #999;}
 			#u-stumg-addcoursebtn{background-color: #40cb85;}
@@ -337,6 +338,10 @@
 			.u-stumg-scclsclbtn{margin-left: 150px;}
 			.u-stumgscclsokbtn{border: none; background-color: #40cb85;color: #fff;}
 			.u-stumgscclsokbtn:hover{border: none;color: #fff;}
+			/*班级管理管理模态框*/
+			.g-stumg-mangeDiv{display: block; top:50%;left: 0;right: 0;margin: -250px auto 0 auto; height:402px;width: 800px;background-color: #fff;border-radius: 5px;z-index: 1111;position: fixed;}
+				
+
 		</style>
 	</head>
 	<body>
@@ -403,7 +408,7 @@
 				<li>退出登录</li>
 			</ul>
 		</div>
-		<div class="mark"></div>
+		<div class="mark" style="display: block;"></div>
 		<!--添加课程模态框-->
 		<div class="g-stumg-addstuMt" id="g-stumg-addstuMt">
 			<div class="g-stumg-addstutitle">
@@ -616,6 +621,10 @@
 			<button class="layui-btn layui-btn-primary u-stumg-dmmsgqxbtn">取消</button>
 			<button class="layui-btn layui-btn-primary u-stumg-dmmsgfinishdmbtn">保存退出</button>
 		</div>
+		<!--点击班级管理管理按钮-->
+		<div class="g-stumg-mangeDiv">
+			
+		</div>
 		<!--点击班级办理删除按钮-->
 		<div class="g-stumg-scclsMt" id="g-stumg-scclsMt">
 			<img id="u-stumg-scclsclosebtn" src="img/Mtclosebtn.png" />
@@ -671,7 +680,7 @@
 				<button class="u-stumg-globtnsty u-stumg-clsmgsehbtn" id="" >搜索</button>
 				<button class="layui-btn u-stumg-globtnsty" id="u-stumg-addcoursebtn">添加课程</button>
 				<button class="layui-btn layui-btn-primary u-stumg-scbtn  u-stumg-globtnsty" id="u-stumg-czsx">重置筛选</button>
-				<div class="u-stumg-tipDiv">
+				<div class="u-stumg-tipDiv" id="u-stumg-clsmgtip">
 					<div id="u-stumg-tipcls">关闭</div>
 					<div class="u-stumg-content">添加完课程后，才能添加班级哟。</div>
 				</div>

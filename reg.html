@@ -84,7 +84,7 @@
 			});
 			$(".u-submitbtn").click(function(){
 				var tel=$(".u-logintel").val();
-			 	if(!(/^1[34578]\d{9}$/.test(tel))){ 
+			 	if(!(/^1[345789]\d{9}$/.test(tel))){ 
 			  		$("#u-loginteltip").text("请输入有效号码！");
 			        return false; 
 			    }
@@ -116,7 +116,7 @@
 			/*单击发送验证码按钮*/
 			function sendMessage() {
 				var tel=$(".u-logintel").val();
-			 	if(!(/^1[34578]\d{9}$/.test(tel))){ 
+			 	if(!(/^1[345789]\d{9}$/.test(tel))){ 
 			  		$("#u-loginteltip").text("请输入有效号码！");
 			        return false; 
 			    }
