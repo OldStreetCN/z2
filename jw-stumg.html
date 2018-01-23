@@ -362,16 +362,21 @@
 			.m-stumg-mgtitle{height: 40px;width: 100%;border-bottom: 1px solid #E2E2E2;}	
 			.m-stumg-mgtitle span{font-size: 16px;margin-top: 9px;display: inline-block;margin-left: 15px;}
 			#u-stumg-mgclosebtn{float: right;margin-top: 11px;margin-right: 10px;cursor: pointer;}
-			.u-stumg-mgleftDiv{height: 250px;width: 350px;border: 1px solid red;float: left;}
-			.u-stumg-mgrigthDiv{height: 250px;width: 420px;float: right;border: 1px solid red;}
+			.u-stumg-mgleftDiv{height: 250px;width: 350px;float: left;}
+			.u-stumg-mgrigthDiv{height: 250px;width: 420px;float: right;}
 			#u-stumg-mgleftfom span{margin-top: 20px!important;display: inline-block;margin-left: 15px!important;}
 			.u-stumg-mgclscounttitle{margin-left: 5px!important;}
 			.m-stumg-mgbtnfom span{font-size: 14px;display: inline-block; margin-top: 0px;margin-left: 0px;color: #666;} 
 			.u-stumg-dategai{color: #4AA1EC!important;cursor: pointer;}
-			.u-stumg-gai1{position:absolute;left: 260px;top: 34px;color: #4AA1EC;cursor: pointer;}
 			.u-stumg-mgbtnclbtn{widbh: 94px!important; margin-left: 490px;margin-top: 10px;}
-			#u-mgbtnokbtn{border: none; background-color: #40cb85;color: #fff;margin-top: 10px;}
+			#u-mgbtnokbtn{border: none; background-color: #40cb85; color: #fff;margin-top: 10px;}
 			#u-mgbtnokbtn:hover{border: none;color: #fff;}
+			.u-stumg-mgclssksjDiv{height: 200px;width: 370px;margin-top: 20px;margin-left: 20px;}
+			.u-stumg-mgclskeshi{height:40px;width: 350px;margin-top: 5px;}
+			.u-stumg-djjks{float: left;display: inline-block;padding-top:10px;}
+			.u-stumg-mgclskeshi input{float: left;width: 200px;}
+			.u-stumg-ksgai{display: inline-block;padding-top: 10px;margin-left: 10px; cursor: pointer;color: #4AA1EC!important;}
+			.u-stumg-ksshan{display: inline-block;padding-top: 10px;cursor: pointer;color: #F77878!important;}
 		</style>
 	</head>
 	<body>
@@ -438,7 +443,7 @@
 				<li>退出登录</li>
 			</ul>
 		</div>
-		<div class="mark"></div>
+		<div class="mark" style="display: block;"></div>
 		<!--添加课程模态框-->
 		<div class="g-stumg-addstuMt" id="g-stumg-addstuMt">
 			<div class="g-stumg-addstutitle">
@@ -652,7 +657,7 @@
 			<button class="layui-btn layui-btn-primary u-stumg-dmmsgfinishdmbtn">保存退出</button>
 		</div>
 		<!--点击班级管理管理按钮-->
-		<div class="g-stumg-mangeDiv" id="g-stumg-mangeDiv">
+		<div class="g-stumg-mangeDiv" id="g-stumg-mangeDiv" style="display: block;">
 			<div class="m-stumg-mgtitle">
 				<span>班级管理</span>
 				<img id="u-stumg-mgclosebtn" src="img/Mtclosebtn.png" />
@@ -699,20 +704,31 @@
 					<input type="checkbox" name="" title="五" lay-skin="primary" />
 					<input class="u-stumg-ck6" type="checkbox" name="" title="六" lay-skin="primary" />
 					<input type="checkbox" name="" title="日" lay-skin="primary" /><span class="u-stumg-dategai">改</span><br />
-					<span class="u-stumg-evedaytitle">每天</span>
-					<div class="u-stumg-sltDiv u-stumg-globtnsty u-stumg-skslt">
-						<select name="quiz">
-						    <option>1</option>
-						    <option>2</option>
-						</select>
-					</div>
-					<span  class="u-stumg-evedaytitle">节</span>
-					<span  class="u-stumg-sksj">时间</span>
-					<div class="u-stumg-sksjDiv">
-						 <input  type="text" class="layui-input" id="test8" placeholder=" - "><span class="u-stumg-gai1">改</span>
-						 <input  type="text" class="layui-input" id="test8" placeholder=" - "><span>改</span>
-						 <input  type="text" class="layui-input" id="test8" placeholder=" - "><span>改</span>
-						 <input  type="text" class="layui-input" id="test8" placeholder=" - "><span>改</span>
+					<div class="u-stumg-mgclssksjDiv">
+						<div class="u-stumg-mgclskeshi">
+							<span class="u-stumg-djjks">第一节</span> 
+							<input type="text" class="layui-input" id="test9" placeholder=" - ">
+							<span class="u-stumg-ksgai">改</span>
+							<span class="u-stumg-ksshan">删</span>
+						</div>
+						<div class="u-stumg-mgclskeshi">
+							<span class="u-stumg-djjks">第二节</span> 
+							<input type="text" class="layui-input" id="test9" placeholder=" - ">
+							<span class="u-stumg-ksgai">改</span>
+							<span class="u-stumg-ksshan">删</span>
+						</div>
+						<div class="u-stumg-mgclskeshi">
+							<span class="u-stumg-djjks">第三节</span> 
+							<input type="text" class="layui-input" id="test9" placeholder=" - ">
+							<span class="u-stumg-ksgai">改</span>
+							<span class="u-stumg-ksshan">删</span>
+						</div>
+						<div class="u-stumg-mgclskeshi">
+							<span class="u-stumg-djjks">第四节</span> 
+							<input type="text" class="layui-input" id="test9" placeholder=" - ">
+							<span class="u-stumg-ksgai">改</span>
+							<span class="u-stumg-ksshan">删</span>
+						</div>
 					</div>
 				</form>
 			</div>
