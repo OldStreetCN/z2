@@ -43,6 +43,17 @@
 			  var form = layui.form;
 			});
 		});
+		/*教师界面和学生界面切换*/
+		$(function(){
+			$("#u-stumg-clsmg-li").click(function(){
+				$(".m-teachmgDiv").css("display","none");
+				$(".m-stumgDiv").css("display","block");
+			});
+			$("#u-stumg-course-li").click(function(){
+				$(".m-teachmgDiv").css("display","block");
+				$(".m-stumgDiv").css("display","none");
+			});
+		});
 		/*班级管理调用分页*/
 		$(function(){
 				layui.use(['laypage', 'layer'], function(){
@@ -50,6 +61,11 @@
 				    ,layer = layui.layer;
 				    laypage.render({
 					    elem: 'u-ms-page2'
+					    ,count: 100
+					    ,theme: '#40cb85'
+					});
+					laypage.render({
+					    elem: 'u-ms-page3'
 					    ,count: 100
 					    ,theme: '#40cb85'
 					});
@@ -81,6 +97,26 @@
 				$(".mark").css("display","none");
 				$("#m-scteachDiv").css("display","none");
 			});
+		});
+		/*单击学生管理表格管理按钮*/
+		$(function(){
+			$(".u-stumg-mgbtn").click(function(){
+				$(".g-main").css("display","none");
+				$(".m-stumsgDiv").css("display","block");
+			});
+			$("#u-stumsg-backbtn").click(function(){
+				$(".g-main").css("display","block");
+				$(".m-stumsgDiv").css("display","none");
+			});
+			$("#u-stumg-yibao").click(function(){
+				$(".m-stumg-yibaocourseDiv").css("display","block");
+				$(".u-historycourseDiv").css("display","none");
+			});
+			$("#u-stumg-lishi").click(function(){
+				$(".m-stumg-yibaocourseDiv").css("display","none");
+				$(".u-historycourseDiv").css("display","block");
+			});
+			
 		});
 	</script>
 	<style>
@@ -121,6 +157,11 @@
 		#u-addteach-useript{width:100px; left: 85px;top: 170px;}
 		.u-qxclosebtn{position: absolute;left: 240px;top: 225px; width: 96px;height: 40px;border: 1px solid #D3D3D3;border-radius: 5px;color:#676767;background-color: #fff;font-size: 14px;}
 		.u-confirmbtn{position: absolute;left: 350px;top: 225px; width: 96px;height: 40px;border: 1px solid #40CB85;border-radius: 5px;color:#fff;background-color: #40CB85;font-size: 14px;}
+		/*学生管理界面*/
+		.m-stumgDiv{display: none;}
+		.u-stumg-mgbtn{color: #4AA1EC;cursor: pointer;font-size: 14px;}
+		/*学生管理表格*/
+		.g-stumg-stutabDiv{width:1026px; margin-left: 15px;padding-top: 50px;}
 		/*管理教师模块*/
 		#u-mgteachtitle{float: right;margin-right: 10px;margin-top:10px;}	
 		#u-mgteach-nameipt{width: 150px;left: 85px;top: 50px;}
@@ -135,6 +176,35 @@
 		#u-scteacherspan2{left: 150px;top: 100px;} 
 		#u-scteach-qxclosebtn{position: absolute;left: 140px;top: 180px; width: 96px;height: 40px;border: 1px solid #D3D3D3;border-radius: 5px;color:#676767;background-color: #fff;font-size: 14px;}
 		#u-scteach-confirmbtn{position: absolute;left: 255px;top: 180px; width: 96px;height: 40px;border: 1px solid #40CB85;border-radius: 5px;color:#fff;background-color: #40CB85;font-size: 14px;}
+		/*学生基本信息框*/
+		.m-stumsgDiv{display: none; position: absolute;left: 165px;top: 75px;height: 900px;width: 1068px;}
+		.u-stumsgtopDiv{width: 100%;height: 165px;background-color: #fff;}
+		.u-stutop-title{width100%;height: 60px;border-bottom: 1px solid #E2E2E2;}
+		.u-stumsg-backbtn{height: 31px;width: 71px;border:1px solid #c9c9c9;border-radius: 5px;background-color: #fff;margin-top: 15px;margin-left: 15px;}
+		.u-stumsg-toptitle{font-size: 16px;margin-left: 15px;}
+		.u-stutop-main{width: 100%;height: 100px;}
+		.u-stutop-main span{position: absolute; font-size: 14px;color: #666;}
+		.u-stumg-stunametitle{left: 15px;top: 80px;}
+		.u-stumg-stunamespan{left:80px;top: 80px;}
+		.u-stumg-stusextitle{left: 200px;top: 80px;}
+		.u-stumg-stusexspan{left: 240px;top: 80px;}
+		.u-stumg-stuschooltitle{left: 350px;top: 80px;}
+		.u-stumg-stuschoolspan{left: 390px;top: 80px;}
+		.u-stumg-stugradetitle{left: 650px;top: 80px;}
+		.u-stumg-stugradespan{left: 690px;top: 80px;}
+		.u-stumg-stuteltitle{left: 15px;top: 110px;}	
+		.u-stumg-stutelspan{left: 80px;top: 110px;}
+		.u-stumg-stujoindatetitle{left: 200px;top: 110px;}
+		.u-stumg-stujoindatespan{left: 268px;top: 110px;}
+		.u-stumg-stuadrstitle{left: 350px;top: 110px;}
+		.u-stumg-stuadrsspan{left: 390px;top: 110px; }
+		.u-stumg-xiugaibtn{position: absolute; left: 970px;top: 90px; height: 31px;width: 71px;border:1px solid #c9c9c9;border-radius: 5px;background-color: #fff;}
+		.u-stumsgbtmDiv{width: 100%;height: 512px;margin-top: 15px;background-color: #fff;}
+		.u-stumsg-sgs{float: right;margin-top: 20px;margin-right: 20px;cursor: pointer;}
+		    /*已报课程*/
+		.m-stumg-yibaocourseDiv{height: 300px;width: 980px;margin-left: 15px;margin-top: 20px;}
+			/*历史课程*/
+		.u-historycourseDiv{display: none; height: 300px;width: 980px;margin-left: 15px;margin-top: 20px;}
 	</style>
 	<body>
 		<!--侧边导航栏-->
@@ -255,13 +325,118 @@
 			<button class="u-qxclosebtn" id="u-mgteach-qxclosebtn">取消</button>
 			<button class="u-confirmbtn">确认添加</button>
 		</div>
+		<!--学生表格管理按钮--学生基本信息界面-->
+		<div class="m-stumsgDiv">
+			<!--学生基本信息-->
+			<div class="u-stumsgtopDiv">
+				<div class="u-stutop-title">
+					<button class="u-stumsg-backbtn" id="u-stumsg-backbtn">返回上页</button>
+					<span class="u-stumsg-toptitle">学生基本信息</span>
+					<span class="u-stumsg-sgs">给本页提建议</span>
+				</div>
+				<div class="u-stutop-main">
+					<span class="u-stumg-stunametitle">学生姓名:</span>
+					<span class="u-stumg-stunamespan">张伟</span>
+					<span class="u-stumg-stusextitle">性别:</span>
+					<span class="u-stumg-stusexspan">男</span>
+					<span class="u-stumg-stuschooltitle">学校:</span>
+					<span class="u-stumg-stuschoolspan">南京市鼓楼区第一小学</span>
+					<span class="u-stumg-stugradetitle">年级:</span>
+					<span class="u-stumg-stugradespan">小学一年级</span>
+					<span class="u-stumg-stuteltitle">联系电话:</span>
+					<span class="u-stumg-stutelspan">18270613397</span>
+					<span class="u-stumg-stujoindatetitle">入学日期:</span>
+					<span class="u-stumg-stujoindatespan">2018/3/1</span>
+					<span class="u-stumg-stuadrstitle">住址:</span>
+					<span class="u-stumg-stuadrsspan">江西省宜春市奉新县澡下镇澡下学校</span>
+					<button class="u-stumg-xiugaibtn">点击修改</button>
+				</div>
+			</div>
+			<!--报名课程-->
+			<div class="u-stumsgbtmDiv">
+				<ul  class="layui-nav u-ms-nav" id="m-stumgul" lay-filter="">
+			        <li class="layui-nav-item layui-this" id="u-stumg-yibao"><a href="#">已报课程</a></li>
+				    <li class="layui-nav-item" id="u-stumg-lishi"><a href="#">历史课程</a></li>
+				</ul>
+				<!--已报课程-->
+				<div class="m-stumg-yibaocourseDiv">
+					<table class="layui-table" >
+						<thead>
+						    <tr>
+						      <th>课程名称</th>
+						      <th>班级名称</th>
+						      <th>总课时</th>
+						      <th>剩余课时</th>
+						      <th>课程有效期</th>
+						      <th>相关操作</th>
+						    </tr> 
+					    </thead>
+						<colgroup>
+						    <col width="250">
+						    <col width="250">
+						    <col width="100">
+						    <col width="100">
+						    <col width="151">
+						    <col width="151">
+						</colgroup>
+					   	<tbody>
+					   		<tr>
+						        <td>少儿JavaScript初级编程</td>
+						        <td>一年级三班</td>
+						        <td>60</td>
+						        <td>42</td>
+						        <td>2018/3/5</td>
+						        <td>
+						        	<span class="u-stumg-mgbtn">退课</span>
+						        </td>
+						     </tr>
+					   	</tbody>
+					</table>
+				</div>
+				<!--历史课程-->
+				<div class="u-historycourseDiv">
+					<table class="layui-table" >
+						<thead>
+						    <tr>
+						      <th>课程名称</th>
+						      <th>班级名称</th>
+						      <th>总课时</th>
+						      <th>剩余课时</th>
+						      <th>课程有效期</th>
+						      <th>相关操作</th>
+						    </tr> 
+					    </thead>
+						<colgroup>
+						    <col width="250">
+						    <col width="250">
+						    <col width="100">
+						    <col width="100">
+						    <col width="151">
+						    <col width="151">
+						</colgroup>
+					   	<tbody>
+					   		<tr>
+						        <td>少儿JavaScript初级编程</td>
+						        <td>一年级三班</td>
+						        <td>60</td>
+						        <td>42</td>
+						        <td>2018/3/5</td>
+						        <td>
+						        	<span class="u-stumg-mgbtn">-</span>
+						        </td>
+						     </tr>
+					   	</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 		<div class="g-main">
 			<ul  class="layui-nav u-ms-nav" id="m-stumgul" lay-filter="">
 		        <li class="layui-nav-item layui-this" id="u-stumg-course-li"><a href="#">教师管理</a></li>
 			    <li class="layui-nav-item" id="u-stumg-clsmg-li"><a href="#">学生管理</a></li>
 			</ul>
 			<!--教师管理界面-->
-			<div class="m-teachmgDiv">
+			<div class="m-teachmgDiv" >
 				<form class="layui-form" action="">
 					<div class="u-stumg-sltDiv u-stumg-globtnsty">
 						<select name="quiz">
@@ -270,7 +445,7 @@
 						</select>
 					</div>
 					<div class="u-stumg-iptDiv u-stumg-globtnsty">
-						<input type="text" name="title" required lay-verify="required" placeholder="输入搜索词" autocomplete="off" class="layui-input"> 
+						<input type="text" name="title"  autocomplete="off" class="layui-input"> 
 					</div>
 				</form>
 				<button class="u-stumg-globtnsty" id="u-stumg-sehbtn">搜索</button>
@@ -330,6 +505,61 @@
 					   	</tbody>
 					</table>
 					<div id="u-ms-page2"></div>
+				</div>
+			</div>
+			<!--学生管理界面-->
+			<div class="m-stumgDiv">
+				<form class="layui-form" action="">
+					<div class="u-stumg-sltDiv u-stumg-globtnsty">
+						<select name="quiz">
+						    <option>学生姓名</option>
+						    <option>手机号</option>
+						</select>
+					</div>
+					<div class="u-stumg-iptDiv u-stumg-globtnsty">
+						<input type="text" name="title" autocomplete="off" class="layui-input"> 
+					</div>
+				</form>
+				<button class="u-stumg-globtnsty" id="u-stumg-sehbtn">搜索</button>
+				<button class="layui-btn u-stumg-globtnsty" id="u-stumg-addcus">添加学生</button>
+				<button class="layui-btn layui-btn-primary u-stumg-scbtn  u-stumg-globtnsty" id="u-stumg-czsx">重置筛选</button>
+				<div class="g-stumg-stutabDiv">
+					<table class="layui-table" >
+						<thead>
+						    <tr>
+						      <th>学生姓名</th>
+						      <th>手机号</th>
+						      <th>性别</th>
+						      <th>课程数量</th>
+						      <th>添加来源</th>
+						      <th>添加人</th>
+						      <th>相关操作</th>
+						    </tr> 
+					    </thead>
+						<colgroup>
+						    <col width="151">
+						    <col width="151">
+						    <col width="61">
+						    <col width="101">
+						    <col width="151">
+						    <col width="151">
+						    <col width="151">
+						</colgroup>
+					   	<tbody>
+					   		<tr>
+						        <td>张伟</td>
+						        <td>18270613397</td>
+						        <td>男</td>
+						        <td>4</td>
+						        <td>销售转入</td>
+						        <td>张销售</td>
+						        <td>
+						        	<span class="u-stumg-mgbtn">管理</span>
+						        </td>
+						     </tr>
+					   	</tbody>
+					</table>
+					<div id="u-ms-page3"></div>
 				</div>
 			</div>
 		</div>
