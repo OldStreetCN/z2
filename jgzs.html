@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>机构展示</title>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
+		<link rel="stylesheet" href="css/global.css" />
+		<link rel="stylesheet" href="css/input.css" />
+		<script type="text/javascript" src="js/input.js" ></script>
+		<!--引入LayUI库 2018/01/07 by gao-->
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			/*layui左侧导航栏效果*/
+			$(function(){
+				//注意：导航 依赖 element 模块，否则无法进行功能性操作
+				layui.use('element', function(){
+				  var element = layui.element;
+				  
+				  //…
+				});
+			});
+			/*顶部个人中心弹出框*/
+			$(function(){
+				$(".u-owncenter").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".m-owncenterDiv").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".u-owncenter").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+				$(".m-owncenterDiv").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+			});
+			/*文件上传*/
+			$(function(){
+				layui.use('upload', function(){
+				  var $ = layui.jquery
+				  ,upload = layui.upload;
+				  	//拖拽上传
+					upload.render({
+					    elem: '#jgzs-fileup1'
+					    ,url: '/upload/'
+					    ,done: function(res){
+					      console.log(res)
+					    }
+					});
+					upload.render({
+					    elem: '#jgzs-fileup2'
+					    ,url: '/upload/'
+					    ,done: function(res){
+					      console.log(res)
+					    }
+					});
+					upload.render({
+					    elem: '#jgzs-fileup3'
+					    ,url: '/upload/'
+					    ,done: function(res){
+					      console.log(res)
+					    }
+					});
+					upload.render({
+					    elem: '#jgzs-fileup4'
+					    ,url: '/upload/'
+					    ,done: function(res){
+					      console.log(res)
+					    }
+					});
+				});
+			});
+		</script>
+		<style>
+			.g-main{display: block; position: absolute;left: 165px;top: 75px;height: 900px;width: 1068px;background-color: #F3F3F3;}
+			/*mark*/
+			.mark{width: 100%;height: 100%;background:  rgba(0,0,0,.5);position: fixed;z-index: 1000;display: none;}
+			/*图片信息展示*/
+			.m-jgzs-imgmsgDiv{height: 190px;width: 100%;background-color: #fff;}
+			.m-jgzs-imgmsgtitle{height: 40px;border-bottom: 1px solid #e2e2e2;}
+			.m-jgzs-imgmsgtitle span{float: left; font-size: 16px;display: inline-block;margin-top: 7px;margin-left: 15px;}
+			.m-jgzs-imgmsgtitle div{color:#BABABC;padding-top:11px;padding-left:120px;}
+			.u-jgzs-imgupDiv{width: 900px;height: 120px;margin-left: 15px;margin-top:15px;}
+			.layui-upload-drag{width: 205px;height: 115px;margin: 0;padding: 0;background-color: #E6E6E6;margin-left: 15px;}
+			.layui-upload-drag p{line-height: 115px;font-size: 14px;}
+			/*文字信息展示*/
+			.m-jgzs-wzmsgDiv{height: 190px;width: 100%;background-color: #fff;margin-top: 10px;}
+			.m-jgzs-wzmsgtitle{height: 40px;border-bottom: 1px solid #e2e2e2;}
+			.m-jgzsDiv1{height: 140px;width: 480px;}
+			.m-jgzs-wzmsgtitle span{float: left; font-size: 16px;display: inline-block;margin-top: 7px;margin-left: 15px;}
+			.m-jgzs-wzmsgtitle button{border-radius: 5px;border: 1px solid #C9C9C9;color: #666;background-color: #fff; float: right;height:25px;width: 60px;margin-top: 7px;margin-right: 10px;}
+			.u-jgzs-wzspan{font-size: 14px;color: #666;display: inline-block;}
+			.u-jgzs-yysjtitle{margin-top: 15px;margin-left: 15px;}
+			.u-jgzs-yysj{margin-left: 5px;}
+			.u-jgzs-zxrxtitle{margin-top: 05px;margin-left: 15px;}
+			.u-jgzs-zxrx{margin-left: 5px;}
+			.u-jgzs-lxdz{margin-left: 5px;}
+			.m-jgzsDiv2{float:right;height: 140px;width:550px;margin-top: -140px;margin-right: 10px;}
+			.u-jgzs-jgjs{width: 442px;height: 98px;margin-top: -20px;margin-left: 80px;font-size: 14px;color: #666;}
+			.u-jgzs-jgjstitle{margin-top: 15px;margin-left: 15px;}
+			/*课程分类设置*/
+			.u-jgsz-kcflszmain{width: 1000px;height: 120px;background-color:lemonchiffon;margin-top: 10px;margin-left: 15px;}
+			.u-jgzs-kcflbtn{margin-left: 10px; margin-top:15px; height: 40px;width: 150px;border-radius: 5px;background-color: #fff;color: #40CB85;border: 1px solid #40CB85;}
+			/*.u-jgzs-kcflszbtn{margin-left: 10px;margin-top: 15px; height: 40px;width: 150px;border-radius: 5px;background-color: #fff;color: #C9C9C9;border: 1px solid #C9C9C9;}*/
+		</style>
+	</head>
+	<body>
+		<!--侧边导航栏-->
+		<div class="g-sidenav">
+			<div class="m-logoDiv">
+				<img src="img/logo_white.svg" />
+			</div>
+			<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+				<li class="layui-nav-item"><a href="#">后台首页</a></li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">教务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">学生管理</a></dd>
+				      <dd><a href="">教师管理</a></dd>
+				      <dd><a href="">班级管理</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item">
+				    <a href="javascript:;">运营管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">财务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">数据中心</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item"><a href="">设置</a></li>
+			</ul>
+		</div>	
+		<!--顶部bar-->
+		<div class="g-header">
+			<span class="u-hdcurrjigou">超级未来教育</span>
+			<span class="u-xiaoquchoose">切换</span>
+			<span class="u-owncenter"><span>高长浩</span><img src="img/xiangxia.svg"/></span>
+			<span class="u-hd-kuaijie">
+				<ul>
+					<li><img src="img/calendar.svg"/></li>
+					<li><img src="img/tip.svg"/></li>
+					<li><img src="img/helpcenter.svg"/></li>
+					<li><img src="img/more.svg"/></li>
+				</ul>
+			</span>
+		</div>
+		<!--hd的个人中心弹出的下拉框-->
+		<div class="m-owncenterDiv layui-anim" data-anim="layui-anim-upbit">
+			<ul>
+				<li>个人资料</li>
+				<li>退出登录</li>
+			</ul>
+		</div>
+		<div class="mark" style="display:none;"></div>
+		<!--主界面-->
+		<div class="g-main">
+			<!--图片信息展示-->
+			<div class="m-jgzs-imgmsgDiv">
+				<div class="m-jgzs-imgmsgtitle">
+					<span>图片信息展示</span>
+					<div>您可以上传4张图片用于机构的展示</div>
+				</div>
+				<div class="u-jgzs-imgupDiv">
+					<div class="layui-upload-drag" id="jgzs-fileup1">
+					  <p>点击添加</p>
+					</div>
+					<div class="layui-upload-drag" id="jgzs-fileup2">
+					  <p>点击添加</p>
+					</div>
+					<div class="layui-upload-drag" id="jgzs-fileup3">
+					  <p>点击添加</p>
+					</div>
+					<div class="layui-upload-drag" id="jgzs-fileup4">
+					  <p>点击添加</p>
+					</div>
+				</div>
+			</div>
+			<!--文字信息展示-->
+			<div class="m-jgzs-wzmsgDiv">
+				<div class="m-jgzs-wzmsgtitle">
+					<span>文字信息展示</span>
+					<button>点击修改</button>
+				</div>
+				<div class="m-jgzsDiv1">
+					<span class="u-jgzs-wzspan u-jgzs-yysjtitle">营业时间:</span>
+					<span class="u-jgzs-wzspan u-jgzs-yysj">10:00-22:00</span><br />
+					<span class="u-jgzs-wzspan u-jgzs-zxrxtitle">咨询热线:</span>
+					<span class="u-jgzs-wzspan u-jgzs-zxrx">010-68952255</span><br />
+					<span class="u-jgzs-wzspan u-jgzs-zxrxtitle">联系地址:</span>
+					<span class="u-jgzs-wzspan u-jgzs-lxdz">北京市石景山区苹果园街道首钢第六住宅区3号楼底商1035</span>
+				</div>
+				<div class="m-jgzsDiv2">
+					<span class="u-jgzs-wzspan u-jgzs-jgjstitle">机构介绍:</span><br />
+					<div class="u-jgzs-jgjs">最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五最多一百五</div>
+				</div>
+			</div>
+			<!--课程分类设置-->
+			<div class="m-jgzs-wzmsgDiv">
+				<div class="m-jgzs-imgmsgtitle">
+					<span>课程分类设置</span>
+					<div>您可以设置最多12个分类</div>
+				</div>
+				<div class="u-jgsz-kcflszmain">
+					<button class="u-jgzs-kcflbtn">少儿技能</button>
+					<button class="u-jgzs-kcflbtn">少儿技能</button>
+					<button class="u-jgzs-kcflbtn">少儿技能</button>
+					<button class="u-jgzs-kcflbtn">少儿技能</button>
+					<button class="u-jgzs-kcflbtn">少儿技能</button>
+					<button class="u-jgzs-kcflbtn">少儿技能</button>
+					<button class="u-jgzs-kcflbtn">少儿技能</button>
+					<button class="u-jgzs-kcflbtn">少儿技能</button>
+				</div>
+			</div>	
+		</div>
+	</body>
+</html>
