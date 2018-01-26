@@ -116,7 +116,15 @@
 				$(".m-stumg-yibaocourseDiv").css("display","none");
 				$(".u-historycourseDiv").css("display","block");
 			});
-			
+			/*点击学生管理按钮里面的点击修改按钮*/
+			$("#u-stumg-xiugaibtn").click(function(){
+				$(".mark").css("display","block");
+				$("#g-stumsg-updateDiv").css("display","block");
+			});
+			$("#u-stumsg-closebtn,.u-stumsg-upqxbtn").click(function(){
+				$(".mark").css("display","none");
+				$("#g-stumsg-updateDiv").css("display","none");
+			});
 		});
 	</script>
 	<style>
@@ -205,6 +213,32 @@
 		.m-stumg-yibaocourseDiv{height: 300px;width: 980px;margin-left: 15px;margin-top: 20px;}
 			/*历史课程*/
 		.u-historycourseDiv{display: none; height: 300px;width: 980px;margin-left: 15px;margin-top: 20px;}
+		/*学生信息修改模态框*/
+		.g-stumsg-updateDiv{display:none; top:55%;left: 0;right: 0;margin: -250px auto 0 auto; height: 385px;width:473px;background-color: #fff;border-radius: 5px;z-index: 1111;position: fixed;}
+		.u-stumsg-updatetitle{height: 40px;width:100%;border-bottom: 1px solid #e2e2e2;}
+		.u-stumsg-updatetitle span{font-size: 16px;display: inline-block;margin-left: 15px;margin-top: 9px;}
+		#u-stumsg-closebtn{float: right;margin-top: 10px;margin-right: 10px;}
+		.m-stumsg-msgDiv span{font-size: 14px;display: inline-block;position: absolute;}
+		.m-stumsg-msgDiv input{font-size: 14px;position: absolute;border: 1px solid #e6e6e6;height: 30px;}
+		.u-stumsg-nametitle:before{content: "*";color: #F77878;}
+		.u-stumsg-nametitle{left: 15px;top:60px;}
+		.u-stumsg-nameipt{left: 53px;top: 54px;width: 150px;}
+		.u-stumsg-sextitle{left: 270px;top:60px ;}
+		.u-stumsg-sexipt{left: 303px;top: 54px;width: 84px;}
+		.u-stumsg-teltitle:before{content: "*";color: #F77878;}
+		.u-stumsg-teltitle{left: 15px;top: 105px;}
+		.u-stumsg-telipt{left: 53px;top:99px;width: 150px;}
+		.u-stumsg-birthtitle{left: 240px;top: 105px;}
+		.u-stumsg-birthipt{left: 303px;top: 99px;width: 150px;}
+		.u-stumsg-schooltitle{left: 21px;top:150px ;}
+		.u-stumsg-schoolipt{left: 53px;top:146px ;width: 399px;}
+		.u-stumsg-gradetitle{left: 21px;top:195px;}
+		.u-stumsg-gradeipt{left: 53px;top:189px ;width: 399px;}
+		.u-stumsg-adrstitle{left: 21px;top:240px;}
+		.u-stumsg-adrsipt{left: 53px; position: absolute; top: 232px;font-size: 14px;border: 1px solid #e5e5e5;width: 399px;height: 70px;}
+		.u-stumsg-updatebtn{position: absolute;width:96px;height: 41px;border-radius: 5px;font-size: 14px;}
+		.u-stumsg-upqxbtn{border: 1px solid #C9C9C9;color: #666;background-color: #fff;left: 130px;top: 320px;}
+		.u-stumsg-upokbtn{border: 1px solid #40CB85;color: #fff;background-color:#40CB85;left: 250px;top: 320px;}
 	</style>
 	<body>
 		<!--侧边导航栏-->
@@ -270,7 +304,7 @@
 				<li>退出登录</li>
 			</ul>
 		</div>
-		<div class="mark" style="display: none;"></div>
+		<div class="mark" style="display:none;"></div>
 		<!--教师管理中的删除按钮-->
 		<div class="m-addteachDiv" id="m-scteachDiv" >
 			<img id="u-teachscclosebtn" src="img/Mtclosebtn.png" />
@@ -325,6 +359,31 @@
 			<button class="u-qxclosebtn" id="u-mgteach-qxclosebtn">取消</button>
 			<button class="u-confirmbtn">确认添加</button>
 		</div>
+		<!--学生信息修改-->
+		<div class="g-stumsg-updateDiv" id="g-stumsg-updateDiv">
+			<div class="u-stumsg-updatetitle">
+				<span>信息修改</span>
+				<img id="u-stumsg-closebtn" src="img/Mtclosebtn.png" />
+			</div>
+			<div class="m-stumsg-msgDiv">
+				<span class="u-stumsg-nametitle">姓名</span>
+				<input type="text" class="u-stumsg-nameipt" />
+				<span class="u-stumsg-sextitle">性别</span>
+				<input type="text" class="u-stumsg-sexipt" />
+				<span class="u-stumsg-teltitle">手机</span>
+				<input type="text" class="u-stumsg-telipt" />
+				<span class="u-stumsg-birthtitle">出生日期</span>
+				<input type="text" class="u-stumsg-birthipt" />
+				<span class="u-stumsg-schooltitle">学校</span>
+				<input type="text" class="u-stumsg-schoolipt" />
+				<span class="u-stumsg-gradetitle">年级</span>
+				<input type="text" class="u-stumsg-gradeipt" />
+				<span class="u-stumsg-adrstitle">住址</span>
+				<textarea class="u-stumsg-adrsipt"></textarea>
+				<button class="u-stumsg-updatebtn u-stumsg-upqxbtn">取消</button>
+				<button class="u-stumsg-updatebtn u-stumsg-upokbtn">保存修改</button>
+			</div>
+		</div>
 		<!--学生表格管理按钮--学生基本信息界面-->
 		<div class="m-stumsgDiv">
 			<!--学生基本信息-->
@@ -345,11 +404,11 @@
 					<span class="u-stumg-stugradespan">小学一年级</span>
 					<span class="u-stumg-stuteltitle">联系电话:</span>
 					<span class="u-stumg-stutelspan">18270613397</span>
-					<span class="u-stumg-stujoindatetitle">入学日期:</span>
+					<span class="u-stumg-stujoindatetitle">出生日期:</span>
 					<span class="u-stumg-stujoindatespan">2018/3/1</span>
 					<span class="u-stumg-stuadrstitle">住址:</span>
 					<span class="u-stumg-stuadrsspan">江西省宜春市奉新县澡下镇澡下学校</span>
-					<button class="u-stumg-xiugaibtn">点击修改</button>
+					<button class="u-stumg-xiugaibtn" id="u-stumg-xiugaibtn">点击修改</button>
 				</div>
 			</div>
 			<!--报名课程-->

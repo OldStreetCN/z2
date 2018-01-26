@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>日常课务</title>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
+		<link rel="stylesheet" href="css/global.css" />
+		<link rel="stylesheet" href="css/input.css" />
+		<script type="text/javascript" src="js/input.js" ></script>
+		<!--引入LayUI库 2018/01/07 by gao-->
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<script>
+		/*layui左侧导航栏效果*/
+		$(function(){
+			//注意：导航 依赖 element 模块，否则无法进行功能性操作
+			layui.use('element', function(){
+			  var element = layui.element;
+			  
+			  //…
+			});
+		});
+		/*顶部个人中心弹出框*/
+		$(function(){
+			$(".u-owncenter").mouseover(function(){
+				$('.m-owncenterDiv').css("display",'block');
+			});
+			$(".m-owncenterDiv").mouseover(function(){
+				$('.m-owncenterDiv').css("display",'block');
+			});
+			$(".u-owncenter").mouseleave(function(){
+				$('.m-owncenterDiv').css("display",'none');
+			});
+			$(".m-owncenterDiv").mouseleave(function(){
+				$('.m-owncenterDiv').css("display",'none');
+			});
+		});
+		/*调用分页*/
+		$(function(){
+				layui.use(['laypage', 'layer'], function(){
+				    var laypage = layui.laypage
+				    ,layer = layui.layer;
+				    laypage.render({
+					    elem: 'u-ms-page2'
+					    ,count: 100
+					    ,theme: '#40cb85'
+					});
+					laypage.render({
+					    elem: 'u-ms-page3'
+					    ,count: 100
+					    ,theme: '#40cb85'
+					});
+				});	
+			});
+		/*下拉列表*/
+		$(function(){
+			//Demo
+			layui.use('form', function(){
+			  var form = layui.form;
+			});
+		});
+		/*添加班级日期*/
+		$(function(){
+		layui.use('laydate', function(){
+			  var laydate = layui.laydate;
+			   //时间范围
+			  laydate.render({
+			    elem: '#dmdaterecord'
+			    ,type: 'time'
+			    ,range: true
+			  });
+			  laydate.render({
+			    elem: '#dmdaterecord2'
+			    ,type: 'time'
+			    ,range: true
+			  });
+			});  
+		}); 
+		/*点名记录和缺课记录的切换*/
+		$(function(){
+			$("#u-stumg-course-li").click(function(){
+				$("#m-dmrcdDiv").css("display","block");
+				$("#m-qkrcdDiv").css("display","none");
+			});
+			$("#u-stumg-clsmg-li").click(function(){
+				$("#m-dmrcdDiv").css("display","none");
+				$("#m-qkrcdDiv").css("display","block");
+			});
+		});
+	</script>
+	<style>
+		.g-main{position: absolute;left: 165px;top: 75px;height: 900px;width: 1068px;background-color: #fff;}
+		/*mark*/
+		.mark{width: 100%;height: 100%;background:  rgba(0,0,0,.5);position: fixed;z-index: 1000;display: none;}
+		/*main界面的nav设置*/
+		.layui-nav .layui-nav-item{line-height: 50px;}
+		.u-ms-nav{background-color: #fff;border-bottom: 1px solid #e5e5e5;}
+		.u-ms-nav li{height: 50px;}
+		.u-ms-nav a{color: #666!important;}
+		/*按钮的设置*/
+		.u-stumg-globtnsty{width: 94px;height: 38px;margin-top: 15px;margin-left: 15px;float: left;}
+		.u-stumg-scbtn:hover {color: #f88a8a;border: 1px solid #f88a8a;}
+		.u-stumg-iptDiv{margin-left: -2px;width: 150px;}
+		#u-stumg-sehbtn{margin-left: -2px;width: 50px;background-color: #fff;border: 1px solid #e6e6e6;color: #999;}
+		#u-stumg-sehbtn2{margin-left: -2px;width: 50px;background-color: #fff;border: 1px solid #e6e6e6;color: #999;}
+		#u-stumg-addcus{background-color: #40cb85;}
+		/*点名记录*/
+		.u-dailykw-datefwtitle{line-height: 34px;text-align: right;padding-right: 10px;}
+		/*点名记录表格*/
+		.u-stumg-addcoursetabDiv{width:1026px; margin-left: 15px;padding-top: 50px;}
+		.u-dailykw-dmck{color: #4AA1EC;cursor: pointer;}
+		.u-dailykw-dmsc{color: #F77878;cursor: pointer;}
+		.u-dailykw-bk{color: #4AA1EC;cursor: pointer;}
+		.m-qkrcdDiv{display: none;}
+	</style>
+	<body>
+		<!--侧边导航栏-->
+		<div class="g-sidenav">
+			<div class="m-logoDiv">
+				<img src="img/logo_white.svg" />
+			</div>
+			<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+				<li class="layui-nav-item"><a href="#">后台首页</a></li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">教务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">学生管理</a></dd>
+				      <dd><a href="">教师管理</a></dd>
+				      <dd><a href="">班级管理</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item">
+				    <a href="javascript:;">运营管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">财务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">数据中心</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item"><a href="">设置</a></li>
+			</ul>
+		</div>	
+		<!--顶部bar-->
+		<div class="g-header">
+			<span class="u-hdcurrjigou">超级未来教育</span>
+			<span class="u-xiaoquchoose">切换</span>
+			<span class="u-owncenter"><span>高长浩</span><img src="img/xiangxia.svg"/></span>
+			<span class="u-hd-kuaijie">
+				<ul>
+					<li><img src="img/calendar.svg"/></li>
+					<li><img src="img/tip.svg"/></li>
+					<li><img src="img/helpcenter.svg"/></li>
+					<li><img src="img/more.svg"/></li>
+				</ul>
+			</span>
+		</div>
+		<!--hd的个人中心弹出的下拉框-->
+		<div class="m-owncenterDiv layui-anim" data-anim="layui-anim-upbit">
+			<ul>
+				<li>个人资料</li>
+				<li>退出登录</li>
+			</ul>
+		</div>
+		<div class="mark" style="display:none;"></div>
+		<div class="g-main">
+			<ul  class="layui-nav u-ms-nav" id="m-stumgul" lay-filter="">
+		        <li class="layui-nav-item layui-this" id="u-stumg-course-li"><a href="#">点名记录</a></li>
+			    <li class="layui-nav-item" id="u-stumg-clsmg-li"><a href="#">缺课记录</a></li>
+			</ul>
+			<!--点名记录-->
+			<div class="m-dmrcdDiv" id="m-dmrcdDiv">
+				<form class="layui-form" action="">
+					<div class="u-stumg-sltDiv u-stumg-globtnsty">
+						<select name="quiz">
+						    <option>班级名称</option>
+						    <option>点名教师</option>
+						</select>
+					</div>
+					<div class="u-stumg-iptDiv u-stumg-globtnsty">
+						<input type="text" name="title"  autocomplete="off" class="layui-input"> 
+					</div>
+				</form>
+				<button class="u-stumg-globtnsty" id="u-stumg-sehbtn">搜索</button>
+				<form class="layui-form" action="">
+					<div class="u-stumg-sltDiv u-stumg-globtnsty u-dailykw-datefwtitle">
+						日期范围:
+					</div>
+					<div class="u-stumg-iptDiv u-stumg-globtnsty">
+						<input type="text" class="layui-input" id="dmdaterecord" placeholder=" - ">
+					</div>
+				</form>
+				<button class="layui-btn layui-btn-primary u-stumg-scbtn  u-stumg-globtnsty" id="u-stumg-czsx">重置筛选</button>
+				<div class="u-stumg-addcoursetabDiv">
+					<table class="layui-table" >
+						<thead>
+						    <tr>
+						      <th>点名时间</th>
+						      <th>点名教师</th>
+						      <th>班级名称</th>
+						      <th>应到人数</th>
+						      <th>实到人数</th>
+						      <th>状态</th>
+						      <th>相关操作</th>
+						    </tr> 
+					    </thead>
+						<colgroup>
+						    <col width="151">
+						    <col width="100">
+						    <col width="252">
+						    <col width="101">
+						    <col width="101">
+						    <col width="101">
+						    <col width="151">
+						</colgroup>
+					   	<tbody>
+					   		<tr>
+						        <td>2018/06/03 19:30</td>
+						        <td>张三丰</td>
+						        <td>幼儿JavaScript编程</td>
+						        <td>30</td>
+						        <td>28</td>
+						        <td>正常</td>
+						        <td>
+						        	<span class="u-dailykw-dmck">查看</span>
+						        	<span class="u-dailykw-dmsc">删除</span>
+						        </td>
+						     </tr>
+					   	</tbody>
+					</table>
+					<div id="u-ms-page2"></div>
+				</div>
+			</div>
+			<!--缺课记录-->
+			<div class="m-qkrcdDiv" id="m-qkrcdDiv">
+				<form class="layui-form" action="">
+					<div class="u-stumg-sltDiv u-stumg-globtnsty">
+						<select name="quiz">
+						    <option>班级名称</option>
+						    <option>点名教师</option>
+						</select>
+					</div>
+					<div class="u-stumg-iptDiv u-stumg-globtnsty">
+						<input type="text" name="title"  autocomplete="off" class="layui-input"> 
+					</div>
+				</form>
+				<button class="u-stumg-globtnsty" id="u-stumg-sehbtn2">搜索</button>
+				<form class="layui-form" action="">
+					<div class="u-stumg-sltDiv u-stumg-globtnsty u-dailykw-datefwtitle">
+						日期范围:
+					</div>
+					<div class="u-stumg-iptDiv u-stumg-globtnsty">
+						<input type="text" class="layui-input" id="dmdaterecord2" placeholder=" - ">
+					</div>
+				</form>
+				<button class="layui-btn layui-btn-primary u-stumg-scbtn  u-stumg-globtnsty" id="u-stumg-czsx">重置筛选</button>
+				<div class="u-stumg-addcoursetabDiv">
+					<table class="layui-table" >
+						<thead>
+						    <tr>
+						      <th>点名时间</th>
+						      <th>点名教师</th>
+						      <th>班级名称</th>
+						      <th>应到人数</th>
+						      <th>实到人数</th>
+						      <th>状态</th>
+						      <th>相关操作</th>
+						    </tr> 
+					    </thead>
+						<colgroup>
+						    <col width="151">
+						    <col width="100">
+						    <col width="252">
+						    <col width="101">
+						    <col width="101">
+						    <col width="101">
+						    <col width="151">
+						</colgroup>
+					   	<tbody>
+					   		<tr>
+						        <td>2018/06/03 19:30</td>
+						        <td>张三丰</td>
+						        <td>幼儿JavaScript编程</td>
+						        <td>30</td>
+						        <td>28</td>
+						        <td>缺课</td>
+						        <td>
+						        	<span class="u-dailykw-bk">补签</span>
+						        </td>
+						     </tr>
+					   	</tbody>
+					</table>
+					<div id="u-ms-page3"></div>
+				</div>
+			</div>
+		</div>
+	</body> 
+</html>

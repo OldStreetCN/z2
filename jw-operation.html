@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>运营管理</title>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
+		<link rel="stylesheet" href="css/global.css" />
+		<link rel="stylesheet" href="css/input.css" />
+		<script type="text/javascript" src="js/input.js" ></script>
+		<!--引入LayUI库 2018/01/07 by gao-->
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			/*layui左侧导航栏效果*/
+			$(function(){
+				//注意：导航 依赖 element 模块，否则无法进行功能性操作
+				layui.use('element', function(){
+				  var element = layui.element;
+				  
+				  //…
+				});
+			});
+			/*顶部个人中心弹出框*/
+			$(function(){
+				$(".u-owncenter").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".m-owncenterDiv").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".u-owncenter").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+				$(".m-owncenterDiv").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+			});
+			/*下拉列表*/
+			$(function(){
+				//Demo
+				layui.use('form', function(){
+				  var form = layui.form;
+				});
+			});
+			/*日期*/
+			$(function(){
+			layui.use('laydate', function(){
+				  var laydate = layui.laydate;
+				   //时间范围
+				  laydate.render({
+				    elem: '#genjindate'
+				    ,type: 'time'
+				    ,range: true
+				  });
+				   laydate.render({
+				    elem: '#wxkh-genjindate'
+				    ,type: 'time'
+				    ,range: true
+				  });
+				  laydate.render({
+				    elem: '#lskh-genjindate'
+				    ,type: 'time'
+				    ,range: true
+				  });
+				});  
+			}); 
+			/*调用分页*/
+			$(function(){
+					layui.use(['laypage', 'layer'], function(){
+					    var laypage = layui.laypage
+					    ,layer = layui.layer;
+					    laypage.render({
+						    elem: 'u-yy-genjinpage'
+						    ,count: 100
+						    ,theme: '#40cb85'
+						});
+						laypage.render({
+						    elem: 'u-yy-zyxpage'
+						    ,count: 100
+						    ,theme: '#40cb85'
+						});
+						laypage.render({
+						    elem: 'u-yy-lskhpage'
+						    ,count: 100
+						    ,theme: '#40cb85'
+						});
+					});	
+				});
+			/*添加客户的模态框*/
+			$(function(){
+				$("#u-yunying-genjinaddcrsbtn").click(function(){
+					$(".mark").css("display","block");
+					$("#g-addcrsDiv").css("display","block");
+				});
+				$("#u-yy-addcrsclosebtn,#u-yy-addcrsqxbtn").click(function(){
+					$(".mark").css("display","none");
+					$("#g-addcrsDiv").css("display","none");
+				});
+			});
+			/*跟进中查看,报名，转无效*/
+			$(function(){
+				$(".u-yy-genjinkc").click(function(){
+					$(".g-main").css("display","none");
+					$(".m-stumsgDiv").css("display","block");
+				});
+				$("#u-stumsg-backbtn").click(function(){
+					$(".g-main").css("display","block");
+					$(".m-stumsgDiv").css("display","none");
+				});
+				$(".u-yy-genjinbm").click(function(){
+					$(".mark").css("display","block");
+					$("#g-yy-gjbmDiv").css("display","block");
+				});
+				$("#u-yy-gjbmclosebtn,#u-yy-gjbmqxbtn").click(function(){
+					$(".mark").css("display","none");
+					$("#g-yy-gjbmDiv").css("display","none");
+				});
+				$(".u-yy-genjinzwx").click(function(){
+					$(".mark").css("display","block");
+					$("#g-yy-gjzwxDiv").css("display","block");
+				});
+				$("#u-yy-gjzwxclosebtn,#u-yy-gjzwxqxbtn").click(function(){
+					$(".mark").css("display","none");
+					$("#g-yy-gjzwxDiv").css("display","none");
+				});
+				
+			});
+			/*选项卡的切换*/	
+			$(function(){
+				$("#u-stumg-course-li").click(function(){
+					$("#m-yy-genjinDiv").css("display","block");
+					$("#m-yy-wxkhDiv").css("display","none");
+					$("#m-yy-lskhDiv").css("display","none");
+				});
+				$("#u-stumg-clsmg-li").click(function(){
+					$("#m-yy-genjinDiv").css("display","none");
+					$("#m-yy-lskhDiv").css("display","none");
+					$("#m-yy-wxkhDiv").css("display","block");
+				});
+				$("#u-yunying-hiscrs-li").click(function(){
+					$("#m-yy-genjinDiv").css("display","none");
+					$("#m-yy-lskhDiv").css("display","block");
+					$("#m-yy-wxkhDiv").css("display","none");
+				});
+			});
+		</script>
+		<style>
+			.g-main{display: block; position: absolute;left: 165px;top: 75px;height: 900px;width: 1068px;background-color: #fff;}
+			/*mark*/
+			.mark{width: 100%;height: 100%;background:  rgba(0,0,0,.5);position: fixed;z-index: 1000;display: none;}
+			/*main界面的nav设置*/
+			.layui-nav .layui-nav-item{line-height: 50px;}
+			.u-ms-nav{background-color: #fff;border-bottom: 1px solid #e5e5e5;}
+			.u-ms-nav li{height: 50px;}
+			.u-ms-nav a{color: #666!important;}
+			/*按钮的设置*/
+			.u-stumg-globtnsty{width: 94px;height: 38px;margin-top: 15px;margin-left: 15px;float: left;}
+			.u-stumg-scbtn:hover {color: #f88a8a;border: 1px solid #f88a8a;}
+			.u-stumg-iptDiv{margin-left: -2px;width: 150px;}
+			#u-stumg-sehbtn{margin-left: -2px;width: 50px;background-color: #fff;border: 1px solid #e6e6e6;color: #999;}
+			#u-stumg-sehbtn2{margin-left: -2px;width: 50px;background-color: #fff;border: 1px solid #e6e6e6;color: #999;}
+			#u-stumg-addcus{background-color: #40cb85;}
+			.u-genjin-daynogenjin{height: 30px;width: 120px;display: inline-block;margin-top: 23px;margin-left: 20px;}
+			.u-yunying-btnDiv{height: 50px;width: 200px;float:right;margin-top: 15px;margin-right: 15px;}
+			.u-yunying-genjinbtn{height: 42px;width: 95px;font-size: 14px;border-radius: 5px;}
+			.u-yunying-genjinaddcrsbtn{background-color: #40CB85;color: #fff;border: none;}
+			.u-yunying-genjinsxbtn{border: 1px solid #c9c9c9;color: #666;background-color: #fff;}
+			/*日期选择*/
+			.u-dailykw-datefwtitle{line-height: 34px;text-align: right;padding-right: 10px;}
+			/*跟进中表格*/
+			.u-stumg-addcoursetabDiv{width:1026px; margin-left: 15px;padding-top:5px;}
+			.u-yy-genjinstate{color:#40CB85;cursor: pointer;}
+			.u-yy-genjinkc{color: #4AA1EC;cursor: pointer;}
+			.u-yy-genjinbm{color:#4AA1EC;cursor: pointer;}
+			.u-yy-genjinzwx{color: #F77878;cursor: pointer;}
+			/*添加客户模态框*/
+			.g-addcrsDiv{display:none; top:55%;left: 0;right: 0;margin: -250px auto 0 auto; height: 380px;width: 480px;background-color: #fff;border-radius: 5px;z-index: 1111;position: fixed;}
+			.u-addcrstitleDiv{border-bottom: 1px solid #e2e2e2;height: 40px;width: 100%;}	
+			.u-addcrstitleDiv span{font-size: 16px;display: inline-block;margin-top: 7px;margin-left: 15px;}
+			#u-yy-addcrsclosebtn{float: right;margin-top: 10px;margin-right: 10px;}
+			.g-addcrsDiv>span{font-size: 14px;color: #666;position: absolute;}
+			.g-addcrsDiv>input{position: absolute;height: 35px;border: 1px solid #c9c9c9;font-size: 14px;}
+			.u-yy-addcrsname{left: 15px;top: 70px;}
+			.u-yy-addcrsnameipt{left:75px;top: 62px;width: 150px;}
+			.u-yy-addcrstel{left: 250px;top: 70px;}
+			.u-yy-addcrstelipt{left: 314px;top:62px;width: 150px;}
+			.u-yy-addcrssex{left: 41px;top: 120px;}
+			.u-yy-addcrssexipt{position: absolute;height: 35px; left:75px;top: 112px;width: 60px;}
+			.u-yy-addcrsyx{left: 250px;top:120px;}
+			.u-yy-addcrsyxipt{left:314px;top: 112px;width: 100px;}
+			.u-yy-addcrsgj{left:15px;top: 170px;}
+			.u-yy-addcrsgjipt{position: absolute;top: 162px; height: 35px;border: 1px solid #c9c9c9;font-size: 14px;left: 75px;height: 120px;width: 386px;}
+			.u-yy-addcrsbtn{height: 41px;width: 95px;border-radius:5px;font-size: 14px;position: absolute;}
+			.u-yy-addcrsqxbtn{left: 150px;top: 320px;background-color: #fff;border: 1px solid #c9c9c9;color: #666;}
+			.u-yy-addcrssavebtn{left: 250px;top: 320px;background-color:#40CB85;color: #fff;border: none;}
+			/*学生基本信息框*/
+			.m-stumsgDiv{display: none; position: absolute;left: 165px;top: 75px;height: 900px;width: 1068px;}
+			.u-stumsgtopDiv{width: 100%;height: 165px;background-color: #fff;}
+			.u-stutop-title{width100%;height: 60px;border-bottom: 1px solid #E2E2E2;}
+			.u-stumsg-backbtn{height: 31px;width: 71px;border:1px solid #c9c9c9;border-radius: 5px;background-color: #fff;margin-top: 15px;margin-left: 15px;}
+			.u-stumsg-toptitle{font-size: 16px;margin-left: 15px;}
+			.u-stutop-main{width: 100%;height: 100px;}
+			.u-stutop-main span{position: absolute; font-size: 14px;color: #666;}
+			.u-stumg-stunametitle{left: 15px;top: 80px;}
+			.u-stumg-stunamespan{left:80px;top: 80px;}
+			.u-stumg-stusextitle{left: 200px;top: 80px;}
+			.u-stumg-stusexspan{left: 240px;top: 80px;}
+			.u-stumg-stuschooltitle{left: 350px;top: 80px;}
+			.u-stumg-stuschoolspan{left: 390px;top: 80px;}
+			.u-stumg-stugradetitle{left: 650px;top: 80px;}
+			.u-stumg-stugradespan{left: 690px;top: 80px;}
+			.u-stumg-stuteltitle{left: 15px;top: 110px;}	
+			.u-stumg-stutelspan{left: 80px;top: 110px;}
+			.u-stumg-stujoindatetitle{left: 200px;top: 110px;}
+			.u-stumg-stujoindatespan{left: 268px;top: 110px;}
+			.u-stumg-stuadrstitle{left: 350px;top: 110px;}
+			.u-stumg-stuadrsspan{left: 390px;top: 110px; }
+			.u-stumsg-sgs{float: right;margin-top: 20px;margin-right: 20px;cursor: pointer;}
+			/*跟进内容*/
+			.u-stumsgbtmDiv{width: 100%;height: 290px;margin-top: 15px;background-color: #fff;}
+			.u-yy-crsmsg-gjcontenttitle{height: 40px;width: 100%;border-bottom: 1px solid #e2e2e2;}
+			.u-yy-crsmsg-gjcontenttitle span{font-size: 16px;display: inline-block;margin-top: 10px;margin-left: 15px;}
+			.u-yy-crsmsggjtabDiv{overflow-y: auto; height:200px;width: 1000px;margin-top: 10px;margin-left: 15px;}
+			.u-yy-crsmsggjtabDiv::-webkit-scrollbar{ width: 10px;height: 10px; background-color: white;}
+			.u-yy-crsmsggjtabDiv::-webkit-scrollbar-thumb{ border-radius: 10px; background-color: #E5E5E5;}
+			/*新增跟进*/
+			.u-yy-crsmsgaddgjDiv{width: 100%;height: 200px;margin-top: 15px;background-color: #fff;}
+			.u-yy-crsmsgaddgjtitleDiv{height: 40px;width: 100%;border-bottom: 1px solid #e2e2e2;}
+			.u-yy-crsmsgaddgjtitleDiv span{font-size: 16px;margin-top: 10px;margin-left: 15px;display: inline-block;}
+			.u-yy-crsmsgaddgj-time{color: #666666; float: right;margin-top: 0px;margin-right: 15px;height: 20px;width: 220px;}
+			.u-yy-crsmsgaddgj-time span{font-size: 12px;color: #666666;}
+			.u-yy-crsmsgaddgj-main{height: 110px;width: 1050px;margin-top: 15px;margin-left: 15px;}
+			.u-yy-crsmsgaddgjipt{height:100px;width: 900px;}
+			.u-yy-btnDiv{float: right;height: 100px;width: 100px;margin-right: 15px;}
+			.u-yy-crsmsgaddgj-qkbtn{position: relative;background-color: #fff;color: #666;border: 1px solid #c9c9c9;}
+			.u-yy-crsmsgaddgj-savebtn{position: relative;margin-top: 10px;background-color: #40CB85;color: #fff;border: none;}
+			/*点击跟进界面的报名按钮*/
+			.g-yy-gjbmDiv{display:none; top:65%;left: 0;right: 0;margin: -250px auto 0 auto; height: 200px;width: 400px;background-color: #fff;border-radius: 5px;z-index: 1111;position: fixed;}
+			#u-yy-gjbmclosebtn{float: right;margin-top: 10px;margin-right: 10px;}
+			.u-yy-gjbmmain{position: absolute;left: 100px;top: 50px;font-size: 16px;color: #666;}
+			.u-yy-gjbmqxbtn{position: absolute;left: 90px;top: 120px;background-color: #fff;color: #666;border: 1px solid #c9c9c9;}
+			.u-yy-gjbmokbtn{position: absolute;left: 200px;top: 120px;background-color: #40CB85;color: #fff;border:none;}
+			/*点击跟进界面的转无效按钮*/
+			#m-yy-wxkhDiv{display: none;}
+			#u-yy-gjzwxclosebtn{float: right;margin-top: 10px;margin-right: 10px;}
+			.u-yy-gjzwxmain{position: absolute;left: 30px;top: 50px;font-size: 16px;color: #666;}
+			.u-yy-gjzwxqxbtn{position: absolute;left: 90px;top: 120px;background-color: #fff;color: #666;border: 1px solid #c9c9c9;}
+			.u-yy-gjzwxokbtn{position: absolute;left: 200px;top: 120px;background-color: #40CB85;color: #fff;border:none;}
+			.u-yy-wxkhstate{color: #F77878;cursor: pointer;}
+			.u-yy-wxkhkc{color: #4AA1EC;cursor: pointer;}
+			.u-yy-wxkhzyx{color: #4AA1EC;cursor: pointer;}
+			.u-yy-zwxsxbtn{float: right;margin-right: 15px;}
+			/*历史客户界面*/
+			#u-yy-lskhserachbtn{margin-left: -2px;width: 50px;background-color: #fff;border: 1px solid #e6e6e6;color: #999;}
+			#m-yy-lskhDiv{display: none;}
+		</style>
+	</head>
+	<body>
+		<!--侧边导航栏-->
+		<div class="g-sidenav">
+			<div class="m-logoDiv">
+				<img src="img/logo_white.svg" />
+			</div>
+			<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+				<li class="layui-nav-item"><a href="#">后台首页</a></li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">教务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">学生管理</a></dd>
+				      <dd><a href="">教师管理</a></dd>
+				      <dd><a href="">班级管理</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item">
+				    <a href="javascript:;">运营管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">财务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">数据中心</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item"><a href="">设置</a></li>
+			</ul>
+		</div>	
+		<!--顶部bar-->
+		<div class="g-header">
+			<span class="u-hdcurrjigou">超级未来教育</span>
+			<span class="u-xiaoquchoose">切换</span>
+			<span class="u-owncenter"><span>高长浩</span><img src="img/xiangxia.svg"/></span>
+			<span class="u-hd-kuaijie">
+				<ul>
+					<li><img src="img/calendar.svg"/></li>
+					<li><img src="img/tip.svg"/></li>
+					<li><img src="img/helpcenter.svg"/></li>
+					<li><img src="img/more.svg"/></li>
+				</ul>
+			</span>
+		</div>
+		<!--hd的个人中心弹出的下拉框-->
+		<div class="m-owncenterDiv layui-anim" data-anim="layui-anim-upbit">
+			<ul>
+				<li>个人资料</li>
+				<li>退出登录</li>
+			</ul>
+		</div>
+		<div class="mark" style="display:none;"></div>
+		<!--新增客户模态框-->
+		<div class="g-addcrsDiv" id="g-addcrsDiv">
+			<div class="u-addcrstitleDiv">
+				<span>新增客户</span>
+				<img id="u-yy-addcrsclosebtn" src="img/Mtclosebtn.png" />
+			</div>
+			<span class="u-yy-addcrsname">客户姓名</span>
+			<input type="text" class="u-yy-addcrsnameipt" />
+			<span class="u-yy-addcrstel">电话号码</span>
+			<input type="text" class="u-yy-addcrstelipt" />
+			<span class="u-yy-addcrssex">性别</span>
+			<select type="text" class="u-yy-addcrssexipt">
+				<option>男</option>
+				<option>女</option>
+			</select>
+			<span class="u-yy-addcrsyx">意向级别</span>
+			<input type="text" class="u-yy-addcrsyxipt" />
+			<span class="u-yy-addcrsgj">初次跟进</span>
+			<textarea class="u-yy-addcrsgjipt"></textarea>
+			<button class="u-yy-addcrsbtn u-yy-addcrsqxbtn" id="u-yy-addcrsqxbtn">取消</button>
+			<button class="u-yy-addcrsbtn u-yy-addcrssavebtn">保存添加</button>
+		</div>
+		<!--客户基本信息界面-->
+		<div class="m-stumsgDiv">
+			<!--客户基本信息-->
+			<div class="u-stumsgtopDiv">
+				<div class="u-stutop-title">
+					<button class="u-stumsg-backbtn" id="u-stumsg-backbtn">返回上页</button>
+					<span class="u-stumsg-toptitle">学生基本信息</span>
+					<span class="u-stumsg-sgs">给本页提建议</span>
+				</div>
+				<div class="u-stutop-main">
+					<span class="u-stumg-stunametitle">客户姓名:</span>
+					<span class="u-stumg-stunamespan">张伟</span>
+					<span class="u-stumg-stusextitle">性别:</span>
+					<span class="u-stumg-stusexspan">男</span>
+					<span class="u-stumg-stuschooltitle">学校:</span>
+					<span class="u-stumg-stuschoolspan">南京市鼓楼区第一小学</span>
+					<span class="u-stumg-stugradetitle">年级:</span>
+					<span class="u-stumg-stugradespan">小学一年级</span>
+					<span class="u-stumg-stuteltitle">联系电话:</span>
+					<span class="u-stumg-stutelspan">18270613397</span>
+					<span class="u-stumg-stujoindatetitle">出生日期:</span>
+					<span class="u-stumg-stujoindatespan">2018/3/1</span>
+					<span class="u-stumg-stuadrstitle">住址:</span>
+					<span class="u-stumg-stuadrsspan">江西省宜春市奉新县澡下镇澡下学校</span>
+				</div>
+			</div>
+			<!--跟进内容-->
+			<div class="u-stumsgbtmDiv">
+				<div class="u-yy-crsmsg-gjcontenttitle">
+					<span>跟进内容</span>
+				</div>
+				<div class="u-yy-crsmsggjtabDiv">
+					<table class="layui-table" >
+						<thead>
+						    <tr>
+						      <th>时间</th>
+						      <th>跟进人</th>
+						      <th>跟进内容</th>
+						    </tr> 
+					    </thead>
+						<colgroup>
+						    <col width="200">
+						    <col width="100">
+						    <col width="785">
+						</colgroup>
+					   	<tbody>
+					   		<tr>
+						        <td>2018/06/03 19:30</td>
+						        <td>张三丰</td>
+						        <td>幼儿JavaScript编程</td>
+						     </tr>
+						     <tr>
+						        <td>2018/06/03 19:30</td>
+						        <td>张三丰</td>
+						        <td>幼儿JavaScript编程</td>
+						     </tr>
+						     <tr>
+						        <td>2018/06/03 19:30</td>
+						        <td>张三丰</td>
+						        <td>幼儿JavaScript编程</td>
+						     </tr>
+						     <tr>
+						        <td>2018/06/03 19:30</td>
+						        <td>张三丰</td>
+						        <td>幼儿JavaScript编程</td>
+						     </tr>
+					   	</tbody>
+					</table>
+				</div>
+			</div>
+			<!--新增跟进-->
+			<div class="u-yy-crsmsgaddgjDiv">
+				<div class="u-yy-crsmsgaddgjtitleDiv">
+					<span>新增跟进</span>
+					<div class="u-yy-crsmsgaddgj-time">当前时间<span>2018/01/02 18:59</span></div>
+				</div>
+				<div class="u-yy-crsmsgaddgj-main">
+					<textarea class="u-yy-crsmsgaddgjipt"></textarea>
+					<div class="u-yy-btnDiv">
+						<button class="u-yy-addcrsbtn u-yy-crsmsgaddgj-qkbtn">清空内容</button>
+						<button class="u-yy-addcrsbtn u-yy-crsmsgaddgj-savebtn">保存跟进</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--点击跟进中的报名按钮-->
+		<div class="g-yy-gjbmDiv" id="g-yy-gjbmDiv">
+			<img id="u-yy-gjbmclosebtn" src="img/Mtclosebtn.png" />
+			<span class="u-yy-gjbmmain">此操作将跳转到报名页面。</span>
+			<button class="u-yy-addcrsbtn u-yy-gjbmqxbtn" id="u-yy-gjbmqxbtn">取消</button>
+			<button class="u-yy-addcrsbtn u-yy-gjbmokbtn">确认报名</button>
+		</div>
+		<!--点击跟进中的转无效按钮-->
+		<div class="g-yy-gjbmDiv" id="g-yy-gjzwxDiv">
+			<img id="u-yy-gjzwxclosebtn" src="img/Mtclosebtn.png" />
+			<span class="u-yy-gjzwxmain">转无效后，您可以在无效客户中找到该客户信息。</span>
+			<button class="u-yy-addcrsbtn u-yy-gjbmqxbtn" id="u-yy-gjzwxqxbtn">取消</button>
+			<button class="u-yy-addcrsbtn u-yy-gjbmokbtn" id="u-yy-gjzwxokbtn">确认报名</button>
+		</div>
+		<!--主界面-->
+		<div class="g-main">
+			<ul  class="layui-nav u-ms-nav" id="m-stumgul" lay-filter="">
+		        <li class="layui-nav-item layui-this" id="u-stumg-course-li"><a href="#">跟进中</a></li>
+			    <li class="layui-nav-item" id="u-stumg-clsmg-li"><a href="#">无效客户</a></li>
+			    <li class="layui-nav-item" id="u-yunying-hiscrs-li"><a href="#">历史客户</a></li>
+			</ul>
+			<!--跟进中-->
+			<div class="m-yy-genjinDiv" id="m-yy-genjinDiv">
+				<form class="layui-form" action="">
+					<div class="u-stumg-sltDiv u-stumg-globtnsty">
+						<select name="quiz">
+						    <option>跟进人</option>
+						    <option>客户姓名</option>
+						</select>
+					</div>
+					<div class="u-stumg-iptDiv u-stumg-globtnsty">
+						<input type="text" name="title"  autocomplete="off" class="layui-input"> 
+					</div>
+				</form>
+				<button class="u-stumg-globtnsty" id="u-stumg-sehbtn">搜索</button>
+				<form class="layui-form" action="">
+					<div class="u-stumg-sltDiv u-stumg-globtnsty u-dailykw-datefwtitle">
+						最后跟进时间:
+					</div>
+					<div class="u-stumg-iptDiv u-stumg-globtnsty">
+						<input type="text" class="layui-input" id="genjindate" placeholder=" - ">
+					</div>
+					<div class="u-genjin-daynogenjin">
+						<input  type="checkbox" name="" title="今日未跟进" lay-skin="primary" />
+					</div>
+					<div class="u-yunying-btnDiv">
+						<button class="u-yunying-genjinbtn u-yunying-genjinaddcrsbtn" id="u-yunying-genjinaddcrsbtn">添加客户</button>
+						<button class="u-yunying-genjinbtn u-yunying-genjinsxbtn">重新筛选</button>
+					</div>
+				</form>
+				<div class="u-stumg-addcoursetabDiv">
+					<table class="layui-table" >
+						<thead>
+						    <tr>
+						      <th>客户姓名</th>
+						      <th>性别</th>
+						      <th>手机号码</th>
+						      <th>最后跟进时间</th>
+						      <th>意向级别</th>
+						      <th>跟进人</th>
+						      <th>状态</th>
+						      <th>相关操作</th>
+						    </tr> 
+					    </thead>
+						<colgroup>
+						    <col width="150">
+						    <col width="60">
+						    <col width="150">
+						    <col width="150">
+						    <col width="100">
+						    <col width="100">
+						    <col width="100">
+						    <col width="200">
+						</colgroup>
+					   	<tbody>
+					   		<tr>
+						        <td>张伟</td>
+						        <td>男</td>
+						        <td>15875416639</td>
+						        <td>2018/1/8 15:43</td>
+						        <td>高</td>
+						        <td>李江涛</td>
+						        <td><span class="u-yy-genjinstate">有效</span></td>
+						        <td>
+						        	<span class="u-yy-genjinkc">查看</span>
+						        	<span class="u-yy-genjinbm">报名</span>
+						        	<span class="u-yy-genjinzwx">转无效</span>
+						        </td>
+						     </tr>
+					   	</tbody>
+					</table>
+					<div id="u-yy-genjinpage"></div>
+				</div>
+			</div>
+			<!--无效客户-->
+			<div class="m-yy-wxkhDiv" id="m-yy-wxkhDiv">
+				<form class="layui-form" action="">
+					<div class="u-stumg-sltDiv u-stumg-globtnsty">
+						<select name="quiz">
+						    <option>跟进人</option>
+						    <option>客户姓名</option>
+						</select>
+					</div>
+					<div class="u-stumg-iptDiv u-stumg-globtnsty">
+						<input type="text" name="title"  autocomplete="off" class="layui-input"> 
+					</div>
+				</form>
+				<button class="u-stumg-globtnsty" id="u-stumg-sehbtn">搜索</button>
+				<form class="layui-form" action="">
+					<div class="u-stumg-sltDiv u-stumg-globtnsty u-dailykw-datefwtitle">
+						最后跟进时间:
+					</div>
+					<div class="u-stumg-iptDiv u-stumg-globtnsty">
+						<input type="text" class="layui-input" id="wxkh-genjindate" placeholder=" - ">
+					</div>
+					<div class="u-yunying-btnDiv">
+						<button class="u-yunying-genjinbtn u-yunying-genjinsxbtn u-yy-zwxsxbtn" id="">重新筛选</button>
+					</div>
+				</form>
+				<div class="u-stumg-addcoursetabDiv">
+					<table class="layui-table" >
+						<thead>
+						    <tr>
+						      <th>客户姓名</th>
+						      <th>性别</th>
+						      <th>手机号码</th>
+						      <th>最后跟进时间</th>
+						      <th>意向级别</th>
+						      <th>跟进人</th>
+						      <th>状态</th>
+						      <th>相关操作</th>
+						    </tr> 
+					    </thead>
+						<colgroup>
+						    <col width="150">
+						    <col width="60">
+						    <col width="150">
+						    <col width="150">
+						    <col width="100">
+						    <col width="100">
+						    <col width="100">
+						    <col width="200">
+						</colgroup>
+					   	<tbody>
+					   		<tr>
+						        <td>张伟</td>
+						        <td>男</td>
+						        <td>15875416639</td>
+						        <td>2018/1/8 15:43</td>
+						        <td>高</td>
+						        <td>李江涛</td>
+						        <td><span class="u-yy-wxkhstate">有效</span></td>
+						        <td>
+						        	<span class="u-yy-wxkhkc">查看</span>
+						        	<span class="u-yy-wxkhzyx">转有效</span>
+						        </td>
+						     </tr>
+					   	</tbody>
+					</table>
+					<div id="u-yy-zyxpage"></div>
+				</div>
+			</div>
+			<!--历史客户-->
+			<div class="m-yy-lskhDiv" id="m-yy-lskhDiv">
+				<form class="layui-form" action="">
+					<div class="u-stumg-sltDiv u-stumg-globtnsty">
+						<select name="quiz">
+						    <option>跟进人</option>
+						    <option>客户姓名</option>
+						</select>
+					</div>
+					<div class="u-stumg-iptDiv u-stumg-globtnsty">
+						<input type="text" name="title"  autocomplete="off" class="layui-input"> 
+					</div>
+				</form>
+				<button class="u-stumg-globtnsty" id="u-yy-lskhserachbtn">搜索</button>
+				<form class="layui-form" action="">
+					<div class="u-stumg-sltDiv u-stumg-globtnsty u-dailykw-datefwtitle">
+						最后跟进时间:
+					</div>
+					<div class="u-stumg-iptDiv u-stumg-globtnsty">
+						<input type="text" class="layui-input" id="lskh-genjindate" placeholder=" - ">
+					</div>
+					<div class="u-yunying-btnDiv">
+						<button class="u-yunying-genjinbtn u-yunying-genjinsxbtn u-yy-zwxsxbtn" id="">重新筛选</button>
+					</div>
+					<div class="u-stumg-addcoursetabDiv">
+						<table class="layui-table" >
+						<thead>
+						    <tr>
+						      <th>客户姓名</th>
+						      <th>性别</th>
+						      <th>手机号码</th>
+						      <th>最后跟进时间</th>
+						      <th>意向级别</th>
+						      <th>跟进人</th>
+						      <th>状态</th>
+						      <th>相关操作</th>
+						    </tr> 
+					    </thead>
+						<colgroup>
+						    <col width="150">
+						    <col width="60">
+						    <col width="150">
+						    <col width="150">
+						    <col width="100">
+						    <col width="100">
+						    <col width="100">
+						    <col width="200">
+						</colgroup>
+					   	<tbody>
+					   		<tr>
+						        <td>张伟</td>
+						        <td>男</td>
+						        <td>15875416639</td>
+						        <td>2018/1/8 15:43</td>
+						        <td>高</td>
+						        <td>李江涛</td>
+						        <td><span class="u-yy-wxkhstate">有效</span></td>
+						        <td>
+						        	<span class="u-yy-wxkhkc">查看</span>
+						        	<span class="u-yy-wxkhzyx">转有效</span>
+						        </td>
+						     </tr>
+					   	</tbody>
+					</table>
+					<div id="u-yy-lskhpage"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

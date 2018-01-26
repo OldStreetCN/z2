@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>续费提醒</title>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
+		<link rel="stylesheet" href="css/global.css" />
+		<link rel="stylesheet" href="css/input.css" />
+		<script type="text/javascript" src="js/input.js" ></script>
+		<!--引入LayUI库 2018/01/07 by gao-->
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			/*layui左侧导航栏效果*/
+			$(function(){
+				//注意：导航 依赖 element 模块，否则无法进行功能性操作
+				layui.use('element', function(){
+				  var element = layui.element;
+				  
+				  //…
+				});
+			});
+			/*顶部个人中心弹出框*/
+			$(function(){
+				$(".u-owncenter").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".m-owncenterDiv").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".u-owncenter").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+				$(".m-owncenterDiv").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+			});
+			/*下拉列表*/
+			$(function(){
+				//Demo
+				layui.use('form', function(){
+				  var form = layui.form;
+				});
+			});
+			/*调用分页*/
+			$(function(){
+					layui.use(['laypage', 'layer'], function(){
+					    var laypage = layui.laypage
+					    ,layer = layui.layer;
+					    laypage.render({
+						    elem: 'u-xftxpage'
+						    ,count: 100
+						    ,theme: '#40cb85'
+						});
+					});	
+				});
+
+		</script>
+		<style>
+			.g-main{display: block; position: absolute;left: 165px;top: 75px;height: 900px;width: 1068px;background-color: #fff;}
+			/*mark*/
+			.mark{width: 100%;height: 100%;background:  rgba(0,0,0,.5);position: fixed;z-index: 1000;display: none;}
+			/*m-xftxtitleDiv*/
+			.m-xftxtitleDiv{height: 40px;width: 100%;border-bottom: 1px solid #e2e2e2;}
+			.m-xftxtitleDiv span{font-size: 16px;margin-top: 10px;margin-left: 15px;display: inline-block;}
+			/*按钮的设置*/
+			.u-stumg-globtnsty{width: 94px;height: 38px;margin-top: 15px;margin-left: 15px;float: left;}
+			.u-stumg-scbtn:hover {color: #f88a8a;border: 1px solid #f88a8a;}
+			.u-stumg-iptDiv{margin-left: -2px;width: 150px;}
+			#u-stumg-sehbtn{margin-left: -2px;width: 50px;background-color: #fff;border: 1px solid #e6e6e6;color: #999;}
+			#u-stumg-sehbtn2{margin-left: -2px;width: 50px;background-color: #fff;border: 1px solid #e6e6e6;color: #999;}
+			#u-stumg-addcus{background-color: #40cb85;}
+			.u-genjin-daynogenjin{height: 30px;width: 120px;display: inline-block;margin-top: 23px;margin-left: 20px;}
+			.u-yunying-btnDiv{height: 50px;width: 200px;float:right;margin-top: 15px;margin-right: 15px;}
+			.u-yunying-genjinbtn{height: 42px;width: 95px;font-size: 14px;border-radius: 5px;}
+			.u-yunying-genjinaddcrsbtn{background-color: #40CB85;color: #fff;border: none;}
+			.u-yunying-genjinsxbtn{border: 1px solid #c9c9c9;color: #666;background-color: #fff;}
+			.u-xftx-searchbtn{margin-left: 90px;}
+			/*表格*/
+			.u-stumg-addcoursetabDiv{width:1026px; margin-left: 15px;padding-top:5px;}
+			.u-xftx-hlbtn{color: #666;cursor: pointer;}
+			.u-xftx-txbtn{color: #4AA1EC;cursor: pointer;}
+		</style>
+	</head>
+	<body>
+		<!--侧边导航栏-->
+		<div class="g-sidenav">
+			<div class="m-logoDiv">
+				<img src="img/logo_white.svg" />
+			</div>
+			<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+				<li class="layui-nav-item"><a href="#">后台首页</a></li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">教务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">学生管理</a></dd>
+				      <dd><a href="">教师管理</a></dd>
+				      <dd><a href="">班级管理</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item">
+				    <a href="javascript:;">运营管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">财务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">数据中心</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item"><a href="">设置</a></li>
+			</ul>
+		</div>	
+		<!--顶部bar-->
+		<div class="g-header">
+			<span class="u-hdcurrjigou">超级未来教育</span>
+			<span class="u-xiaoquchoose">切换</span>
+			<span class="u-owncenter"><span>高长浩</span><img src="img/xiangxia.svg"/></span>
+			<span class="u-hd-kuaijie">
+				<ul>
+					<li><img src="img/calendar.svg"/></li>
+					<li><img src="img/tip.svg"/></li>
+					<li><img src="img/helpcenter.svg"/></li>
+					<li><img src="img/more.svg"/></li>
+				</ul>
+			</span>
+		</div>
+		<!--hd的个人中心弹出的下拉框-->
+		<div class="m-owncenterDiv layui-anim" data-anim="layui-anim-upbit">
+			<ul>
+				<li>个人资料</li>
+				<li>退出登录</li>
+			</ul>
+		</div>
+		<div class="mark" style="display:none;"></div>
+		<!--主界面-->
+		<div class="g-main">
+			<div class="m-xftxtitleDiv">
+				<span>续费提醒</span>
+			</div>
+			<form class="layui-form" action="">
+				<div class="u-stumg-sltDiv u-stumg-globtnsty">
+					<select name="quiz">
+					    <option>学生姓名</option>
+					    <option>手机号码</option>
+					</select>
+				</div>
+				<div class="u-stumg-iptDiv u-stumg-globtnsty">
+					<input type="text" name="title"  autocomplete="off" class="layui-input"> 
+				</div>
+			</form>
+			<button class="u-stumg-globtnsty" id="u-stumg-sehbtn">搜索</button>
+			<form class="layui-form" action="">
+				<div class="u-yunying-btnDiv">
+					<button class="u-yunying-genjinbtn u-yunying-genjinsxbtn u-xftx-searchbtn" id="">重新筛选</button>
+				</div>
+			</form>
+			<div class="u-stumg-addcoursetabDiv">
+				<table class="layui-table" >
+						<thead>
+						    <tr>
+						      <th>学生姓名</th>
+						      <th>手机号码</th>
+						      <th>课程名称</th>
+						      <th>班级名称</th>
+						      <th>剩余课时</th>
+						      <th>相关操作</th>
+						    </tr> 
+					    </thead>
+						<colgroup>
+						    <col width="150">
+						    <col width="150">
+						    <col width="250">
+						    <col width="250">
+						    <col width="100">
+						    <col width="100">
+						</colgroup>
+					   	<tbody>
+					   		<tr>
+						        <td>张伟</td>
+						        <td>18270613385</td>
+						        <td>JavaScript基础教程</td>
+						        <td>一年级一班</td>
+						        <td>5</td>
+						        <td>
+						        	<span class="u-xftx-hlbtn">忽略</span>
+						        	<span class="u-xftx-txbtn">提醒</span>
+						        </td>
+						     </tr>
+					   	</tbody>
+					</table>
+					<div id="u-xftxpage"></div>
+			</div>
+		</div>
+	</body>
+</html>
