@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>缴费</title>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
+		<link rel="stylesheet" href="css/global.css" />
+		<link rel="stylesheet" href="css/input.css" />
+		<script type="text/javascript" src="js/input.js" ></script>
+		<!--引入LayUI库 2018/01/07 by gao-->
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			/*layui左侧导航栏效果*/
+			$(function(){
+				//注意：导航 依赖 element 模块，否则无法进行功能性操作
+				layui.use('element', function(){
+				  var element = layui.element;
+				  
+				  //…
+				});
+			});
+			/*顶部个人中心弹出框*/
+			$(function(){
+				$(".u-owncenter").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".m-owncenterDiv").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".u-owncenter").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+				$(".m-owncenterDiv").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+			});
+
+		</script>
+		<style>
+			.g-main{display: block; position: absolute;left: 165px;top: 75px;height: 900px;width: 1068px;background-color: #fff;}
+			/*mark*/
+			.mark{width: 100%;height: 100%;background:  rgba(0,0,0,.5);position: fixed;z-index: 1000;display: none;}
+			/*图片框*/
+			.m-cw-bmstep1imgDiv{height: 60px;width: 1000px;margin-left: 60px;margin-top: 50px;}
+			/*费用合集*/
+			.m-step3-fyhjDiv{position: absolute;top:130px;left: 60px; height: 120px;width: 928px;background-color:beige;}
+			.m-step3-fyhjtitleDiv{height: 35px;width: 100%;border-bottom: 1px solid #e2e2e2;}
+			.m-step3-fyhjtitleDiv>span{font-size:16px;color: #4AA1EC;display: inline-block;margin-top: 5px;}
+			.u-step3-fyhj-fytitle{margin-top: 8px;font-size: 14px;color: #666;}
+			.u-step3-fyhj-fy{position: absolute;left:65px;top: 45px; font-size:14px;color:#666;}
+			.u-step3-fyhj-fytitle1{position: absolute;font-size: 14px;color: #666;left:120px;top: 45px;}
+			.u-step3-fyhj-icdkctitle{position: absolute;color:#999;top:70px;font-size: 12px;}
+			.u-step3-fyhj-icdkc{position: absolute;color:#999;top:70px;font-size: 12px;left:30px;}
+			.u-step3-fyhj-icdqtkctitle{position: absolute;color: #999;top: 70px;font-size: 12px;left: 150px;}
+			.u-step3-fyhj-icdqtkc{position: absolute;color: #999;top: 70px;font-size: 12px;left: 165px;}
+			.u-step3-fyhj-icdqtkctitle1{position: absolute;color: #999;top: 70px;font-size: 12px;left: 177px;}
+			/*支付方式*/
+			.m-step3-zffsDiv{position: absolute;top:250px;left: 60px; height: 150px;width: 928px;background-color:burlywood;}
+			.m-step3-zffsDiv>span{position: absolute;font-size: 14px;color: #666;}
+			.u-step3-xszftitle{top: 45px;}
+			.u-step3-xszfrad{position: absolute; left: 60px;top: 45px;opacity: 1!important;}
+			.u-step3-xszfradtitle{left:83px;top: 45px;}
+			.u-step3-wkf{font-size: 12px!important;color: #999!important;left: 63px;top: 65px;}
+			.u-step3-xxzftitle{top: 85px;}
+			.u-step3-xxzfxjrad{position: absolute; left: 60px;top: 85px;opacity: 1!important;}
+			.u-step3-xxzfrad1title{left:83px;top: 85px;}
+			.u-step3-xxzfskrad{position: absolute; left:120px;top: 85px;opacity: 1!important;}
+			.u-step3-xxzfrad2title{left:145px;top: 85px;}
+			/*补充信息*/
+			.m-step3-bcmsgDiv{position: absolute;top:390px;left: 60px; height: 150px;width: 928px;background-color:lavender;}
+			.m-step3-bcmsgDiv>span{position: absolute;font-size: 14px;color: #666;}
+			.u-step3-gjrytitle{top:45px;}
+		</style>
+	</head>
+	<body>
+		<!--侧边导航栏-->
+		<div class="g-sidenav">
+			<div class="m-logoDiv">
+				<img src="img/logo_white.svg" />
+			</div>
+			<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+				<li class="layui-nav-item"><a href="#">后台首页</a></li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">教务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">学生管理</a></dd>
+				      <dd><a href="">教师管理</a></dd>
+				      <dd><a href="">班级管理</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item">
+				    <a href="javascript:;">运营管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">财务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">数据中心</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item"><a href="">设置</a></li>
+			</ul>
+		</div>	
+		<!--顶部bar-->
+		<div class="g-header">
+			<span class="u-hdcurrjigou">超级未来教育</span>
+			<span class="u-xiaoquchoose">切换</span>
+			<span class="u-owncenter"><span>高长浩</span><img src="img/xiangxia.svg"/></span>
+			<span class="u-hd-kuaijie">
+				<ul>
+					<li><img src="img/calendar.svg"/></li>
+					<li><img src="img/tip.svg"/></li>
+					<li><img src="img/helpcenter.svg"/></li>
+					<li><img src="img/more.svg"/></li>
+				</ul>
+			</span>
+		</div>
+		<!--hd的个人中心弹出的下拉框-->
+		<div class="m-owncenterDiv layui-anim" data-anim="layui-anim-upbit">
+			<ul>
+				<li>个人资料</li>
+				<li>退出登录</li>
+			</ul>
+		</div>
+		<div class="mark" style="display: none;"></div>
+		<!--主界面-->
+		<div class="g-main">
+			<div class="m-cw-bmstep1imgDiv">
+				<img src="img/imgbm-step1.png" />
+				<img src="img/imgbm-step2.png" />
+				<img src="img/imgbm-step3curr.png" />
+			</div>
+			<!--费用合集-->
+			<div class="m-step3-fyhjDiv">
+				<div class="m-step3-fyhjtitleDiv">
+					<span>费用合计</span>
+				</div>
+				<div class="u-step3-fyhj-fytitle">课程费用:</div>
+				<span class="u-step3-fyhj-fy">4488.00</span>
+				<span class="u-step3-fyhj-fytitle1">元</span>
+				<span class="u-step3-fyhj-icdkctitle">包含</span>
+				<span class="u-step3-fyhj-icdkc">JavaScript基础教程</span>
+				<span class="u-step3-fyhj-icdqtkctitle">等</span>
+				<span class="u-step3-fyhj-icdqtkc">4</span>
+				<span class="u-step3-fyhj-icdqtkctitle1">门课程</span>
+			</div>
+			<!--支付方式-->
+			<div class="m-step3-zffsDiv">
+				<div class="m-step3-fyhjtitleDiv">
+					<span>支付方式</span>
+				</div>
+				<span class="u-step3-xszftitle">线上支付:</span>
+				<input type="radio" name="payfor" class="u-step3-xszfrad"/>
+				<span class="u-step3-xszfradtitle">家长端</span>
+				<span class="u-step3-wkf">支付宝和微信支付即将开放</span>
+				<span class="u-step3-xxzftitle">线下支付:</span>
+				<input type="radio" name="payfor" class="u-step3-xxzfxjrad"/>
+				<span class="u-step3-xxzfrad1title">现金</span>
+				<input type="radio" name="payfor" class="u-step3-xxzfskrad"/>
+				<span class="u-step3-xxzfrad2title">刷卡</span>
+			</div>
+			<!--补充信息-->
+			<div class="m-step3-bcmsgDiv">
+				<div class="m-step3-fyhjtitleDiv">
+					<span>补充信息</span>
+				</div>
+				<span class="u-step3-gjrytitle">跟进人员:</span>
+				<span class="u-step3-gjry"></span>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>学生报名-选择课程</title>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
+		<link rel="stylesheet" href="css/global.css" />
+		<link rel="stylesheet" href="css/input.css" />
+		<script type="text/javascript" src="js/input.js" ></script>
+		<!--引入LayUI库 2018/01/07 by gao-->
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			/*layui左侧导航栏效果*/
+			$(function(){
+				//注意：导航 依赖 element 模块，否则无法进行功能性操作
+				layui.use('element', function(){
+				  var element = layui.element;
+				  
+				  //…
+				});
+			});
+			/*顶部个人中心弹出框*/
+			$(function(){
+				$(".u-owncenter").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".m-owncenterDiv").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".u-owncenter").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+				$(".m-owncenterDiv").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+			});
+			/*点击选课*/
+			$(function(){
+				$("#u-step2xkbtn").click(function(){
+					$(".mark").css("display","block");
+					$("#g-step2-xkDiv").css("display","block");
+				});
+				$(".u-step1-qxbtn").click(function(){
+					$("#g-step2-xkDiv").css("display","none");
+					$(".mark").css("display","none");
+				});
+			});
+		</script>
+		<style>
+			.g-main{display: block; position: absolute;left: 165px;top: 75px;height: 900px;width: 1068px;background-color: #fff;}
+			/*mark*/
+			.mark{width: 100%;height: 100%;background:  rgba(0,0,0,.5);position: fixed;z-index: 1000;display: none;}
+			/*图片框*/
+			.m-cw-bmstep1imgDiv{height: 60px;width: 1000px;margin-left: 60px;margin-top: 50px;}
+			.u-step2xkbtn{color: #fff;margin-left: 60px;margin-top: 20px; height: 40px;width:91px;background-color:#40CB85;font-size: 14px;border: none;border-radius: 5px;}
+			/*表格*/
+			.m-step2tabDiv{overflow-y:auto; height: 330px;width:850px;margin-left: 60px;margin-top: 10px;}
+			.m-step2tabDiv::-webkit-scrollbar{ width: 10px;height: 10px; background-color: white;}
+			.m-step2tabDiv::-webkit-scrollbar-thumb{ border-radius: 10px; background-color: #E5E5E5;}
+			.m-step2tabDiv table{margin: 0;}
+			.m-step2tabDiv td{height:20px;}
+			.u-step2totalDiv{color: #F77878;font-size: 16px; height: 30px;width: 120px;margin-top: 15px;margin-left: 780px;}
+			.u-step2totalDiv *{color: #F77878;font-size: 16px;}
+			.u-step2qxlastbtn{height: 40px;width: 152px;border-radius: 5px;background-color: #4AA1EC;color: #fff;font-size: 14px;border: none;margin-top: 30px;margin-left: 65px;}
+			.u-step2qxnextbtn{height: 40px;width: 152px;border-radius: 5px;background-color: #4AA1EC;color: #fff;font-size: 14px;border: none;margin-top: 30px;margin-left:10px;}
+			/*点击选课按钮*/
+			.g-step2-xkDiv{display:none; top:55%;left: 0;right: 0;margin: -250px auto 0 auto; height: 400px;width: 915px;background-color: #fff;border-radius: 5px;z-index: 1111;position: fixed;}
+			/*------>按钮的设置*/
+			.u-stumg-globtnsty{width: 94px;height: 38px;margin-top: 15px;margin-left: 15px;float: left;}
+			.u-stumg-scbtn:hover {color: #f88a8a;border: 1px solid #f88a8a;}
+			.u-stumg-iptDiv{margin-left: -2px;width: 150px;}
+			#u-stumg-sehbtn{margin-left: -2px;width: 50px;background-color: #fff;border: 1px solid #e6e6e6;color: #999;}
+			#u-stumg-addcus{background-color: #40cb85;}
+			.u-step2-serachtitle{font-size: 12px;background-color: #fff;text-align: center;line-height:36px;border: 1px solid #e6e6e6;color: #666;height: 36px;}
+			.u-step2-cxsxbtn{border-radius:5px; width: 72px;height: 31px;position: absolute;background-color: #fff;color: #666;font-size: 12px;border: 1px solid #c9c9c9;left: 800px;top: 20px;}
+			.u-step2xktabDiv{overflow-y: auto; position:absolute;width:860px;height:250px;margin-left: 15px;top: 65px;}
+			.u-step2xktabDiv::-webkit-scrollbar{ width: 10px;height: 10px; background-color: white;}
+			.u-step2xktabDiv::-webkit-scrollbar-thumb{ border-radius: 10px; background-color: #E5E5E5;}
+			.u-step2xktabDiv table{margin: 0;}
+			.u-step2xktabDiv input{opacity: 1;}
+			.u-step1-qxbtn{top: 330px; height: 40px;width: 95px;position: absolute;background-color: #fff;border: 1px solid #c9c9c9;color: #666;border-radius: 5px;}
+			.u-step1-okbtn{top: 330px;left:420px; height: 40px;width: 95px;position: absolute;background-color: #40CB85;border:none;color: #fff;border-radius: 5px;}
+		</style>
+	</head>
+	<body>
+		<!--侧边导航栏-->
+		<div class="g-sidenav">
+			<div class="m-logoDiv">
+				<img src="img/logo_white.svg" />
+			</div>
+			<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+				<li class="layui-nav-item"><a href="#">后台首页</a></li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">教务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">学生管理</a></dd>
+				      <dd><a href="">教师管理</a></dd>
+				      <dd><a href="">班级管理</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item">
+				    <a href="javascript:;">运营管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">财务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">数据中心</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item"><a href="">设置</a></li>
+			</ul>
+		</div>	
+		<!--顶部bar-->
+		<div class="g-header">
+			<span class="u-hdcurrjigou">超级未来教育</span>
+			<span class="u-xiaoquchoose">切换</span>
+			<span class="u-owncenter"><span>高长浩</span><img src="img/xiangxia.svg"/></span>
+			<span class="u-hd-kuaijie">
+				<ul>
+					<li><img src="img/calendar.svg"/></li>
+					<li><img src="img/tip.svg"/></li>
+					<li><img src="img/helpcenter.svg"/></li>
+					<li><img src="img/more.svg"/></li>
+				</ul>
+			</span>
+		</div>
+		<!--hd的个人中心弹出的下拉框-->
+		<div class="m-owncenterDiv layui-anim" data-anim="layui-anim-upbit">
+			<ul>
+				<li>个人资料</li>
+				<li>退出登录</li>
+			</ul>
+		</div>
+		<div class="mark" style="display: none;"></div>
+		<!--点击选课按钮-->
+		<div class="g-step2-xkDiv" id="g-step2-xkDiv">
+			<form class="layui-form" action="">
+				<div class="u-stumg-sltDiv u-stumg-globtnsty u-step2-serachtitle">课程名称</div>
+				<div class="u-stumg-iptDiv u-stumg-globtnsty">
+					<input type="text" name="title" required lay-verify="required" placeholder="输入搜索词" autocomplete="off" class="layui-input"> 
+				</div>
+			</form>
+			<button class="u-stumg-globtnsty" id="u-stumg-sehbtn">搜索</button>
+			<button class="u-step2-cxsxbtn">重新筛选</button>
+			<div class="u-step2xktabDiv">
+				<table class="layui-table u-step1-tab" >
+					<thead>
+					    <tr>
+					      <th></th>
+					      <th>课程名称</th>
+					      <th>班级名称</th>
+					      <th>开班日期</th>
+					      <th>课时</th>
+					      <th>价格</th>
+					      <th>详情</th>
+					    </tr> 
+				    </thead>
+					<colgroup>
+					    <col width="30">
+					    <col width="240">
+					    <col width="240">
+					    <col width="100">
+					    <col width="100">
+					    <col width="100">
+					    <col width="60">
+					</colgroup>
+				   	<tbody>
+				   		<tr>
+					        <td><input type="checkbox" /></td>
+					        <td>JavaScript基础教程</td>
+					        <td>三年级一班</td>
+					        <td>2018/08/08</td>
+					        <td>25</td>
+					        <td>38000</td>
+					        <td>查看</td>
+					     </tr>
+					     <tr>
+					        <td><input type="checkbox" /></td>
+					        <td>JavaScript基础教程</td>
+					        <td>三年级一班</td>
+					        <td>2018/08/08</td>
+					        <td>25</td>
+					        <td>38000</td>
+					        <td>查看</td>
+					     </tr>
+					     <tr>
+					        <td><input type="checkbox" /></td>
+					        <td>JavaScript基础教程</td>
+					        <td>三年级一班</td>
+					        <td>2018/08/08</td>
+					        <td>25</td>
+					        <td>38000</td>
+					        <td>查看</td>
+					     </tr>
+					     <tr>
+					        <td><input type="checkbox" /></td>
+					        <td>JavaScript基础教程</td>
+					        <td>三年级一班</td>
+					        <td>2018/08/08</td>
+					        <td>25</td>
+					        <td>38000</td>
+					        <td>查看</td>
+					     </tr>
+					     <tr>
+					        <td><input type="checkbox" /></td>
+					        <td>JavaScript基础教程</td>
+					        <td>三年级一班</td>
+					        <td>2018/08/08</td>
+					        <td>25</td>
+					        <td>38000</td>
+					        <td>查看</td>
+					     </tr>
+					     <tr>
+					        <td><input type="checkbox" /></td>
+					        <td>JavaScript基础教程</td>
+					        <td>三年级一班</td>
+					        <td>2018/08/08</td>
+					        <td>25</td>
+					        <td>38000</td>
+					        <td>查看</td>
+					     </tr>
+					     <tr>
+					        <td><input type="checkbox" /></td>
+					        <td>JavaScript基础教程</td>
+					        <td>三年级一班</td>
+					        <td>2018/08/08</td>
+					        <td>25</td>
+					        <td>38000</td>
+					        <td>查看</td>
+					     </tr>
+				   	</tbody>
+				</table>
+			</div>
+			<button class="u-step1-qxbtn">取消</button>
+			<button class="u-step1-okbtn">确认添加</button>
+		</div>	
+		<!--主界面-->
+		<div class="g-main">
+			<div class="m-cw-bmstep1imgDiv">
+				<img src="img/imgbm-step1.png" />
+				<img src="img/imgbm-step2curr.png" />
+				<img src="img/imgbm-step3.png" />
+			</div>
+			<button class="u-step2xkbtn" id="u-step2xkbtn">点击选课</button>
+			<div class="m-step2tabDiv">
+				<table class="layui-table u-step1-tab" >
+					<thead>
+					    <tr>
+					      <th>已选课程</th>
+					      <th>班级名称</th>
+					      <th>开班日期</th>
+					      <th>课时数量</th>
+					      <th>价格</th>
+					    </tr> 
+				    </thead>
+					<colgroup>
+					    <col width="250">
+					    <col width="250">
+					    <col width="150">
+					    <col width="100">
+					    <col width="100">
+					</colgroup>
+				   	<tbody>
+					      <tr>
+					        <td></td>
+					        <td></td>
+					        <td></td>
+					        <td></td>
+					        <td></td>
+					     </tr>
+				   	</tbody>
+				</table>
+			</div>
+			<div class="u-step2totalDiv">
+				总价
+				<span>4800.00</span>
+				元
+			</div>
+			<button class="u-step2qxlastbtn">上一步</button>
+			<button class="u-step2qxnextbtn">下一步</button>
+		</div>
+	</body>
+</html>

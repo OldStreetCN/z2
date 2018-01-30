@@ -71,6 +71,88 @@
 					});
 				});
 			});
+			/*点击预览按钮*/
+			$(function(){
+				$(".m-jgzs-ylDiv").click(function(){
+					alert("开发中，敬请等待！");
+				});
+			});
+			/*点击文字信息修改按钮*/
+			$(function(){
+				$("#u-jgzs-wzxgbtn").click(function(){
+					$(".mark").css("display","block");
+					$("#g-wzxgmsgDiv").css("display","block");
+				});
+				$("#u-jgzs-wzxgclosebtn,#u-jgzs-wzxgqxbtn").click(function(){
+					$(".mark").css("display","none");
+					$("#g-wzxgmsgDiv").css("display","none");
+				});
+			});
+			/*标签悬停*/
+			$(function(){
+				$(".u-jgzs-kcflbtn").mouseover(function(){
+					$(this).css("display","none");
+					$(this).next().css("display","block");
+				});
+				$(".u-jgzs-xgandscbtn").mouseleave(function(){
+					$(this).css("display","none");
+					$(this).last().css("display","block");
+				});
+			});
+			/*点击修改*/
+			$(function(){
+				$(".u-jgzs-xgkcflbtn").click(function(){
+					$(".g-main").css("display","none");
+					$(".g-jgzs-flxxxgDiv").css("display","block");
+				});
+				$("#u-stumsg-backbtn").click(function(){
+					$(".g-main").css("display","block");
+					$(".g-jgzs-flxxxgDiv").css("display","none");
+				});
+			});
+			/*修改界面点击添加课程*/
+			$(function(){
+				$(".u-jgzs-flxxxg-addcos").click(function(){
+					$(".mark").css("display","block");
+					$(".g-jgzs-addzscosDiv").css("display","block");
+				});
+				$("#u-jgzs-addzskcclosebtn,#u-jgzs-addzskcqxbtn").click(function(){
+					$(".mark").css("display","none");
+					$(".g-jgzs-addzscosDiv").css("display","none");
+				});
+			});
+			/*日期*/
+			$(function(){
+				layui.use('laydate', function(){
+				  var laydate = layui.laydate;
+				   //时间范围
+				  laydate.render({
+				    elem: '#kbdate'
+				    ,type: 'time'
+				    ,range: true
+				  });
+				   laydate.render({
+				    elem: '#addzskctime1'
+				    ,type: 'time'
+				    ,range: true
+				  });
+				  laydate.render({
+				    elem: '#addzskctime2'
+				    ,type: 'time'
+				    ,range: true
+				  });
+				   laydate.render({
+				    elem: '#addzskctime3'
+				    ,type: 'time'
+				    ,range: true
+				  });
+				   laydate.render({
+				    elem: '#addzskctime4'
+				    ,type: 'time'
+				    ,range: true
+				  });
+				});  
+			}); 
 		</script>
 		<style>
 			.g-main{display: block; position: absolute;left: 165px;top: 75px;height: 900px;width: 1068px;background-color: #F3F3F3;}
@@ -100,9 +182,73 @@
 			.u-jgzs-jgjs{width: 442px;height: 98px;margin-top: -20px;margin-left: 80px;font-size: 14px;color: #666;}
 			.u-jgzs-jgjstitle{margin-top: 15px;margin-left: 15px;}
 			/*课程分类设置*/
-			.u-jgsz-kcflszmain{width: 1000px;height: 120px;background-color:lemonchiffon;margin-top: 10px;margin-left: 15px;}
-			.u-jgzs-kcflbtn{margin-left: 10px; margin-top:15px; height: 40px;width: 150px;border-radius: 5px;background-color: #fff;color: #40CB85;border: 1px solid #40CB85;}
+			.u-jgsz-kcflszmain{width: 1000px;height: 120px;margin-top: 10px;margin-left: 15px;}
+			.u-jgzs-btnDiv{display: inline-block; margin-left: 10px; margin-top:15px; height: 40px;width: 150px;}
+			.u-jgzs-kcflbtn{ height: 40px;width: 150px;border-radius: 5px;background-color: #fff;color: #40CB85;border: 1px solid #40CB85;}
+			.u-jgzs-xgandscbtn{display: none; height: 100%;width: 100%;background-color: #F2F2F2;border: 1px solid #F2F2F2;border-radius: 10px;}
+			.u-jgzs-xgandscbtn span{cursor: pointer;}
+			.u-jgzs-xgkcflbtn{display: inline-block;margin-left:40px;margin-top: 10px;font-size: 14px;color: #4AA1EC;}
+			.u-jgzs-sckcflbtn{margin-left: 10px;color: #F77878;}
 			/*.u-jgzs-kcflszbtn{margin-left: 10px;margin-top: 15px; height: 40px;width: 150px;border-radius: 5px;background-color: #fff;color: #C9C9C9;border: 1px solid #C9C9C9;}*/
+			/*预览div*/
+			.m-jgzs-ylDiv{height:60px;width: 100%;background-color: #fff;margin-top: 10px;}
+			.m-jgzs-ylDiv{line-height: 60px;text-align: center;cursor: pointer;}
+			/*文字修改信息*/
+			.g-wzxgmsgDiv{display:none; top:43%;left: 0;right: 0;margin: -250px auto 0 auto; height: 600px;width: 600px;background-color: #fff;border-radius: 5px;z-index: 1111;position: fixed;}
+			.m-wzxgmsgtitleDiv{height: 40px;width: 100%;border-bottom: 1px solid #e2e2e2;}
+			.m-wzxgmsgtitleDiv span{font-size: 16px;display: inline-block;margin-top: 10px;margin-left: 15px;}
+			#u-jgzs-wzxgclosebtn{float: right;margin-top: 10px;margin-right: 10px;}
+			.u-jgzs-wzxgspan{font-size: 14px;color: #666666;position: absolute;}
+			.u-jgzs-wzxgipt{height: 40px;width: 150px;border: 1px solid #c9c9c9;position: absolute;font-size: 14px;}
+			.u-jgzs-wzxgyysj{left: 15px;top: 80px;}
+			.u-jgzs-wzxgyysjipt{left: 80px;top: 70px;}
+			.u-jgzs-wzxgyyzxrx{left: 15px;top: 145px;}
+			.u-jgzs-wzxgyyzxrxipt{left: 80px;top: 135px;}
+			.u-jgzs-wzxgteltip{font-size: 12px;color: #999;position: absolute;left:240px;top: 160px;}
+			.u-jgzs-wzxglxdz{left: 15px;top: 210px;}
+			.u-jgzs-wzxglxdzipt{position: absolute; border: 1px solid #c9c9c9;height: 121px;width: 476px;font-size: 14px;left: 80px;top: 200px;}
+			.u-jgzs-wzxgjgjj{left: 15px;top: 350px;}
+			.u-jgzs-wzxgjgjjipt{position: absolute; border: 1px solid #c9c9c9;height: 160px;width: 476px;font-size: 14px;left: 80px;top: 340px;}
+			.u-jgzs-wzxgbtn{height: 41px;width: 96px;border-radius: 5px;font-size: 14px;position: absolute;}
+			.u-jgzs-wzxgqxbtn{background-color: #fff;color: #666;border: 1px solid #c9c9c9;left: 192px;top: 520px;}
+			.u-jgzs-wzxgsavebtn{background-color: #40CB85;color: #fff;border:none; left:300px;top: 520px;}
+			/*悬停上点击修改按钮*/
+			.g-jgzs-flxxxgDiv{display: none;background-color: #fff; position: absolute;left: 165px;top: 75px;height: 900px;width: 1068px;}
+			.u-stutop-title{width100%;height: 60px;border-bottom: 1px solid #E2E2E2;}
+			.u-stumsg-backbtn{height: 31px;width: 71px;border:1px solid #c9c9c9;border-radius: 5px;background-color: #fff;margin-top: 15px;margin-left: 15px;}
+			.u-stumsg-toptitle{font-size: 16px;margin-left: 15px;}
+			.u-jgzs-flxxxgflspan{display: inline-block;color: #666;font-size: 14px;margin-left: 15px;margin-top: 15px;}
+			.u-jgzs-flxxxgflslt{height: 30px;width: 100px;border: 1px solid #f2f2f2;color: #999;}
+			.u-jgzs-flxxxgflmain{height: 550px;width:900px;}
+			.u-jgzs-flxxxg-addcos{cursor: pointer; line-height: 150px;text-align: center;font-size: 14px;color: #666; float: left; height: 150px;width: 400px;border-radius: 5px;background-color: #f2f2f2;margin-top: 15px;margin-left: 15px;}
+			/*添加展示课程*/
+			.g-jgzs-addzscosDiv{display:none; top:48%;left: 0;right: 0;margin: -250px auto 0 auto; height: 550px;width: 600px;background-color: #fff;border-radius: 5px;z-index: 1111;position: fixed;}
+			#u-jgzs-addzskcclosebtn{float: right;margin-top: 10px;margin-right: 10px;}
+			.u-jgzs-addzskcspan{font-size: 14px;color: #666;position: absolute;display: inline-block;}
+			.u-jgzs-addzskcipt{font-size: 14px;color: #666;position: absolute;border: 1px solid #c9c9c9;height: 40px;}
+			.u-jgzs-addzskcname{left: 15px;top: 65px;}
+			.u-jgzs-addzskcnameipt{left: 80px;top: 55px;width: 250px;}
+			.u-jgzs-addzskcclsname{left: 15px;top: 125px;}
+			.u-jgzs-addzskcclsnameipt{left: 80px;top: 115px;width: 250px;}
+			.u-jgzs-addzskctip{font-size: 12px;position: absolute;color:#999999;left: 15px;top:165px;}
+			.u-jgzs-addzskckbdate{left: 15px;top: 200px;}
+			.u-jgzs-kbdateDiv{position: absolute;left: 80px;top:195px; background-color: greenyellow;height: 30px;width: 150px;}
+			.u-jgzs-addzskcprice{left: 280px;top: 200px;}
+			.u-jgzs-addzskcpriceipt{left: 315px;top: 190px;width: 150px;}
+			.u-jgzs-addzskc-eveweekDiv{position: absolute;left: 15px;top: 250px; height: 30px;width: 400px;}
+			.u-stumg-skeveweektitle{margin-top:5px;display: inline-block;font-size: 14px;}
+			.m-stumg-mgbtnfom span{font-size: 14px;display: inline-block; margin-top: 0px;margin-left: 0px;color: #666;} 
+			.u-jgzs-addzskceveday{left:40px;top: 310px;}
+			.u-jgzs-addzskcevedayipt{left:80px;top:300px;height: 31px;width: 50px;}
+			.u-jgzs-addzskcjie{left: 140px;top: 310px;}
+			.u-jgzs-addzskctime{left: 40px;top: 360px;}
+			.u-jgzs-addzskctime1Div{position: absolute;left: 80px;top:350px; background-color: greenyellow;height: 30px;width: 150px;}
+			.u-jgzs-addzskctime2Div{position: absolute;left: 250px;top:350px; background-color: greenyellow;height: 30px;width: 150px;}
+			.u-jgzs-addzskctime3Div{position: absolute;left: 80px;top:400px; background-color: greenyellow;height: 30px;width: 150px;}
+			.u-jgzs-addzskctime4Div{position: absolute;left: 250px;top:400px; background-color: greenyellow;height: 30px;width: 150px;}
+			.u-jgzs-addzskcbtn{width: 95px;height: 41px;border-radius: 5px;font-size: 14px;position: absolute;}
+			.u-jgzs-addzskcqxbtn{left: 170px;top: 475px;border: 1px solid #C9C9C9;background-color: #fff;color: #666;}
+			.u-jgzs-addzskcokbtn{left: 280px;top: 475px;border: none;background-color: #40CB85;color: #fff;}
 		</style>
 	</head>
 	<body>
@@ -170,8 +316,94 @@
 			</ul>
 		</div>
 		<div class="mark" style="display:none;"></div>
+		<!--点击修改按钮-->
+		<div class="g-wzxgmsgDiv" id="g-wzxgmsgDiv">
+			<div class="m-wzxgmsgtitleDiv">
+				<span>文字信息修改</span>
+				<img id="u-jgzs-wzxgclosebtn" src="img/Mtclosebtn.png" />
+			</div>
+			<span class="u-jgzs-wzxgspan u-jgzs-wzxgyysj">营业时间:</span>
+			<input type="text" class="u-jgzs-wzxgipt u-jgzs-wzxgyysjipt" />
+			<span class="u-jgzs-wzxgspan u-jgzs-wzxgyyzxrx">咨询热线:</span>
+			<input type="text" class="u-jgzs-wzxgipt u-jgzs-wzxgyyzxrxipt" />
+			<span class="u-jgzs-wzxgteltip">座机格式：xxx-xxxxxxxx</span>
+			<span class="u-jgzs-wzxgspan u-jgzs-wzxglxdz">联系地址:</span>
+			<textarea class="u-jgzs-wzxglxdzipt"></textarea>
+			<span class="u-jgzs-wzxgspan u-jgzs-wzxgjgjj">机构简介:</span>
+			<textarea class="u-jgzs-wzxgjgjjipt"></textarea>
+			<button class="u-jgzs-wzxgbtn u-jgzs-wzxgqxbtn" id="u-jgzs-wzxgqxbtn">取消</button>
+			<button class="u-jgzs-wzxgbtn u-jgzs-wzxgsavebtn">保存修改</button>
+		</div>
+		<!--悬停上点修改按钮-->
+		<div class="g-jgzs-flxxxgDiv">
+			<div class="u-stutop-title">
+				<button class="u-stumsg-backbtn" id="u-stumsg-backbtn">返回上页</button>
+				<span class="u-stumsg-toptitle">分类信息修改</span>
+			</div>
+			<span class="u-jgzs-flxxxgflspan">分类名称：</span>
+			<select class="u-jgzs-flxxxgflslt">
+				<option>点击修改</option>
+				<option></option>
+			</select>
+			<div class="u-jgzs-flxxxgflmain">
+				<div class="u-jgzs-flxxxg-addcos">点击添加课程</div>
+				<div class="u-jgzs-flxxxg-addcos">点击添加课程</div>
+				<div class="u-jgzs-flxxxg-addcos">点击添加课程</div>
+				<div class="u-jgzs-flxxxg-addcos">点击添加课程</div>
+				<div class="u-jgzs-flxxxg-addcos">点击添加课程</div>
+				<div class="u-jgzs-flxxxg-addcos">点击添加课程</div>
+			</div>
+		</div>
+		<!--添加展示课程-->
+		<div class="g-jgzs-addzscosDiv">
+			<div class="m-wzxgmsgtitleDiv">
+				<span>添加展示课程</span>
+				<img id="u-jgzs-addzskcclosebtn" src="img/Mtclosebtn.png" />
+			</div>
+			<span class="u-jgzs-addzskcspan u-jgzs-addzskcname">课程名称:</span>
+			<input type="text" class="u-jgzs-addzskcipt u-jgzs-addzskcnameipt" />
+			<span class="u-jgzs-addzskcspan u-jgzs-addzskcclsname">班级名称:</span>
+			<input type="text" class="u-jgzs-addzskcipt u-jgzs-addzskcclsnameipt" />
+			<span class="u-jgzs-addzskctip">以下信息将自动填写（如需要修改请到课程/班级管理）</span>
+			<span class="u-jgzs-addzskcspan u-jgzs-addzskckbdate">开班日期:</span>
+			<div class="u-jgzs-kbdateDiv">
+				<input type="text" class="layui-input" id="kbdate" placeholder=" - ">
+			</div>
+			<span class="u-jgzs-addzskcspan u-jgzs-addzskcprice">价格:</span>
+			<input type="text" class="u-jgzs-addzskcipt u-jgzs-addzskcpriceipt" />
+			<div class="u-jgzs-addzskc-eveweekDiv">
+				<form class="layui-form"  action="">
+					<span class="u-stumg-skeveweektitle">每周</span>
+					<input type="checkbox" name="" title="一" lay-skin="primary" />
+					<input type="checkbox" name="" title="二" lay-skin="primary" />
+					<input type="checkbox" name="" title="三" lay-skin="primary" />
+					<input type="checkbox" name="" title="四" lay-skin="primary" />
+					<input type="checkbox" name="" title="五" lay-skin="primary" />
+					<input class="u-stumg-ck6" type="checkbox" name="" title="六" lay-skin="primary" />
+					<input type="checkbox" name="" title="日" lay-skin="primary" />
+				</form>
+			</div>
+			<span class="u-jgzs-addzskcspan u-jgzs-addzskceveday">每天:</span>
+			<input type="text" class="u-jgzs-addzskcipt u-jgzs-addzskcevedayipt" />
+			<span class="u-jgzs-addzskcspan u-jgzs-addzskcjie">节</span>
+			<span class="u-jgzs-addzskcspan u-jgzs-addzskctime">时间:</span>
+			<div class="u-jgzs-addzskctime1Div">
+				<input type="text" class="layui-input" id="addzskctime1" placeholder=" - ">
+			</div>
+			<div class="u-jgzs-addzskctime2Div">
+				<input type="text" class="layui-input" id="addzskctime2" placeholder=" - ">
+			</div>
+			<div class="u-jgzs-addzskctime3Div">
+				<input type="text" class="layui-input" id="addzskctime3" placeholder=" - ">
+			</div>
+			<div class="u-jgzs-addzskctime4Div">
+				<input type="text" class="layui-input" id="addzskctime4" placeholder=" - ">
+			</div>
+			<button class="u-jgzs-addzskcbtn u-jgzs-addzskcqxbtn" id="u-jgzs-addzskcqxbtn">取消</button>
+			<button class="u-jgzs-addzskcbtn u-jgzs-addzskcokbtn">确认添加</button>
+		</div>
 		<!--主界面-->
-		<div class="g-main">
+		<div class="g-main" style="display: block;">
 			<!--图片信息展示-->
 			<div class="m-jgzs-imgmsgDiv">
 				<div class="m-jgzs-imgmsgtitle">
@@ -197,7 +429,7 @@
 			<div class="m-jgzs-wzmsgDiv">
 				<div class="m-jgzs-wzmsgtitle">
 					<span>文字信息展示</span>
-					<button>点击修改</button>
+					<button id="u-jgzs-wzxgbtn">点击修改</button>
 				</div>
 				<div class="m-jgzsDiv1">
 					<span class="u-jgzs-wzspan u-jgzs-yysjtitle">营业时间:</span>
@@ -219,16 +451,21 @@
 					<div>您可以设置最多12个分类</div>
 				</div>
 				<div class="u-jgsz-kcflszmain">
-					<button class="u-jgzs-kcflbtn">少儿技能</button>
-					<button class="u-jgzs-kcflbtn">少儿技能</button>
-					<button class="u-jgzs-kcflbtn">少儿技能</button>
-					<button class="u-jgzs-kcflbtn">少儿技能</button>
-					<button class="u-jgzs-kcflbtn">少儿技能</button>
-					<button class="u-jgzs-kcflbtn">少儿技能</button>
-					<button class="u-jgzs-kcflbtn">少儿技能</button>
-					<button class="u-jgzs-kcflbtn">少儿技能</button>
+					<div class="u-jgzs-btnDiv">
+						<button class="u-jgzs-kcflbtn">少儿技能</button>
+						<div class="u-jgzs-xgandscbtn"><span class="u-jgzs-xgkcflbtn">修改</span><span class="u-jgzs-sckcflbtn">删除</span></div>
+					</div>
+					<div class="u-jgzs-btnDiv">
+						<button class="u-jgzs-kcflbtn">少儿技能</button>
+						<div class="u-jgzs-xgandscbtn"><span class="u-jgzs-xgkcflbtn">修改</span><span class="u-jgzs-sckcflbtn">删除</span></div>
+					</div>
 				</div>
+				
 			</div>	
+			<!--预览-->
+			<div class="m-jgzs-ylDiv">
+				点击预览
+			</div>
 		</div>
 	</body>
 </html>

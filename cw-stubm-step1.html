@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>学生报名</title>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
+		<link rel="stylesheet" href="css/global.css" />
+		<link rel="stylesheet" href="css/input.css" />
+		<script type="text/javascript" src="js/input.js" ></script>
+		<!--引入LayUI库 2018/01/07 by gao-->
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			/*layui左侧导航栏效果*/
+			$(function(){
+				//注意：导航 依赖 element 模块，否则无法进行功能性操作
+				layui.use('element', function(){
+				  var element = layui.element;
+				  
+				  //…
+				});
+			});
+			/*顶部个人中心弹出框*/
+			$(function(){
+				$(".u-owncenter").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".m-owncenterDiv").mouseover(function(){
+					$('.m-owncenterDiv').css("display",'block');
+				});
+				$(".u-owncenter").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+				$(".m-owncenterDiv").mouseleave(function(){
+					$('.m-owncenterDiv').css("display",'none');
+				});
+			});
+			/*日期*/
+			$(function(){
+				layui.use('laydate', function(){
+				  var laydate = layui.laydate;
+				   //时间范围
+				  laydate.render({
+				    elem: '#kbdate'
+				    ,type: 'time'
+				    ,range: true
+				  });
+				});  
+			}); 
+			/*从客户导入*/
+			$(function(){
+				$("#u-drbtn").click(function(){
+					$(".mark").css("display","block");
+					$("#u-step1-khdrDiv").css("display","block");
+				});
+				$(".u-step1-qxbtn,#u-yy-addcrsclosebtn").click(function(){
+					$(".mark").css("display","none");
+					$("#u-step1-khdrDiv").css("display","none");
+				});
+			});
+		</script>
+		<style>
+			.g-main{display: block; position: absolute;left: 165px;top: 75px;height: 900px;width: 1068px;background-color: #fff;}
+			/*mark*/
+			.mark{width: 100%;height: 100%;background:  rgba(0,0,0,.5);position: fixed;z-index: 1000;display: none;}
+			/*图片框*/
+			.m-cw-bmstep1imgDiv{height: 60px;width: 1000px;margin-left: 60px;margin-top: 50px;}
+			/*数据填写区域*/
+			.m-cw-bmstep1mainDiv{height: 550px;width: 900px;position: absolute;top:150px;left: 60px;}
+			.u-step1-span{display: inline-block;color: #666;position: absolute;font-size: 14px;}
+			.u-step1-iptDiv{position: absolute;height: 40px;}
+			.u-step1-stuname:before{content: "*";color: #F77878;}
+			.u-step1-stuname{top: 10px;}
+			.u-step1-stunameipt{width: 150px;left: 70px;}
+			.u-drbtn{position: absolute;height: 40px;width: 95px;left:240px;border: none;background-color: #40CB85;color: #fff;border-radius: 5px;}
+			.u-step1-tel:before{content: "*";color: #F77878;}
+			.u-step1-tel{top: 65px;}
+			.u-step1-telipt{width: 150px;left: 70px;top: 55px;}
+			.u-step1-sex:before{content: "*";color: #F77878;}
+			.u-step1-sex{left: 237px;top: 65px;}
+			.u-step1-sexipt{width: 61px;left: 280px;top: 55px;}
+			.u-step1tip{font-size: 12px;color: #999;position: absolute;left: 90px;top:104px;}
+			.u-step1-birth{left: 5px;top: 135px;}
+			.u-step1-bitthipt{width:150px;left: 70px;top: 125px;}
+			.u-step1-ly{left: 240px;top: 135px;}
+			.u-step1-lyipt{width:150px;left:280px;top: 125px;}
+			.u-step1-school{left: 30px;top:190px;}
+			.u-step1-school{height: 81px;width: 366px;}
+			.u-step1-schoolipt{border: 1px solid #c9c9c9;height: 81px;width: 366px; position:absolute; left:70px;top: 180px;}
+			.u-step1-grade{left: 30px;top:280px;}
+			.u-step1-gradeipt{width: 150px;left: 70px;top: 270px;}
+			.u-step1-adrs{left: 30px;top:330px;}
+			.u-step1-adrsipt{border: 1px solid #c9c9c9;height: 81px;width: 366px; position:absolute; left:70px;top:320px;}
+			.u-step1-smtbtn{position: absolute;height: 40px;width: 152px;background-color: #4AA1EC;color: #fff;left:180px;top:430px;border:none;font-size:14px;border-radius:5px;}
+			/*客户导入div*/
+			#u-yy-addcrsclosebtn{float: right;margin-top: 10px;margin-right: 10px;}
+			.u-step1-khdrDiv{display:none; top:55%;left: 0;right: 0;margin: -250px auto 0 auto; height: 402px;width: 502px;background-color: #fff;border-radius: 5px;z-index: 1111;position: fixed;}
+			.u-step1-serachipt{height: 31px;width: 102px;position: absolute;left: 15px;top: 15px;}
+			.u-step1-serachbtn{position: absolute;height: 35px;width: 51px;left: 117px;top: 15px;background-color: #fff;font-size: 14px;color: #666;border: 1px solid #999;}
+			.u-step1-serachtip{color: #999;font-size: 12px;position: absolute;left: 180px;top:30px;}
+			.u-step1-cxsxbtn{position: absolute;left: 370px; top:20px; height: 30px;width: 70px;border-radius: 5px;border: 1px solid #C9C9C9;background-color: #fff;color: #666;font-size: 12px;}
+			.u-step1-tabDiv{overflow-y: auto; height: 260px;width: 480px;background-color: mediumseagreen;position: absolute;left: 15px;top:65px;}
+			.u-step1-tabDiv::-webkit-scrollbar{ width: 10px;height: 10px; background-color: white;}
+			.u-step1-tabDiv::-webkit-scrollbar-thumb{ border-radius: 10px; background-color: #E5E5E5;}
+			.u-step1-tab{margin: 0;}
+			.u-step1-btn{cursor: pointer; height: 40px;width: 95px;border-radius: 5px;font-size: 14px;position: absolute;}
+			.u-step1-qxbtn{top:350px;left: 130px;border: 1px solid #c9c9c9;background-color: #fff;color: #666;}
+			.u-step1-okbtn{top: 350px;left:240px;border:none;background-color:#40CB85;color: #fff;}
+		</style>
+	</head>
+	<body>
+		<!--侧边导航栏-->
+		<div class="g-sidenav">
+			<div class="m-logoDiv">
+				<img src="img/logo_white.svg" />
+			</div>
+			<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+				<li class="layui-nav-item"><a href="#">后台首页</a></li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">教务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">学生管理</a></dd>
+				      <dd><a href="">教师管理</a></dd>
+				      <dd><a href="">班级管理</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item">
+				    <a href="javascript:;">运营管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">财务管理</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+			  	<li class="layui-nav-item">
+				    <a href="javascript:;">数据中心</a>
+				    <dl class="layui-nav-child">
+				      <dd><a href="">选项一</a></dd>
+				      <dd><a href="">选项二</a></dd>
+				      <dd><a href="">选项三</a></dd>
+				    </dl>
+			  	</li>
+				<li class="layui-nav-item"><a href="">设置</a></li>
+			</ul>
+		</div>	
+		<!--顶部bar-->
+		<div class="g-header">
+			<span class="u-hdcurrjigou">超级未来教育</span>
+			<span class="u-xiaoquchoose">切换</span>
+			<span class="u-owncenter"><span>高长浩</span><img src="img/xiangxia.svg"/></span>
+			<span class="u-hd-kuaijie">
+				<ul>
+					<li><img src="img/calendar.svg"/></li>
+					<li><img src="img/tip.svg"/></li>
+					<li><img src="img/helpcenter.svg"/></li>
+					<li><img src="img/more.svg"/></li>
+				</ul>
+			</span>
+		</div>
+		<!--hd的个人中心弹出的下拉框-->
+		<div class="m-owncenterDiv layui-anim" data-anim="layui-anim-upbit">
+			<ul>
+				<li>个人资料</li>
+				<li>退出登录</li>
+			</ul>
+		</div>
+		<div class="mark" style=""></div>
+		<!--点击从客户导入-->
+		<div class="u-step1-khdrDiv" id="u-step1-khdrDiv">
+			<img id="u-yy-addcrsclosebtn" src="img/Mtclosebtn.png" />
+			<input type="text" class="u-step1-serachipt" placeholder="手机号或姓名" />
+			<button class="u-step1-serachbtn">检索</button>
+			<span class="u-step1-serachtip">按照最后跟进时间倒序排列</span>
+			<button class="u-step1-cxsxbtn">重新筛选</button>
+			<div class="u-step1-tabDiv">
+				<table class="layui-table u-step1-tab" >
+					<thead>
+					    <tr>
+					      <th>姓名</th>
+					      <th>手机号</th>
+					      <th>性别</th>
+					      <th>最后联系时间</th>
+					    </tr> 
+				    </thead>
+					<colgroup>
+					    <col width="101">
+					    <col width="101">
+					    <col width="101">
+					    <col width="155">
+					</colgroup>
+				   	<tbody>
+				   		<tr>
+					        <td>张伟</td>
+					        <td>18270613396</td>
+					        <td>男</td>
+					        <td>2018/08/08 18:32</td>
+					     </tr>
+					     <tr>
+					        <td>张伟</td>
+					        <td>18270613396</td>
+					        <td>男</td>
+					        <td>2018/08/08 18:32</td>
+					     </tr>
+					     <tr>
+					        <td>张伟</td>
+					        <td>18270613396</td>
+					        <td>男</td>
+					        <td>2018/08/08 18:32</td>
+					     </tr>
+					     <tr>
+					        <td>张伟</td>
+					        <td>18270613396</td>
+					        <td>男</td>
+					        <td>2018/08/08 18:32</td>
+					     </tr>
+					     <tr>
+					        <td>张伟</td>
+					        <td>18270613396</td>
+					        <td>男</td>
+					        <td>2018/08/08 18:32</td>
+					     </tr>
+					     <tr>
+					        <td>张伟</td>
+					        <td>18270613396</td>
+					        <td>男</td>
+					        <td>2018/08/08 18:32</td>
+					     </tr>
+					     <tr>
+					        <td>张伟</td>
+					        <td>18270613396</td>
+					        <td>男</td>
+					        <td>2018/08/08 18:32</td>
+					     </tr>
+					     <tr>
+					        <td>张伟</td>
+					        <td>18270613396</td>
+					        <td>男</td>
+					        <td>2018/08/08 18:32</td>
+					     </tr>
+					     <tr>
+					        <td>张伟</td>
+					        <td>18270613396</td>
+					        <td>男</td>
+					        <td>2018/08/08 18:32</td>
+					     </tr>
+					     <tr>
+					        <td>张伟</td>
+					        <td>18270613396</td>
+					        <td>男</td>
+					        <td>2018/08/08 18:32</td>
+					     </tr>
+				   	</tbody>
+				</table>
+			</div>
+			<button class="u-step1-btn u-step1-qxbtn">取消</button>
+			<button class="u-step1-btn u-step1-okbtn">确认添加</button>
+		</div>
+		<!--主界面-->
+		<div class="g-main">
+			<div class="m-cw-bmstep1imgDiv">
+				<img src="img/imgbm-step1curr.png" />
+				<img src="img/imgbm-step2.png" />
+				<img src="img/imgbm-step3.png" />
+			</div>
+			<div class="m-cw-bmstep1mainDiv">
+				<span class="u-step1-span u-step1-stuname">学生姓名:</span>	
+				<div class="u-step1-iptDiv u-step1-stunameipt">
+					<input type="text" name="stuname"  autocomplete="off" class="layui-input">
+				</div>
+				<button class="u-drbtn" id="u-drbtn">从客户导入</button>
+				<span class="u-step1-span u-step1-tel">手机号码:</span>	
+				<div class="u-step1-iptDiv u-step1-telipt">
+					<input type="tel" name="tel" autocomplete="off" class="layui-input">
+				</div>
+				<span class="u-step1-span u-step1-sex">性别:</span>	
+				<div class="u-step1-iptDiv u-step1-sexipt">
+					<input type="text" name="sex" autocomplete="off" class="layui-input">
+				</div>
+				<span class="u-step1tip">以下信息不强制填写</span>
+				<span class="u-step1-span u-step1-birth">出生日期:</span>	
+				<div class="u-step1-iptDiv u-step1-bitthipt">
+					<input type="text" class="layui-input" id="kbdate" placeholder=" - ">
+				</div>
+				<span class="u-step1-span u-step1-ly">来源:</span>
+				<div class="u-step1-iptDiv u-step1-lyipt">
+					<input type="text" name="laiyuan" autocomplete="off" class="layui-input">
+				</div>
+				<span class="u-step1-span u-step1-school">学校:</span>
+				<textarea class="u-step1-schoolipt"></textarea>
+				<span class="u-step1-span u-step1-grade">年级:</span>
+				<div class="u-step1-iptDiv u-step1-gradeipt">
+					<input type="text" name="laiyuan" autocomplete="off" class="layui-input">
+				</div>
+				<span class="u-step1-span u-step1-adrs">住址:</span>
+				<textarea class="u-step1-adrsipt"></textarea>
+				<input type="submit" class="u-step1-smtbtn" />
+			</div>
+		</div>
+	</body>
+</html>
